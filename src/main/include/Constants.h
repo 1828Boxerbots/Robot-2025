@@ -14,6 +14,9 @@
  * they are needed.
  */
 
+
+bool MyFUnc(bool pleasehelpme);
+
 namespace OperatorConstants {
 
 inline constexpr int kDriverControllerPort = 0;
