@@ -7,33 +7,64 @@
 #include <frc/geometry/Rotation2d.h>
 #include <frc/kinematics/SwerveModulePosition.h>
 #include <frc/kinematics/SwerveModuleState.h>
-#include <rev/SparkMax.h>
 #include <rev/SparkAbsoluteEncoder.h>
 #include <rev/SparkClosedLoopController.h>
+#include <rev/SparkMax.h>
 #include <rev/SparkRelativeEncoder.h>
 
-class SwerveModule 
-{
- public:
-  SwerveModule(int driveCANID, int turningCANID, double chassisAngularOffset);
+using namespace rev::spark;
 
+class MAXSwerveModule {
+ public:
+  /**
+   * Constructs a MAXSwerveModule and configures the driving and turning motor,
+   * encoder, and PID controller. This configuration is specific to the REV
+   * MAXSwerve Module built with NEOs, SPARKS MAX, and a Through Bore
+   * Encoder.
+   */
+  MAXSwerveModule(int driveCANId, int turningCANId,
+                  double chassisAngularOffset);
+
+  /**
+   * Returns the current state of the module.
+   *
+   * @return The current state of the module.
+   */
   frc::SwerveModuleState GetState() const;
+
+  /**
+   * Returns the current position of the module.
+   *
+   * @return The current position of the module.
+   */
   frc::SwerveModulePosition GetPosition() const;
 
-  void SetDesiredState(const frc::SwerveModuleState& desiredState);
+  /**
+   * Sets the desired state for the module.
+   *
+   * @param desiredState Desired state with speed and angle.
+   */
+  void SetDesiredState(const frc::SwerveModuleState& state);
+
+  /**
+   * Zeroes all the SwerveModule encoders.
+   */
   void ResetEncoders();
-  
+
  private:
-  rev::CANSparkMax m_DriveSparkMax;
-  rev::CANSparkMax m_TurnSparkMax;
+  SparkMax m_drivingSpark;
+  SparkMax m_turningSpark;
 
-  rev::SparkRelativeEncoder m_DriveEncoderRel = m_DriveSparkMax.GetEncoder(rev::SparkRelativeEncoder::Type::kHallSensor, 42); //CHANGE, REVOLUTION COUNTS
-  rev::SparkAbsoluteEncoder m_TurnEncoderAbs = m_TurnSparkMax.GetAbsoluteEncoder(rev::SparkAbsoluteEncoder::Type::kDutyCycle);
+  SparkRelativeEncoder m_drivingEncoder = m_drivingSpark.GetEncoder();
+  SparkAbsoluteEncoder m_turningAbsoluteEncoder =
+      m_turningSpark.GetAbsoluteEncoder();
 
-  rev::SparkPIDController m_DrivePIDController = m_DriveSparkMax.GetPIDController();
-  rev::SparkPIDController m_TurnPIDController = m_TurnSparkMax.GetPIDController();
+  SparkClosedLoopController m_drivingClosedLoopController =
+      m_drivingSpark.GetClosedLoopController();
+  SparkClosedLoopController m_turningClosedLoopController =
+      m_turningSpark.GetClosedLoopController();
 
-  frc::SwerveModuleState m_DesiredState{units::meters_per_second_t{0.0}, frc::Rotation2d()};
-  
-  double m_ChassisAngularOffset = 0;
+  double m_chassisAngularOffset = 0;
+  frc::SwerveModuleState m_desiredState{units::meters_per_second_t{0.0},
+                                        frc::Rotation2d()};
 };

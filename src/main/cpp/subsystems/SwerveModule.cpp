@@ -3,80 +3,65 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/SwerveModule.h"
+
 #include <frc/geometry/Rotation2d.h>
-#include <numbers>
-#include "Constants.h"
-using namespace ModuleConstants;
 
-SwerveModule::SwerveModule(int driveCANID, int turnCANID, double chassisAngularOffset) : m_DriveSparkMax(driveCANID, rev::CANSparkMax::MotorType::kBrushless),  m_TurnSparkMax(turnCANID, rev::CANSparkMax::MotorType::kBrushless)
-{
-    m_DriveSparkMax.RestoreFactoryDefaults();
-    m_TurnSparkMax.RestoreFactoryDefaults();
+#include "SwerveUtils.h"
 
-    m_DriveEncoderRel.SetPositionConversionFactor(kDriveEncoderPosFactor);
-    m_DriveEncoderRel.SetVelocityConversionFactor(kDriveEncoderVelFactor);
+using namespace rev::spark;
 
-    m_TurnEncoderAbs.SetPositionConversionFactor(kTurnEncoderPosFactor);
-    m_TurnEncoderAbs.SetVelocityConversionFactor(kTurnEncoderVelFactor);
+MAXSwerveModule::MAXSwerveModule(const int drivingCANId, const int turningCANId,
+                                 const double chassisAngularOffset)
+    : m_drivingSpark(drivingCANId, SparkMax::MotorType::kBrushless),
+      m_turningSpark(turningCANId, SparkMax::MotorType::kBrushless) {
+  // Apply the respective configurations to the SPARKS. Reset parameters before
+  // applying the configuration to bring the SPARK to a known good state.
+  // Persist the settings to the SPARK to avoid losing them on a power cycle.
+  m_drivingSpark.Configure(Configs::MAXSwerveModule::DrivingConfig(),
+                           SparkBase::ResetMode::kResetSafeParameters,
+                           SparkBase::PersistMode::kPersistParameters);
+  m_turningSpark.Configure(Configs::MAXSwerveModule::TurningConfig(),
+                           SparkBase::ResetMode::kResetSafeParameters,
+                           SparkBase::PersistMode::kPersistParameters);
 
-    m_TurnEncoderAbs.SetInverted(kTurnEncoderInverted);
-
-    m_TurnPIDController.SetPositionPIDWrappingEnabled(true);
-    m_TurnPIDController.SetPositionPIDWrappingMinInput(kTurnEncoderPosPIDInputMin.value());
-    m_TurnPIDController.SetPositionPIDWrappingMaxInput(kTurnEncoderPosPIDInputMax.value());
-
-    m_TurnPIDController.SetFeedbackDevice(m_TurnEncoderAbs);
-
-    m_DrivePIDController.SetP(kDriveP);
-    m_DrivePIDController.SetI(kDriveI);
-    m_DrivePIDController.SetD(kDriveD);
-    m_DrivePIDController.SetFF(kDriveFF);
-    m_DrivePIDController.SetOutputRange(kDriveOutputMin, kDriveOutputMax);
-
-    m_TurnPIDController.SetP(kTurnP);
-    m_TurnPIDController.SetI(kTurnI);
-    m_TurnPIDController.SetD(kTurnD);
-    m_TurnPIDController.SetFF(kTurnFF);
-    m_TurnPIDController.SetOutputRange(kTurnOutputMin, kTurnOutputMax);
-
-    m_DriveSparkMax.SetIdleMode(kDriveMotorIdleMode);
-    m_TurnSparkMax.SetIdleMode(kTurnMotorIdleMode);
-    m_DriveSparkMax.SetSmartCurrentLimit(kDriveMotorCurrentLimit.value());
-    m_TurnSparkMax.SetSmartCurrentLimit(kTurnMotorCurrentLimit.value());
-
-    m_DriveSparkMax.BurnFlash();
-    m_TurnSparkMax.BurnFlash();
-
-    m_ChassisAngularOffset = chassisAngularOffset;
-    m_DesiredState.angle = frc::Rotation2d(units::radian_t{m_TurnEncoderAbs.GetPosition()});
-    m_DriveEncoderRel.SetPosition(0);
+  m_chassisAngularOffset = chassisAngularOffset;
+  m_desiredState.angle =
+      frc::Rotation2d(units::radian_t{m_turningAbsoluteEncoder.GetPosition()});
+  m_drivingEncoder.SetPosition(0);
 }
 
-frc::SwerveModuleState SwerveModule::GetState() const
-{
-     return {units::meters_per_second_t{m_DriveEncoderRel.GetVelocity()}, units::radian_t{m_TurnEncoderAbs.GetPosition() - m_ChassisAngularOffset}};
+frc::SwerveModuleState MAXSwerveModule::GetState() const {
+  return {units::meters_per_second_t{m_drivingEncoder.GetVelocity()},
+          units::radian_t{m_turningAbsoluteEncoder.GetPosition() -
+                          m_chassisAngularOffset}};
 }
 
-frc::SwerveModulePosition SwerveModule::GetPosition() const
-{
-  return {units::meter_t{m_DriveEncoderRel.GetPosition()}, units::radian_t{m_TurnEncoderAbs.GetPosition() - m_ChassisAngularOffset}};
+frc::SwerveModulePosition MAXSwerveModule::GetPosition() const {
+  return {units::meter_t{m_drivingEncoder.GetPosition()},
+          units::radian_t{m_turningAbsoluteEncoder.GetPosition() -
+                          m_chassisAngularOffset}};
 }
 
-void SwerveModule::SetDesiredState(const frc::SwerveModuleState& desiredState)
-{
-    frc::SwerveModuleState correctedDesiredState{};
-    correctedDesiredState.speed = desiredState.speed;
-    correctedDesiredState.angle = desiredState.angle + frc::Rotation2d(units::radian_t{m_ChassisAngularOffset});
+void MAXSwerveModule::SetDesiredState(
+    const frc::SwerveModuleState& desiredState) {
+  // Apply chassis angular offset to the desired state.
+  frc::SwerveModuleState correctedDesiredState{};
+  correctedDesiredState.speed = desiredState.speed;
+  correctedDesiredState.angle =
+      desiredState.angle +
+      frc::Rotation2d(units::radian_t{m_chassisAngularOffset});
 
-    frc::SwerveModuleState optimizedDesiredState{frc::SwerveModuleState::Optimize(correctedDesiredState, frc::Rotation2d(units::radian_t{m_TurnEncoderAbs.GetPosition()}))};
+  // Optimize the reference state to avoid spinning further than 90 degrees.
+  correctedDesiredState.Optimize(
+      frc::Rotation2d(units::radian_t{m_turningAbsoluteEncoder.GetPosition()}));
 
-    m_DrivePIDController.SetReference((double)optimizedDesiredState.speed, rev::CANSparkMax::ControlType::kVelocity);
-    m_TurnPIDController.SetReference(optimizedDesiredState.angle.Radians().value(), rev::CANSparkMax::ControlType::kPosition);
+  m_drivingClosedLoopController.SetReference(
+      (double)correctedDesiredState.speed, SparkMax::ControlType::kVelocity);
+  m_turningClosedLoopController.SetReference(
+      correctedDesiredState.angle.Radians().value(),
+      SparkMax::ControlType::kPosition);
 
-    m_DesiredState = desiredState;
+  m_desiredState = desiredState;
 }
 
-void SwerveModule::ResetEncoders()
-{
-    m_DriveEncoderRel.SetPosition(0);
-}
+void MAXSwerveModule::ResetEncoders() { m_drivingEncoder.SetPosition(0); }
