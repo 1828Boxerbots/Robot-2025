@@ -11,6 +11,15 @@ class Camera
 
     //Member varibles
 
+/*
+Sensors to add:
+   
+Encoders
+ Motor controlers
+ Camera
+*/
+  
+
     //Methods 
 };
 

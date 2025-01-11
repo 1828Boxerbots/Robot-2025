@@ -13,6 +13,16 @@ class Coral
 
 //Member varibles
 
+
+  /*
+  Sensors to add:
+   
+   Encoders
+   Motor control
+   Potentiameter
+  */ 
+
+
 //Methods
     
 };

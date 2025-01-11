@@ -11,6 +11,15 @@ class Shooter
 
     private:
 
+/*
+  Sensors to add:
+   
+   Encoders
+   Motor controlers
+   
+   
+*/ 
+
     //Member varibles
 
     //Methods

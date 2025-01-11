@@ -15,6 +15,16 @@ class Climb
 
    //Member variables
 
+ /*
+   Sensors to add:
+   
+   Encoders
+   Motor controlers
+   
+*/
+  
+   
+
    
 
    //Methods
