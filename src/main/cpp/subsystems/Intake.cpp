@@ -2,9 +2,35 @@
 
 namespace Robo2025
 {
-   bool Intake::m_IsBallIn()
-    {
-            return false;
-    };
 
+Intake::Intake()
+{
+        //Intake constructor
 }
+
+
+Intake::~Intake()
+{
+        //Intake deconstructor
+}
+
+
+
+bool Intake::IsBallIn()
+{
+//Checks if the ball is in
+  return false;
+};
+
+
+
+
+void Intake::TakeBall()
+{
+
+
+ 
+};
+
+
+};

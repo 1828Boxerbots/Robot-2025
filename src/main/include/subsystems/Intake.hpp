@@ -1,5 +1,8 @@
 #pragma once
-#include "rev/SparkMax.h"
+#include "rev/SparkMax.h";
+#include "Constants.h";
+#include "frc/Encoder.h";
+#include "frc/DigitalOutput.h";
 
 namespace Robo2025
 
@@ -9,26 +12,32 @@ class Intake
 {
    public:
 
+//Public Methods:
+
+   Intake();
+   ~Intake();
+
+
+
+
    private:
 
-//member variables
+//Private member variables
 
-rev::spark::SparkMax m_loadmotor1{0, rev::spark::SparkMax::MotorType::kBrushless};
-rev::spark::SparkMax m_loadMotor2{1, rev::spark::SparkMax::MotorType::kBrushless};
-
-
- /*
-  Sensors to add:
-   
-   Encoders
-   Motor controlers
-   Photogate
-
-  */ 
+rev::spark::SparkMax m_loadMotor1{IntakeConstants::kIntakeMotorPort1, rev::spark::SparkMax::MotorType::kBrushless};
+rev::spark::SparkMax m_loadMotor2{IntakeConstants::kIntakeMotorPort2, rev::spark::SparkMax::MotorType::kBrushless};
 
 
-//methods
-   bool m_IsBallIn();
+
+
+//Private methods
+
+/// @brief Checks if ball is in load, possibly using a photogate
+/// @return bool
+   bool IsBallIn();
+
+/// @brief Takes ball in -_-
+   void TakeBall();
 
 
 
