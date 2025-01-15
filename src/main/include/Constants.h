@@ -14,8 +14,62 @@
  * they are needed.
  */
 
-namespace OperatorConstants {
+namespace CameraConstants 
+{
+
+//Camera constants
+
+
+
+}  // namespace OperatorConstants
+
+namespace ClimbConstants 
+{
+    //Climbconstants
+inline constexpr int kClimbMotorPort1 = 0;
+inline constexpr int kClimbMotorPort2 = 1;
+
+
+}  
+
+namespace CorralConstants 
+{
+    //Corral constants
+
+inline constexpr int kCoralMotorPort1 = 2;
+inline constexpr int kCoralMotorPort2 = 3;
+
+}  
+
+
+namespace DriveConstants 
+{
+        //Drive constants
 
 inline constexpr int kDriverControllerPort = 0;
 
-}  // namespace OperatorConstants
+
+}  
+
+
+
+
+
+namespace IntakeConstants 
+{
+    //Intake constants
+    inline constexpr int kIntakeMotorPort1 = 4;
+    inline constexpr int kIntakeMotorPort2 = 5;
+
+
+}  
+
+namespace ShooterConstants 
+{
+    //Shooter constants
+    
+    inline constexpr int kShooterMotorPort1 = 6;
+    inline constexpr int kShooterMotorPort2 = 7;
+
+
+}  
