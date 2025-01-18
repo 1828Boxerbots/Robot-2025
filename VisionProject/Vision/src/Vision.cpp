@@ -1,6 +1,15 @@
 #include <iostream>
 #include <vector>
 #include <opencv2/opencv.hpp>
+#include <opencv2/calib3d.hpp>
+#include <opencv2/objdetect.hpp>
+
+//#include "VisionClass.h"
+//
+//int main()
+//{
+//	return 0;
+//}
 
 int main()
 {
@@ -22,6 +31,7 @@ int main()
 	cv::namedWindow(processedWindow);
 
 	int frameWidth = cap.get(cv::CAP_PROP_FRAME_WIDTH);
+	double markerSize = 0.165; //Meters.
 
 	cv::Mat frame;
 
@@ -42,9 +52,18 @@ int main()
 		cv::aruco::Dictionary dictionary = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_APRILTAG_36h11);
 		cv::aruco::ArucoDetector detector(dictionary, detectorParams);
 		detector.detectMarkers(frame, markerCorners, markerIds, rejectedCandidates);
+		cv::Mat camMatrix, distCoeffs;
+
+		std::vector<cv::Vec3d> rotationVecs, translationVecs;
+		//cv::aruco::estimatePoseSingleMarkers(markerCorners, markerSize, camMatrix, distCoeffs, rotationVecs, translationVecs);
 
 		processed = frame.clone();
 		cv::aruco::drawDetectedMarkers(processed, markerCorners, markerIds);
+
+		for (int id : markerIds) 
+		{
+			std::cout << "Detected marker ID: " << id << std::endl; //Displays ID
+		}
 
 		// Show the images
 		cv::imshow(unProcessedWindow, frame);
