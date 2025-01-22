@@ -24,6 +24,7 @@
  * they are needed.
  */
 
+
 namespace DriveConstants {
 // Driving Parameters - Note that these are not the maximum capable speeds of
 // the robot, rather the allowed maximum speeds
@@ -97,3 +98,63 @@ namespace OIConstants {
 constexpr int kDriverControllerPort = 0;
 constexpr double kDriveDeadband = 0.05;
 }  // namespace OIConstants
+
+namespace CameraConstants 
+{
+
+//Camera constants
+
+
+
+}  // namespace OperatorConstants
+
+namespace ClimbConstants 
+{
+    //Climbconstants
+inline constexpr int kClimbMotorPort1 = 0;
+inline constexpr int kClimbMotorPort2 = 1;
+
+
+}  
+
+namespace CorralConstants 
+{
+    //Corral constants
+
+inline constexpr int kCoralMotorPort1 = 2;
+inline constexpr int kCoralMotorPort2 = 3;
+
+}  
+
+
+namespace DriveConstants 
+{
+        //Drive constants
+
+inline constexpr int kDriverControllerPort = 0;
+
+
+}  
+
+
+
+
+
+namespace IntakeConstants 
+{
+    //Intake constants
+    inline constexpr int kIntakeMotorPort1 = 4;
+    inline constexpr int kIntakeMotorPort2 = 5;
+
+
+}  
+
+namespace ShooterConstants 
+{
+    //Shooter constants
+    
+    inline constexpr int kShooterMotorPort1 = 6;
+    inline constexpr int kShooterMotorPort2 = 7;
+
+
+}  
