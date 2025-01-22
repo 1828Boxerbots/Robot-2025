@@ -158,3 +158,13 @@ namespace ShooterConstants
 
 
 }  
+
+namespace GuacoConstants
+{
+    //guaco constants 
+
+    inline constexpr int kGuacoPort = 10; 
+    //Placeholder port, change once known. 
+
+
+}
