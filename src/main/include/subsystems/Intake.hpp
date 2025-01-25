@@ -26,7 +26,7 @@ class Intake
 
 rev::spark::SparkMax m_loadMotor1{IntakeConstants::kIntakeMotorPort1, rev::spark::SparkMax::MotorType::kBrushless};
 rev::spark::SparkMax m_loadMotor2{IntakeConstants::kIntakeMotorPort2, rev::spark::SparkMax::MotorType::kBrushless};
-
+frc::DigitalOutput m_photoGate{IntakeConstants::kPhotoGatePort}; 
 
 
 
@@ -36,8 +36,10 @@ rev::spark::SparkMax m_loadMotor2{IntakeConstants::kIntakeMotorPort2, rev::spark
 /// @return bool
    bool IsBallIn();
 
-/// @brief Takes ball in -_-
-   void TakeBall();
+/// @brief sets Shintake motors 
+   void SetMotors(double speed);
+
+
 
 
 

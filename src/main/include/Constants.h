@@ -146,6 +146,9 @@ namespace IntakeConstants
     inline constexpr int kIntakeMotorPort1 = 4;
     inline constexpr int kIntakeMotorPort2 = 5;
 
+    //placeholder port please change
+    inline constexpr int kPhotoGatePort = 10;
+
 
 }  
 

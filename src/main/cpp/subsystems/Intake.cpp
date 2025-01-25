@@ -18,18 +18,15 @@ Intake::~Intake()
 
 bool Intake::IsBallIn()
 {
-//Checks if the ball is in
-  return false;
+//Checks if the ball is in 
+  return m_photoGate.Get(); 
 };
 
 
-
-
-void Intake::TakeBall()
+void Intake::SetMotors(double speed)
 {
-
-
- 
+   m_loadMotor1.Set(speed);
+   m_loadMotor2.Set(speed);
 };
 
 
