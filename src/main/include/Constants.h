@@ -14,6 +14,10 @@
  * they are needed.
  */
 
+
+
+
+//All ports = 0 for dummy values, change them later
 namespace CameraConstants 
 {
 
@@ -23,21 +27,36 @@ namespace CameraConstants
 
 }  // namespace OperatorConstants
 
+
 namespace ClimbConstants 
 {
     //Climbconstants
 inline constexpr int kClimbMotorPort1 = 0;
-inline constexpr int kClimbMotorPort2 = 1;
+inline constexpr int kClimbMotorPort2 = 0;
 
 
 }  
 
-namespace CorralConstants 
+namespace ElevatorConstants 
 {
-    //Corral constants
+    //Elevator constants
 
-inline constexpr int kCoralMotorPort1 = 2;
-inline constexpr int kCoralMotorPort2 = 3;
+inline constexpr int kElevatorMotorPort1 = 0;
+inline constexpr int kElevatorMotorPort2 = 0;
+inline constexpr int kHallEffectPortL1 = 0;
+inline constexpr int kHallEffectPortL2 = 0;
+inline constexpr int kHallEffectPortL3 = 0;
+inline constexpr int kHallEffectPortL4 = 0;
+inline constexpr int kEncoderPortA = 0;
+inline constexpr int kEncoderPortB = 0;
+
+namespace ElevatorPID
+{
+    //Pids constants
+    inline constexpr int kSetPoint = 0;
+    inline constexpr int kPosition = 0;
+    
+}
 
 }  
 
@@ -58,8 +77,8 @@ inline constexpr int kDriverControllerPort = 0;
 namespace IntakeConstants 
 {
     //Intake constants
-    inline constexpr int kIntakeMotorPort1 = 4;
-    inline constexpr int kIntakeMotorPort2 = 5;
+    inline constexpr int kIntakeMotorPort1 = 0;
+    inline constexpr int kIntakeMotorPort2 = 0;
 
 
 }  
@@ -68,8 +87,8 @@ namespace ShooterConstants
 {
     //Shooter constants
     
-    inline constexpr int kShooterMotorPort1 = 6;
-    inline constexpr int kShooterMotorPort2 = 7;
+    inline constexpr int kShooterMotorPort1 = 0;
+    inline constexpr int kShooterMotorPort2 = 0;
 
 
 }  
