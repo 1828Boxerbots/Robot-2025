@@ -55,7 +55,18 @@ namespace ElevatorPID
     //Pids constants
     inline constexpr int kSetPoint = 0;
     inline constexpr int kPosition = 0;
-    
+
+    inline constexpr int kP = 0;
+    inline constexpr int kI = 0;
+    inline constexpr int kD = 0;
+    inline constexpr int kMaxOutput = 0;
+    inline constexpr int kMinOutput = 0;
+    inline constexpr int kv = 0;
+    inline constexpr int kMaxVelocity = 0;
+    inline constexpr int kMaxAcceleration = 0;
+    inline constexpr int kAllowedError = 0;
+
+
 }
 
 }  
@@ -92,3 +103,8 @@ namespace ShooterConstants
 
 
 }  
+
+namespace DriverConstants
+{
+    inline constexpr int kDriverControllerPort = 0;
+}
