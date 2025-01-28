@@ -20,7 +20,7 @@ class Intake
 
 
 
-   private:
+   
 
 //Private member variables
 
@@ -39,7 +39,7 @@ rev::spark::SparkMax m_loadMotor2{IntakeConstants::kIntakeMotorPort2, rev::spark
 /// @brief Takes ball in -_-
    void TakeBall();
 
-
+private:
 
 
 };

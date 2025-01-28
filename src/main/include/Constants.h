@@ -158,3 +158,35 @@ namespace ShooterConstants
 
 
 }  
+
+namespace PivotConstants
+{
+    //Pivot constants
+
+    inline constexpr int kPivotMotorPort = 12; 
+    //placeholder values, please change. 
+
+    inline constexpr int kHalleffectPortCloseSafetyStop = 10;
+    inline constexpr int kHalleffectPortFarSafetyStop = 11; 
+    inline constexpr int kHalleffectPortCoral = 12; 
+    inline constexpr int kHalleffectPortBarge = 13; 
+    inline constexpr int kHalleffectPortBase = 14; 
+    inline constexpr int kHalleffectPortGroundPickup = 15; 
+    inline constexpr int kEncoderPortA = 16;
+    inline constexpr int kEncoderPortB = 17; 
+    //placeholder values, please change.
+
+    inline constexpr int kEncoderStudCount = 2018;
+    inline constexpr double kSpeed = 0.5;
+    //placeholder values, please change.
+
+    inline constexpr double kCloseSafetyStopAngle = -270;
+    inline constexpr double kFarSafetyStopAngle = 270; 
+    inline constexpr double kCoralAngle = 120; 
+    inline constexpr double kBargeAngle = 95; 
+    inline constexpr double kBaseAngle = 180; 
+    inline constexpr double kGroundPickupAngle = -40; 
+    //placeholder values, please change. 
+
+
+}
