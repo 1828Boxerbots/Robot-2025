@@ -19,7 +19,14 @@ Intake::~Intake()
 bool Intake::IsBallIn()
 {
 //Checks if the ball is in 
-  return m_photoGate.Get(); 
+  if(m_ultraSonic.GetVoltage() <= 0.01) //placeholder target voltage value, theoretically correct but check.
+  {
+        return true;
+  }
+  else
+  {
+        return false;
+  }
 };
 
 

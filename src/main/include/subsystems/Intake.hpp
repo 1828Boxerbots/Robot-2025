@@ -1,8 +1,8 @@
 #pragma once
-#include "rev/SparkMax.h";
-#include "Constants.h";
-#include "frc/Encoder.h";
-#include "frc/DigitalOutput.h";
+#include <rev/SparkMax.h>
+#include "Constants.h"
+#include <frc/Encoder.h>
+#include <frc/AnalogInput.h>
 
 namespace Robo2025
 
@@ -20,13 +20,13 @@ class Intake
 
 
 
-   private:
+   
 
 //Private member variables
 
 rev::spark::SparkMax m_loadMotor1{IntakeConstants::kIntakeMotorPort1, rev::spark::SparkMax::MotorType::kBrushless};
 rev::spark::SparkMax m_loadMotor2{IntakeConstants::kIntakeMotorPort2, rev::spark::SparkMax::MotorType::kBrushless};
-frc::DigitalOutput m_photoGate{IntakeConstants::kPhotoGatePort}; 
+frc::AnalogInput m_ultraSonic{IntakeConstants::kUltraSonicPort}; 
 
 
 
@@ -43,6 +43,7 @@ frc::DigitalOutput m_photoGate{IntakeConstants::kPhotoGatePort};
 
 
 
+private:
 
 };
 
