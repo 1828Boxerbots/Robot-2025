@@ -23,13 +23,13 @@ class Elevator
 
 //Hall effects
 
-int GetHallEffectL1();
+bool GetHallEffectL1();
 
-int GetHallEffectL2();
+bool GetHallEffectL2();
 
-int GetHallEffectL3();
+bool GetHallEffectL3();
 
-int GetHallEffectL4();
+bool GetHallEffectL4();
 
 
 //Motors 
@@ -42,7 +42,18 @@ int GetEncoderValue();
   
 
   
+/// @brief Moves height of taco to Level 1 on the reef (trough)
+void MoveL1();
 
+/// @brief Moves height of taco to Level 2 on the reef 
+void MoveL2();
+
+/// @brief Moves height of taco to Level 3 on the reef 
+void MoveL3();
+
+/// @brief Moves height of taco to Level 4 on the reef 
+void MoveL4();
+  
 
   
 
@@ -96,18 +107,7 @@ frc::Encoder m_ElevatorEncoder{ElevatorConstants::kEncoderPortA, ElevatorConstan
 
 
 
-/// @brief Moves height of taco to Level 1 on the reef (trough)
-void MoveL1();
 
-/// @brief Moves height of taco to Level 2 on the reef 
-void MoveL2();
-
-/// @brief Moves height of taco to Level 3 on the reef 
-void MoveL3();
-
-/// @brief Moves height of taco to Level 4 on the reef 
-void MoveL4();
-  
 
 
     

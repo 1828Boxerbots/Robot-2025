@@ -33,50 +33,50 @@ namespace Robot2025
  
  void Elevator::MoveL1()
  {
-   
+     m_controller.SetReference(ElevatorConstants::kL1, rev::spark::SparkBase::ControlType::kPosition);
  };
 
 
 void Elevator::MoveL2()
 {
-   
+   m_controller.SetReference(ElevatorConstants::kL2, rev::spark::SparkBase::ControlType::kPosition);
 };
 
 
 void Elevator::MoveL3()
 {
-   
+   m_controller.SetReference(ElevatorConstants::kL3, rev::spark::SparkBase::ControlType::kPosition);
 };
 
 
 void Elevator::MoveL4()
 {
-   
+   m_controller.SetReference(ElevatorConstants::kL4, rev::spark::SparkBase::ControlType::kPosition);
 };
 
-int Elevator::GetHallEffectL1()
+bool Elevator::GetHallEffectL1()
 {
-   int value = m_HallEffectL1.Get();
-   return value;
+    
+   return m_HallEffectL1.Get();
 }
    
 
-int Elevator::GetHallEffectL2()
+bool Elevator::GetHallEffectL2()
 {
-   int value = m_HallEffectL2.Get();
-   return value;
+    
+   return m_HallEffectL2.Get();
 };
 
-int Elevator::GetHallEffectL3()
+bool Elevator::GetHallEffectL3()
 {
-   int value = m_HallEffectL3.Get();
-   return value;
+   
+   return m_HallEffectL3.Get();
 };
 
-int Elevator::GetHallEffectL4()
+bool Elevator::GetHallEffectL4()
 {
-   int value = m_HallEffectL4.Get();
-   return value;
+   
+   return  m_HallEffectL4.Get();;
 };
 
 int Elevator::GetMotorValue()

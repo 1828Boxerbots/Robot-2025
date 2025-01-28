@@ -50,6 +50,11 @@ inline constexpr int kHallEffectPortL4 = 0;
 inline constexpr int kEncoderPortA = 0;
 inline constexpr int kEncoderPortB = 0;
 
+inline constexpr int kL1 = 0;
+inline constexpr int kL2= 0;
+inline constexpr int kL3 = 0;
+inline constexpr int kL4 = 0;
+
 namespace ElevatorPID
 {
     //Pids constants
@@ -65,6 +70,7 @@ namespace ElevatorPID
     inline constexpr int kMaxVelocity = 0;
     inline constexpr int kMaxAcceleration = 0;
     inline constexpr int kAllowedError = 0;
+
 
 
 }
