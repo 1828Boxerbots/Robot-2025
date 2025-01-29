@@ -188,5 +188,10 @@ namespace PivotConstants
     inline constexpr double kGroundPickupAngle = -40; 
     //placeholder values, please change. 
 
+namespace PivotPIDConstants
+{
+    inline constexpr int kSetPoint = 0;
+}
+
 
 }

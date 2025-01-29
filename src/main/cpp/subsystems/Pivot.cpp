@@ -6,7 +6,22 @@ namespace Robo2025
 Pivot::Pivot()
 {
         //Pivot constructor
+        rev::spark::SparkBaseConfig config;
+        config.closedLoop
+    .P(PivotConstants::PivotPIDConstants::kP)
+    .I(PivotConstants::PivotPIDConstants::kI)
+    .D(PivotConstants::PivotPIDConstants::kD)
+    .OutputRange(PivotConstants::PivotPIDConstants::kMinOutput, PivotConstants::PivotPIDConstants::kMaxOutput)
+    .VelocityFF(1/PivotConstants::PivotPIDConstants::kV);
+ 
+ config.closedLoop.maxMotion
+    .MaxVelocity(PivotConstants::PivotPIDConstants::kmaxVel)
+    .MaxAcceleration(PivotConstants::PivotPIDConstants::kmaxAccel)
+    .AllowedClosedLoopError(PivotConstants::PivotPIDConstants::kallowedErr);
+
+     m_PivotPIDController.SetReference(PivotConstants::PivotPIDConstants::kSetPoint, rev::spark::SparkBase::ControlType::kPosition);
 };
+
 
 
 Pivot::~Pivot()

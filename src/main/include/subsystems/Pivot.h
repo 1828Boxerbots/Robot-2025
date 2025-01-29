@@ -25,6 +25,10 @@ class Pivot
 //Private member variables
 
 rev::spark::SparkMax m_pivotMotor{PivotConstants::kPivotMotorPort, rev::spark::SparkMax::MotorType::kBrushless};
+
+rev::spark::SparkClosedLoopController m_PivotPIDController = m_pivotMotor.GetClosedLoopController();
+
+
 frc::DigitalOutput m_halleffectBarge{PivotConstants::kHalleffectPortBarge};
 frc::DigitalOutput m_halleffectBase{PivotConstants::kHalleffectPortBase};
 frc::DigitalOutput m_halleffectCoral{PivotConstants::kHalleffectPortCoral};
