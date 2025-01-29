@@ -1,4 +1,4 @@
-#include "subsystems/Guaco.h"
+#include "subsystems/Guaco.hpp"
 
 namespace Robo2025
 {
@@ -14,18 +14,23 @@ Guaco::~Guaco()
         //Guaco deconstructor
 }
 
-
-
-double Guaco::GetAngle()
+double Guaco::GetPhotodiodeVoltage()
 {
-//Checks the servo angle
-  return m_guacoServo.GetAngle();
-};
+        return m_photodiode.GetVoltage();
+}
 
-void Guaco::SetAngle(double angle)
+bool Guaco::PhotodiodeThreshold()
 {
-//Sets the servo angle
-  m_guacoServo.SetAngle(angle);
-};
+        if(m_photodiode.GetVoltage() >= GuacoConstants::kPhotodiodeThreshold)
+        {
+                return true;
+        }
+        return false;
+}
+
+void Guaco::SetMotorSpeed(double speed)
+{
+        m_guacoMotor.Set (speed);
+}
 
 }

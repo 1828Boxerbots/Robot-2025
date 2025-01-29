@@ -163,7 +163,10 @@ namespace GuacoConstants
 {
     //guaco constants 
 
-    inline constexpr int kGuacoPort = 10; 
+    inline constexpr int kGuacoMotorPort = 8;
+    inline constexpr int kPhotodiodePort = 1;
+    inline constexpr int kPhotodiodeThreshold = 0;
+
     //Placeholder port, change once known. 
 
 
