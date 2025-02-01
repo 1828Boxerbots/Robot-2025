@@ -3,13 +3,16 @@
 #include <rev/SparkMax.h>
 #include "Constants.h"
 #include <frc/Encoder.h>
-#include <frc/DigitalOutput.h>
+#include <frc/AnalogInput.h>
+
+#include <frc2/command/CommandPtr.h>
+#include <frc2/command/SubsystemBase.h>
 
 namespace Robo2025
 
 {
 
-class Intake
+class Intake : public frc2::SubsystemBase
 {
    public:
 
@@ -21,13 +24,13 @@ class Intake
 
 
 
-   private:
+   
 
 //Private member variables
 
 rev::spark::SparkMax m_loadMotor1{IntakeConstants::kIntakeMotorPort1, rev::spark::SparkMax::MotorType::kBrushless};
 rev::spark::SparkMax m_loadMotor2{IntakeConstants::kIntakeMotorPort2, rev::spark::SparkMax::MotorType::kBrushless};
-
+frc::AnalogInput m_ultraSonic{IntakeConstants::kUltraSonicPort}; 
 
 
 
@@ -37,11 +40,14 @@ rev::spark::SparkMax m_loadMotor2{IntakeConstants::kIntakeMotorPort2, rev::spark
 /// @return bool
    bool IsBallIn();
 
-/// @brief Takes ball in -_-
-   void TakeBall();
+/// @brief sets Shintake motors 
+   frc2::CommandPtr SetMotors(double speed);
 
 
 
+
+
+private:
 
 };
 

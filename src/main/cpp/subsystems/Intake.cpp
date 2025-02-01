@@ -18,19 +18,27 @@ Intake::~Intake()
 
 bool Intake::IsBallIn()
 {
-//Checks if the ball is in
-  return false;
+//Checks if the ball is in 
+  if(m_ultraSonic.GetVoltage() <= 0.01) //placeholder target voltage value, theoretically correct but check.
+  {
+        return true;
+  }
+  else
+  {
+        return false;
+  }
 };
 
 
-
-
-void Intake::TakeBall()
+frc2::CommandPtr Intake::SetMotors(double speed)
 {
-
-
-
-};
-
+   return this->RunOnce
+   (
+      [this, speed] 
+      {
+            m_loadMotor1.Set(speed); 
+            m_loadMotor2.Set(speed);
+      }
+   );
 
 };
