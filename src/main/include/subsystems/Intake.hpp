@@ -1,4 +1,5 @@
 #pragma once
+
 #include <rev/SparkMax.h>
 #include "Constants.h"
 #include <frc/Encoder.h>

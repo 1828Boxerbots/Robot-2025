@@ -40,7 +40,5 @@ frc2::CommandPtr Intake::SetMotors(double speed)
             m_loadMotor2.Set(speed);
       }
    );
-};
-
 
 };
