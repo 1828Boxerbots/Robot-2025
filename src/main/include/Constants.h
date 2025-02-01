@@ -186,8 +186,17 @@ namespace ShooterConstants
     
     inline constexpr int kShooterMotorPort1 = 0;
     inline constexpr int kShooterMotorPort2 = 0;
+}  
 
+namespace GuacoConstants
+{
+    //guaco constants 
 
+    inline constexpr int kGuacoMotorPort = 8;
+    inline constexpr int kPhotodiodePort = 1;
+    inline constexpr int kPhotodiodeThreshold = 0;
+
+    //Placeholder port, change once known. 
 } 
 
 namespace DriverConstants
