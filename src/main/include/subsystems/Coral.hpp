@@ -1,7 +1,7 @@
 #pragma once
 #include "rev/SparkMax.h"
 #include "frc/AnalogPotentiometer.h"
-#include "frc/Encoder.h";
+#include "frc/Encoder.h"
 #include "Constants.h"
 
 namespace Robot2025

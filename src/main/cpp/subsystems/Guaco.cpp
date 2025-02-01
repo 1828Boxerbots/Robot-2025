@@ -28,9 +28,11 @@ bool Guaco::PhotodiodeThreshold()
         return false;
 }
 
-void Guaco::SetMotorSpeed(double speed)
-{
-        m_guacoMotor.Set (speed);
+frc2::CommandPtr Guaco::SetMotorSpeed(double speed)
+{       [this, speed]
+        {
+          m_guacoMotor.Set(speed);
+        };
 }
 
 }
