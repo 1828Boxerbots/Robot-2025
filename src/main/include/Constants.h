@@ -190,7 +190,17 @@ namespace PivotConstants
 
 namespace PivotPIDConstants
 {
+    //ALL are placeholder values please calibrate
     inline constexpr int kSetPoint = 0;
+    inline constexpr int kP = 0;
+    inline constexpr int kI = 0;
+    inline constexpr int kD = 0;
+    inline constexpr int kMinOutput = 0;
+    inline constexpr int kMaxOutput = 0;
+    inline constexpr int kV = 0;
+    inline constexpr int kMaxVel = 0;
+    inline constexpr int kMaxAccel = 0;
+    inline constexpr int kAllowedErr = 0;
 }
 
 

@@ -15,9 +15,9 @@ Pivot::Pivot()
     .VelocityFF(1/PivotConstants::PivotPIDConstants::kV);
  
  config.closedLoop.maxMotion
-    .MaxVelocity(PivotConstants::PivotPIDConstants::kmaxVel)
-    .MaxAcceleration(PivotConstants::PivotPIDConstants::kmaxAccel)
-    .AllowedClosedLoopError(PivotConstants::PivotPIDConstants::kallowedErr);
+    .MaxVelocity(PivotConstants::PivotPIDConstants::kMaxVel)
+    .MaxAcceleration(PivotConstants::PivotPIDConstants::kMaxAccel)
+    .AllowedClosedLoopError(PivotConstants::PivotPIDConstants::kAllowedErr);
 
      m_PivotPIDController.SetReference(PivotConstants::PivotPIDConstants::kSetPoint, rev::spark::SparkBase::ControlType::kPosition);
 };
@@ -70,19 +70,25 @@ bool Pivot::AtAngleFarSafetyStop()
 
 
 
-void Pivot::SetAngle(double angle)
+frc2::CommandPtr Pivot::SetAngle(double angle)
 {
     //Converts passed angle to move the motor the equivalent distance measured by the encoder. 
-    double targetDist = (angle * (360/PivotConstants::kEncoderStudCount)); 
-    double currentDist = m_encoder.Get();
-    if (currentDist < targetDist)
-    {
-      m_pivotMotor.Set(PivotConstants::kSpeed);
-    }    
-    else if (currentDist > targetDist)
-    {
-      m_pivotMotor.Set(-PivotConstants::kSpeed); 
-    }
+    return this->RunOnce
+    (
+      [this,angle] 
+      {
+         double targetDist = (angle * (360/PivotConstants::kEncoderStudCount)); 
+         double currentDist = m_encoder.Get();
+         if (currentDist < targetDist)
+         {
+           m_pivotMotor.Set(PivotConstants::kSpeed);
+         }    
+         else if (currentDist > targetDist)
+         {
+           m_pivotMotor.Set(-PivotConstants::kSpeed); 
+         }
+      }
+    );
 
  
 }; 
@@ -92,14 +98,26 @@ double Pivot::GetEncoder()
     return m_encoder.Get();
 };
 
-void Pivot::StopMotor()
+frc2::CommandPtr Pivot::StopMotor()
 {
-  m_pivotMotor.Set(0);
+  return this->RunOnce
+  (
+    [this] 
+    {
+      m_pivotMotor.Set(0);
+    }
+  );
 }
 
-void Pivot::SetMotorManually(double speed)
+frc2::CommandPtr Pivot::SetMotorManually(double speed)
 {
-  m_pivotMotor.Set(speed);
+  return this->RunOnce
+  (
+    [this,speed]
+    {
+      m_pivotMotor.Set(speed);
+    }
+  );
 }
 
 

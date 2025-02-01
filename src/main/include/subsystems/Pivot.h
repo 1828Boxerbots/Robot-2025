@@ -1,14 +1,16 @@
 #pragma once
-#include "rev/SparkMax.h";
-#include "Constants.h";
-#include "frc/Encoder.h";
-#include "frc/DigitalOutput.h";
+#include <rev/SparkMax.h>
+#include "Constants.h"
+#include <frc/Encoder.h>
+#include <frc/DigitalOutput.h>
+#include <frc2/command/CommandPtr.h>
+#include <frc2/command/SubsystemBase.h>
 
 namespace Robo2025
 
 {
 
-class Pivot
+class Pivot : public frc2::SubsystemBase
 {
    public:
 
@@ -73,11 +75,11 @@ frc::Encoder m_encoder{PivotConstants::kEncoderPortA, PivotConstants::kEncoderPo
    double GetEncoder();
 
 /// @brief Moves the pivot motor to wanted angle 
-   void SetAngle(double angle);
+   frc2::CommandPtr SetAngle(double angle);
 // Stops Motor
-   void StopMotor();
+   frc2::CommandPtr StopMotor();
 // Sets Motor manually to specified speed
-   void SetMotorManually(double speed);
+   frc2::CommandPtr SetMotorManually(double speed);
 
    private:
 
