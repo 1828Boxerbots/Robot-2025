@@ -43,7 +43,7 @@ frc::AnalogInput m_ultraSonic{IntakeConstants::kUltraSonicPort};
 /// @brief sets Shintake motors 
    frc2::CommandPtr SetMotors(double speed);
 
-
+private:
 
 
 
