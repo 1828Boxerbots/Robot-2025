@@ -4,11 +4,14 @@
 #include <frc/Encoder.h>
 #include <frc/AnalogInput.h>
 
+#include <frc2/command/CommandPtr.h>
+#include <frc2/command/SubsystemBase.h>
+
 namespace Robo2025
 
 {
 
-class Intake
+class Intake : public frc2::SubsystemBase
 {
    public:
 
@@ -37,7 +40,7 @@ frc::AnalogInput m_ultraSonic{IntakeConstants::kUltraSonicPort};
    bool IsBallIn();
 
 /// @brief sets Shintake motors 
-   void SetMotors(double speed);
+   frc2::CommandPtr SetMotors(double speed);
 
 
 

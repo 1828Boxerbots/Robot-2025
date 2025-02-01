@@ -30,10 +30,16 @@ bool Intake::IsBallIn()
 };
 
 
-void Intake::SetMotors(double speed)
+frc2::CommandPtr Intake::SetMotors(double speed)
 {
-   m_loadMotor1.Set(speed);
-   m_loadMotor2.Set(speed);
+   return this->RunOnce
+   (
+      [this, speed] 
+      {
+            m_loadMotor1.Set(speed); 
+            m_loadMotor2.Set(speed);
+      }
+   );
 };
 
 
