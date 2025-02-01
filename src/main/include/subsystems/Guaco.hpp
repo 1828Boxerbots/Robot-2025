@@ -3,6 +3,7 @@
 #include "Constants.h"
 #include "frc/DigitalOutput.h"
 #include "frc/AnalogInput.h"
+#include <frc2/command/CommandPtr.h>
 
 namespace Robo2025
 {
@@ -36,7 +37,7 @@ private:
     bool PhotodiodeThreshold();
 
     /// @brief Used to set the speed the motor needs to go
-    void SetMotorSpeed(double speed);
+    frc2::CommandPtr SetMotorSpeed(double speed);
 
 };
 
