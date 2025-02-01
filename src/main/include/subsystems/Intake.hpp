@@ -1,8 +1,9 @@
 #pragma once
-#include "rev/SparkMax.h"
+
+#include <rev/SparkMax.h>
 #include "Constants.h"
-#include "frc/Encoder.h"
-#include "frc/DigitalOutput.h"
+#include <frc/Encoder.h>
+#include <frc/DigitalOutput.h>
 
 namespace Robo2025
 
