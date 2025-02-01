@@ -18,12 +18,18 @@
     <ClCompile Include="src\Vision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\VisionClass.cpp">
+    <ClCompile Include="src\BoxerVisionLibrary\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BoxerVisionLibrary\AprilTag.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\VisionClass.h">
+    <ClInclude Include="src\BoxerVisionLibrary\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BoxerVisionLibrary\AprilTag.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

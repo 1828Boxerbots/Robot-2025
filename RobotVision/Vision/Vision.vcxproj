@@ -19,11 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\BoxerVisionLibrary\AprilTag.cpp" />
+    <ClCompile Include="src\BoxerVisionLibrary\Camera.cpp" />
     <ClCompile Include="src\Vision.cpp" />
-    <ClCompile Include="src\VisionClass.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\VisionClass.h" />
+    <ClInclude Include="src\BoxerVisionLibrary\AprilTag.h" />
+    <ClInclude Include="src\BoxerVisionLibrary\Camera.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

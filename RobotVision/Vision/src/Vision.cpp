@@ -5,92 +5,31 @@
 #include <opencv2/objdetect.hpp>
 #include <opencv2/aruco.hpp>
 
-//#include "VisionClass.h"
-//
-//int main()
-//{
-//	return 0;
-//}
+#include "BoxerVisionLibrary/Camera.h"
+#include "BoxerVisionLibrary/AprilTag.h"
 
 int main()
 {
-	// Grab video from camera.
-	cv::VideoCapture cap(0);
-
-	// Check if camera is streaming.
-	if (!cap.isOpened())
-	{
-		std::cout << "Couldn't open the camera stream." << std::endl;
-		return -1;
-	}
-
-	// Create a new window with the associated name
-	std::string unProcessedWindow = "Live Feed: Default Cam";
-	cv::namedWindow(unProcessedWindow);
-
-	std::string processedWindow = "Processed Image";
-	cv::namedWindow(processedWindow);
-
-	int frameWidth = cap.get(cv::CAP_PROP_FRAME_WIDTH);
-	double markerSize = 0.165; //Meters.
-	//cv::calibrateCamera()
-
-	const double camRad = .00508 / 2;
-	cv::Mat camMatrix = (cv::Mat_<double>(3, 3) << (-camRad / 2), 0, 0, 0, (-camRad / 2), 0, 0, 0, 1);
-	cv::Mat distCoeffs = cv::Mat::zeros(5, 1, CV_64F);
-	cv::Mat frame;
+	BV::Camera cam{0, (0.00508 / 2), "36h11"};
+	cam.ProcessImageInit();
 
 	while (true)
 	{
-		cap >> frame;
+		cam.ProcessImageAprilTag();
 
-		if (frame.empty())
+		if (cam.AprilTagsDataArray().size() > 0)
 		{
-			std::cerr << "ERROR: Could not read a frame" << std::endl;
-			break;
+			BV::AprilTag aprilTag = cam.AprilTagsData(0);
+			std::cout << "AprilTag ID: " << aprilTag.GetAprilTagID() << std::endl;
+			std::cout << "AprilTag Dist: " << aprilTag.GetAprilTagDistanceMeters() << std::endl;
+			std::cout << "AprilTag Height: " << aprilTag.GetAprilTagHeightMeters() << std::endl;
+			std::cout << "AprilTag Target Location: " << aprilTag.GetAprilTagGameLocation() << std::endl;
+			std::cout << " " << std::endl;
+		}
+		else
+		{
+			std::cout << "No apriltags found." << std::endl;
 		}
 
-		cv::Mat processed;
-		std::vector<int> markerIds;
-		std::vector<std::vector<cv::Point2f>> markerCorners, rejectedCandidates;
-		cv::aruco::DetectorParameters detectorParams = cv::aruco::DetectorParameters();
-		cv::aruco::Dictionary dictionary = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_APRILTAG_36h11);
-		cv::aruco::ArucoDetector detector(dictionary, detectorParams);
-		detector.detectMarkers(frame, markerCorners, markerIds, rejectedCandidates);
-
-		std::vector<cv::Vec3d> rotVecs, transVecs;
-		cv::aruco::estimatePoseSingleMarkers(markerCorners, markerSize, camMatrix, distCoeffs, rotVecs, transVecs);
-
-		processed = frame.clone();
-		cv::aruco::drawDetectedMarkers(processed, markerCorners, markerIds);
-
-		for (int id : markerIds) 
-		{
-			std::cout << "Detected marker ID: " << id << std::endl; //Displays ID
-		}
-
-		// Calculate distance
-		if (transVecs.size() != 0)
-		{
-			for (auto dist : transVecs)
-			{
-				double distance = cv::norm(dist); // Assuming only one marker detected
-				std::cout << "Distance: " << distance << " meters" << std::endl;
-			}
-		}
-
-		// Show the images
-		cv::imshow(unProcessedWindow, frame);
-		cv::imshow(processedWindow, processed);
-
-		if (cv::waitKey(1) == 'q')
-		{
-			break;
-		}
 	}
-
-	cap.release();
-	cv::destroyAllWindows();
-
-	return 0;
 }
