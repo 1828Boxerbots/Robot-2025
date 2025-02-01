@@ -7,6 +7,7 @@
 
 #include "BoxerVisionLibrary/Camera.h"
 #include "BoxerVisionLibrary/AprilTag.h"
+#include "BoxerVisionLibrary/Network.h"
 
 int main()
 {
