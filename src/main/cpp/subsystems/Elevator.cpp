@@ -31,27 +31,53 @@ namespace Robot2025
  }
 
  
- void Elevator::MoveL1()
+ frc2::CommandPtr Elevator::MoveL1()
  {
-     m_controller.SetReference(ElevatorConstants::kL1, rev::spark::SparkBase::ControlType::kPosition);
+     return this->RunOnce
+     (
+      [this] 
+      {
+         m_controller.SetReference(ElevatorConstants::kL1, rev::spark::SparkBase::ControlType::kPosition);
+      }
+     );
  };
 
 
-void Elevator::MoveL2()
+frc2::CommandPtr Elevator::MoveL2()
 {
-   m_controller.SetReference(ElevatorConstants::kL2, rev::spark::SparkBase::ControlType::kPosition);
+   return this->RunOnce
+    (
+      [this] 
+      {
+        m_controller.SetReference(ElevatorConstants::kL2, rev::spark::SparkBase::ControlType::kPosition);
+      }
+     ); 
 };
 
 
-void Elevator::MoveL3()
+frc2::CommandPtr Elevator::MoveL3()
 {
-   m_controller.SetReference(ElevatorConstants::kL3, rev::spark::SparkBase::ControlType::kPosition);
+   return this->RunOnce
+    (
+      [this] 
+      {
+       m_controller.SetReference(ElevatorConstants::kL3, rev::spark::SparkBase::ControlType::kPosition);
+      }
+     ); 
+   
 };
 
 
-void Elevator::MoveL4()
+frc2::CommandPtr Elevator::MoveL4()
 {
-   m_controller.SetReference(ElevatorConstants::kL4, rev::spark::SparkBase::ControlType::kPosition);
+      return this->RunOnce
+    (
+      [this] 
+      {
+        m_controller.SetReference(ElevatorConstants::kL4, rev::spark::SparkBase::ControlType::kPosition);
+      }
+     ); 
+ 
 };
 
 bool Elevator::GetHallEffectL1()
@@ -84,9 +110,13 @@ int Elevator::GetMotorValue()
    return m_ElevatorMotor1.Get();
 };
 
-void Elevator::SetMotorValue(int value)
+frc2::CommandPtr Elevator::SetMotorValue(int value)
 {
+   [value, this]
+   {
    m_ElevatorMotor1.Set(value);
+   };
+
 };
 
 int Elevator::GetEncoderValue()

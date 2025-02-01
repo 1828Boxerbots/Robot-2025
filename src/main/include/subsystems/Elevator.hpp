@@ -6,11 +6,13 @@
 
 #include <rev/SparkMax.h>
 #include <rev/SparkClosedLoopController.h>
+#include <frc2/command/CommandPtr.h> 
+#include <frc2/command/SubsystemBase.h>
 
 namespace Robot2025
 {
 
-class Elevator
+class Elevator : public frc2::SubsystemBase
 {
     public:
 
@@ -36,23 +38,23 @@ bool GetHallEffectL4();
     
 int GetMotorValue();
 
-void SetMotorValue(int value);
+frc2::CommandPtr SetMotorValue(int value);
 
 int GetEncoderValue();
   
 
   
 /// @brief Moves height of taco to Level 1 on the reef (trough)
-void MoveL1();
+frc2::CommandPtr MoveL1();
 
 /// @brief Moves height of taco to Level 2 on the reef 
-void MoveL2();
+frc2::CommandPtr MoveL2();
 
 /// @brief Moves height of taco to Level 3 on the reef 
-void MoveL3();
+frc2::CommandPtr MoveL3();
 
 /// @brief Moves height of taco to Level 4 on the reef 
-void MoveL4();
+frc2::CommandPtr MoveL4();
   
 
   
