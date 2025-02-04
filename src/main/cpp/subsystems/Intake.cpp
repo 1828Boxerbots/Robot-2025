@@ -42,3 +42,5 @@ frc2::CommandPtr Intake::SetMotors(double speed)
    );
 
 };
+
+}

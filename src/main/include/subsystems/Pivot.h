@@ -6,7 +6,7 @@
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 
-namespace Robo2025
+namespace Robot2025
 
 {
 
