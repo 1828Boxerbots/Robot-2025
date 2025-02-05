@@ -181,6 +181,7 @@ namespace IntakeConstants
 
     //placeholder port please change
     inline constexpr int kUltraSonicPort = 10;
+    inline constexpr double kUltraSonicThreshHold = 0.01;
 
 
 }  
