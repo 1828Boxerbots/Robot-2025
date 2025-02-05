@@ -103,8 +103,6 @@ namespace CameraConstants
 
 //Camera constants
 
-
-
 }  // namespace OperatorConstants
 
 
@@ -166,12 +164,7 @@ namespace DriveConstants
 
 inline constexpr int kDriverControllerPort = 0;
 
-
 }  
-
-
-
-
 
 namespace IntakeConstants 
 {
@@ -183,9 +176,6 @@ namespace IntakeConstants
     //placeholder port please change
     inline constexpr int kUltraSonicPort = 10;
     inline constexpr double kUltraSonicThreshHold = 0.01;
-    
-
-
 }  
 
 namespace ShooterConstants 
@@ -254,9 +244,6 @@ namespace PivotPIDConstants
     inline constexpr int kAllowedErr = 0;
 }
 
-
-
-  
 } 
 
 namespace DriverConstants

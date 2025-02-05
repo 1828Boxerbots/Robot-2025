@@ -1,4 +1,4 @@
-#include "subsystems/Pivot.h"
+#include "subsystems/Pivot.hpp"
 
 namespace Robot2025
 {

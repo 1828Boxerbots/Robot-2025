@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "subsystems/DriveTrainSub.h"
+#include "subsystems/DriveTrainSub.hpp"
 
 #include <frc/geometry/Rotation2d.h>
 #include <hal/FRCUsageReporting.h>
@@ -10,9 +10,12 @@
 #include <units/angular_velocity.h>
 #include <units/velocity.h>
 
-#include "Constants.h"
+#include "Constants.hpp"
 
 using namespace DriveConstants;
+
+namespace Robot2025
+{
 
 DriveSubsystem::DriveSubsystem()
     : m_frontLeft{kFrontLeftDrivingCanId, kFrontLeftTurningCanId,
@@ -120,4 +123,6 @@ void DriveSubsystem::ResetOdometry(frc::Pose2d pose) {
       {m_frontLeft.GetPosition(), m_frontRight.GetPosition(),
        m_rearLeft.GetPosition(), m_rearRight.GetPosition()},
       pose);
+}
+
 }

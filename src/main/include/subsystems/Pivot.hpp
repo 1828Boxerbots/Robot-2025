@@ -1,6 +1,6 @@
 #pragma once
 #include <rev/SparkMax.h>
-#include "Constants.h"
+#include "Constants.hpp"
 #include <frc/Encoder.h>
 #include <frc/DigitalOutput.h>
 #include <frc2/command/CommandPtr.h>

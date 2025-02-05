@@ -13,8 +13,11 @@
 #include <frc/kinematics/SwerveDriveOdometry.h>
 #include <frc2/command/SubsystemBase.h>
 
-#include "Constants.h"
-#include "SwerveModule.h"
+#include "Constants.hpp"
+#include "SwerveModule.hpp"
+
+namespace Robot2025
+{
 
 class DriveSubsystem : public frc2::SubsystemBase {
  public:
@@ -116,3 +119,5 @@ class DriveSubsystem : public frc2::SubsystemBase {
   // 4 defines the number of modules
   frc::SwerveDriveOdometry<4> m_odometry;
 };
+
+}

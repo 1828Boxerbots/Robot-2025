@@ -6,8 +6,7 @@
 
 #pragma once
 #include "Subsystems/Elevator.hpp"
-#include "Subsystems/Shooter.hpp"
-#include "Subsystems/Pivot.h"
+#include "Subsystems/Pivot.hpp"
 #include "subsystems/Intake.hpp"
 
 
@@ -21,8 +20,6 @@ class DispenseAlgae
 
 
 frc2::CommandPtr ShootAlgaeCmd(int Pivot, int Level);
-
-
 
   Robot2025::Pivot m_pivotSubsystem;
   Robot2025::Elevator m_elevatorSubsystem;

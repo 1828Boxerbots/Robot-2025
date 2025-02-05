@@ -1,8 +1,9 @@
 #pragma once
-#include "rev/SparkMax.h"
-#include "Constants.h"
-#include "frc/DigitalOutput.h"
-#include "frc/AnalogInput.h"
+
+#include <rev/SparkMax.h>
+#include "Constants.hpp"
+#include <frc/DigitalOutput.h>
+#include <frc/AnalogInput.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 #include <frc2/command/FunctionalCommand.h>

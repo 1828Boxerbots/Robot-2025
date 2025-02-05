@@ -1,6 +1,6 @@
 #pragma once
 #include "subsystems/Guaco.hpp"
-#include "subsystems/Pivot.h"
+#include "subsystems/Pivot.hpp"
 #include "subsystems/Elevator.hpp"
 #include "subsystems/Camera.hpp"
 
@@ -17,5 +17,5 @@ public:
     Robot2025::Elevator m_elevatorSubsystem;
     Robot2025::Guaco m_guacoSubsystem;
     //Change namespace of Camera Robo2025 to Robot2025
-    Robo2025::Camera m_visionSubsystem;
+    Robot2025::Camera m_visionSubsystem;
 };
