@@ -1,6 +1,6 @@
-#include "subsystems/Pivot.h"
+#include "subsystems/Pivot.hpp"
 
-namespace Robo2025
+namespace Robot2025
 {
 
 Pivot::Pivot()

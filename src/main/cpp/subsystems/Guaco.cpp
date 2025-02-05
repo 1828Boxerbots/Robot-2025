@@ -1,6 +1,6 @@
 #include "subsystems/Guaco.hpp"
 
-namespace Robo2025
+namespace Robot2025
 {
 
 Guaco::Guaco()
@@ -28,11 +28,58 @@ bool Guaco::PhotodiodeThreshold()
         return false;
 }
 
-frc2::CommandPtr Guaco::SetMotorSpeed(double speed)
-{       [this, speed]
-        {
-          m_guacoMotor.Set(speed);
-        };
+frc2::CommandPtr Guaco::Dispense(double speed)
+{       
+        frc2::FunctionalCommand 
+        (
+                //init 
+                [this]
+                {
+
+                },
+                //execute
+                [this, speed]
+                {
+                        m_guacoMotor.Set(speed); //Positive speed assuming same direction to push through and eject
+                },
+                //end
+                [this] (bool interrupted)
+                {
+                        m_guacoMotor.Set(0);
+                },
+                //isfinished
+                [this]
+                {
+                        return m_photodiode.GetVoltage() < GuacoConstants::kPhotodiodeThreshold;
+                }
+        );
+}
+
+frc2::CommandPtr Guaco::Load(double speed)
+{       
+        frc2::FunctionalCommand 
+        (
+                //init 
+                [this]
+                {
+
+                },
+                //execute
+                [this, speed]
+                {
+                        m_guacoMotor.Set(speed); //Positive speed assuming same direction to push through and eject
+                },
+                //end
+                [this] (bool interrupted)
+                {
+                        m_guacoMotor.Set(0);
+                },
+                //isfinished
+                [this]
+                {
+                        return m_photodiode.GetVoltage() >= GuacoConstants::kPhotodiodeThreshold;
+                }
+        );
 }
 
 }

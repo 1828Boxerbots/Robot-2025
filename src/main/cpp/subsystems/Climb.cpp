@@ -1,6 +1,6 @@
 #include "subsystems/Climb.hpp"
 
-namespace Robo2025
+namespace Robot2025
 {
 Climb::Climb()
 {

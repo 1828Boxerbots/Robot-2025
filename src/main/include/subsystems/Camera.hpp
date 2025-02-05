@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Robo2025
+namespace Robot2025
 {
 
 class Camera

@@ -103,8 +103,6 @@ namespace CameraConstants
 
 //Camera constants
 
-
-
 }  // namespace OperatorConstants
 
 
@@ -130,10 +128,12 @@ inline constexpr int kHallEffectPortL4 = 0;
 inline constexpr int kEncoderPortA = 0;
 inline constexpr int kEncoderPortB = 0;
 
-inline constexpr int kL1 = 0;
-inline constexpr int kL2= 0;
-inline constexpr int kL3 = 0;
-inline constexpr int kL4 = 0;
+inline constexpr int kL0 = 0;
+inline constexpr int kL1 = 1;
+inline constexpr int kL2= 2;
+inline constexpr int kL3 = 3;
+inline constexpr int kL4 = 4; 
+
 
 namespace ElevatorPID
 {
@@ -150,9 +150,6 @@ namespace ElevatorPID
     inline constexpr int kMaxVelocity = 0;
     inline constexpr int kMaxAcceleration = 0;
     inline constexpr int kAllowedError = 0;
-
-
-
 }
 
 }  
@@ -164,23 +161,18 @@ namespace DriveConstants
 
 inline constexpr int kDriverControllerPort = 0;
 
-
 }  
-
-
-
-
 
 namespace IntakeConstants 
 {
     //Intake constants
     inline constexpr int kIntakeMotorPort1 = 0;
     inline constexpr int kIntakeMotorPort2 = 0;
+    inline constexpr int kSpeed = 0;
 
     //placeholder port please change
     inline constexpr int kUltraSonicPort = 10;
-
-
+    inline constexpr double kUltraSonicThreshHold = 0.01;
 }  
 
 namespace ShooterConstants 
@@ -197,6 +189,8 @@ namespace GuacoConstants
   inline constexpr int kGuacoMotorPort = 8;
     inline constexpr int kPhotodiodePort = 1;
     inline constexpr int kPhotodiodeThreshold = 0;
+    inline constexpr int kSpeed = 0.4;
+    //placeholder speed
 
     //Placeholder port, change once known. 
 }  
@@ -225,7 +219,9 @@ namespace PivotConstants
     inline constexpr double kCloseSafetyStopAngle = -270;
     inline constexpr double kFarSafetyStopAngle = 270; 
     inline constexpr double kCoralAngle = 120; 
+    inline constexpr double kCoralLoadAngle = 120;
     inline constexpr double kBargeAngle = 95; 
+    inline constexpr double kProcessorAngle = 0; 
     inline constexpr double kBaseAngle = 180; 
     inline constexpr double kGroundPickupAngle = -40; 
     //placeholder values, please change. 
@@ -245,13 +241,9 @@ namespace PivotPIDConstants
     inline constexpr int kAllowedErr = 0;
 }
 
-
-
-  
 } 
 
 namespace DriverConstants
 {
     inline constexpr int kDriverControllerPort = 0;
-main
 }

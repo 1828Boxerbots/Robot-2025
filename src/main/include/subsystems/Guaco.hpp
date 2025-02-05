@@ -1,14 +1,17 @@
 #pragma once
-#include "rev/SparkMax.h"
-#include "Constants.h"
-#include "frc/DigitalOutput.h"
-#include "frc/AnalogInput.h"
-#include <frc2/command/CommandPtr.h>
 
-namespace Robo2025
+#include <rev/SparkMax.h>
+#include "Constants.hpp"
+#include <frc/DigitalOutput.h>
+#include <frc/AnalogInput.h>
+#include <frc2/command/CommandPtr.h>
+#include <frc2/command/SubsystemBase.h>
+#include <frc2/command/FunctionalCommand.h>
+
+namespace Robot2025
 {
 
-class Guaco
+class Guaco : public frc2::SubsystemBase
 {
 
 public:
@@ -18,7 +21,7 @@ public:
     Guaco();
     ~Guaco();
 
-private: 
+
 
 //private member variables
 
@@ -37,7 +40,10 @@ private:
     bool PhotodiodeThreshold();
 
     /// @brief Used to set the speed the motor needs to go
-    frc2::CommandPtr SetMotorSpeed(double speed);
+    frc2::CommandPtr Dispense(double speed);
+    frc2::CommandPtr Load(double speed);
+
+    private: 
 
 };
 

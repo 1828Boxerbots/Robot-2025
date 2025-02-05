@@ -1,12 +1,12 @@
 #pragma once
 #include <rev/SparkMax.h>
-#include "Constants.h"
+#include "Constants.hpp"
 #include <frc/Encoder.h>
 #include <frc/DigitalOutput.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 
-namespace Robo2025
+namespace Robot2025
 
 {
 

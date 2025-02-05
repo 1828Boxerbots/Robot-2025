@@ -31,15 +31,57 @@ namespace Robot2025
  }
 
  
- frc2::CommandPtr Elevator::MoveL1()
+ frc2::CommandPtr Elevator::MoveLevel(int level)
  {
-     return this->RunOnce
-     (
+     switch (level)
+     {
+         case ElevatorConstants::kL0: 
+         return this->RunOnce
+    (
       [this] 
       {
-         m_controller.SetReference(ElevatorConstants::kL1, rev::spark::SparkBase::ControlType::kPosition);
+        m_controller.SetReference(ElevatorConstants::kL0, rev::spark::SparkBase::ControlType::kPosition);
       }
-     );
+     ); 
+
+         case ElevatorConstants::kL1:
+         return this->RunOnce
+    (
+      [this] 
+      {
+        m_controller.SetReference(ElevatorConstants::kL1, rev::spark::SparkBase::ControlType::kPosition);
+      }
+     ); 
+
+         case ElevatorConstants::kL2:
+         return this->RunOnce
+    (
+      [this] 
+      {
+        m_controller.SetReference(ElevatorConstants::kL2, rev::spark::SparkBase::ControlType::kPosition);
+      }
+     ); 
+
+         case ElevatorConstants::kL3:
+         return this->RunOnce
+    (
+      [this] 
+      {
+        m_controller.SetReference(ElevatorConstants::kL3, rev::spark::SparkBase::ControlType::kPosition);
+      }
+     ); 
+
+         case ElevatorConstants::kL4:
+         return this->RunOnce
+    (
+      [this] 
+      {
+        m_controller.SetReference(ElevatorConstants::kL4, rev::spark::SparkBase::ControlType::kPosition);
+      }
+     ); 
+         
+         break;
+     }
  };
 
 
