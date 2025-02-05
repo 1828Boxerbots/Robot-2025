@@ -1,3 +1,5 @@
+#pragma once
+
 #include "subsystems/Intake.hpp"
 #include "subsystems/Pivot.h"
 #include "subsystems/Elevator.hpp"
