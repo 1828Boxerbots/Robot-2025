@@ -233,6 +233,7 @@ namespace PivotConstants
     inline constexpr double kCoralAngle = 120; 
     inline constexpr double kCoralLoadAngle = 120;
     inline constexpr double kBargeAngle = 95; 
+    inline constexpr double kProcessorAngle = 0; 
     inline constexpr double kBaseAngle = 180; 
     inline constexpr double kGroundPickupAngle = -40; 
     //placeholder values, please change. 

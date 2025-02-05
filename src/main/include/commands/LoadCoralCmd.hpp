@@ -1,3 +1,4 @@
+#pragma once
 #include "subsystems/Guaco.hpp"
 #include "subsystems/Pivot.h"
 #include "subsystems/Elevator.hpp"
