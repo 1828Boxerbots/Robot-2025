@@ -45,7 +45,7 @@ int GetEncoderValue();
 
   
 /// @brief Moves height of taco to Level 1 on the reef (trough)
-frc2::CommandPtr MoveL1();
+frc2::CommandPtr MoveLevel(int level);
 
 /// @brief Moves height of taco to Level 2 on the reef 
 frc2::CommandPtr MoveL2();

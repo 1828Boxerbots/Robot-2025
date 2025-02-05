@@ -40,7 +40,7 @@ frc2::CommandPtr Guaco::Dispense(double speed)
                 //execute
                 [this, speed]
                 {
-                        m_guacoMotor.Set(speed);//Positive speed assuming same direction to push through and eject
+                        m_guacoMotor.Set(speed); //Positive speed assuming same direction to push through and eject
                 },
                 //end
                 [this] (bool interrupted)
@@ -53,6 +53,7 @@ frc2::CommandPtr Guaco::Dispense(double speed)
                         return m_photodiode.GetVoltage() < GuacoConstants::kPhotodiodeThreshold;
                 }
         );
+}
 
 frc2::CommandPtr Guaco::Load(double speed)
 {       
@@ -66,7 +67,7 @@ frc2::CommandPtr Guaco::Load(double speed)
                 //execute
                 [this, speed]
                 {
-                        m_guacoMotor.Set(speed);//Positive speed assuming same direction to push through and eject
+                        m_guacoMotor.Set(speed); //Positive speed assuming same direction to push through and eject
                 },
                 //end
                 [this] (bool interrupted)

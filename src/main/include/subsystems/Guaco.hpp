@@ -20,7 +20,7 @@ public:
     Guaco();
     ~Guaco();
 
-private: 
+
 
 //private member variables
 
@@ -41,6 +41,8 @@ private:
     /// @brief Used to set the speed the motor needs to go
     frc2::CommandPtr Dispense(double speed);
     frc2::CommandPtr Load(double speed);
+
+    private: 
 
 };
 
