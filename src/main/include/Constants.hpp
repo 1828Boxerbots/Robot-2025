@@ -150,9 +150,6 @@ namespace ElevatorPID
     inline constexpr int kMaxVelocity = 0;
     inline constexpr int kMaxAcceleration = 0;
     inline constexpr int kAllowedError = 0;
-
-
-
 }
 
 }  
@@ -249,5 +246,4 @@ namespace PivotPIDConstants
 namespace DriverConstants
 {
     inline constexpr int kDriverControllerPort = 0;
-
 }

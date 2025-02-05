@@ -23,10 +23,6 @@ class Intake : public frc2::SubsystemBase
    ~Intake();
 
 
-
-
-   
-
 //Private member variables
 
 rev::spark::SparkMax m_loadMotor1{IntakeConstants::kIntakeMotorPort1, rev::spark::SparkMax::MotorType::kBrushless};

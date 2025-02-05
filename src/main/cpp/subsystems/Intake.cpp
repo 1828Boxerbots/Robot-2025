@@ -15,7 +15,6 @@ Intake::~Intake()
 }
 
 
-
 bool Intake::IsBallIn()
 {
 //Checks if the ball is in 

@@ -17,15 +17,10 @@ class DispenseAlgae
  DispenseAlgae();
   ~DispenseAlgae();
  
-
-
 frc2::CommandPtr ShootAlgaeCmd(int Pivot, int Level);
 
   Robot2025::Pivot m_pivotSubsystem;
   Robot2025::Elevator m_elevatorSubsystem;
   Robot2025::Intake m_intakeSubsystem;
  
-
-
-
 };
