@@ -18,13 +18,6 @@ class Climb
    Climb();
    ~Climb();
 
-
-  
-   
-  
-
-
-
    private:
 
 

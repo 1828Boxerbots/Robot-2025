@@ -8,10 +8,7 @@ class Camera
     public:
 
     private:
-
     
 };
-
-
 
 }
