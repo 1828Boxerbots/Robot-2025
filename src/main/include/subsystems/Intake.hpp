@@ -4,6 +4,7 @@
 #include "Constants.h"
 #include <frc/Encoder.h>
 #include <frc/AnalogInput.h>
+#include <frc2/command/FunctionalCommand.h>
 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
@@ -41,7 +42,8 @@ frc::AnalogInput m_ultraSonic{IntakeConstants::kUltraSonicPort};
    bool IsBallIn();
 
 /// @brief sets Shintake motors 
-   frc2::CommandPtr SetMotors(double speed);
+   frc2::CommandPtr Load(double speed);
+   frc2::CommandPtr Dispense(double speed);
 
 private:
 
