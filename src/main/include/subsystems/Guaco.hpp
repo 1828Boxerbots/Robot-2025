@@ -22,7 +22,6 @@ public:
     ~Guaco();
 
 
-
 //private member variables
 
     rev::spark::SparkMax m_guacoMotor{GuacoConstants::kGuacoMotorPort, rev::spark::SparkMax::MotorType::kBrushed};

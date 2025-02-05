@@ -57,16 +57,9 @@ frc2::CommandPtr MoveL3();
 frc2::CommandPtr MoveL4();
   
 
-  
-
     private:
 
-
-
 //Private Member varibles:
-
-
-
 
 //Motors
 
@@ -79,13 +72,9 @@ rev::spark::SparkClosedLoopController m_controller = m_ElevatorMotor1.GetClosedL
 
 //Hall effect sensors
 
-
-
 /// @brief Hall Effect sensor for the first level (trough)
 /// @return 
 frc::DigitalOutput m_HallEffectL1{ElevatorConstants::kHallEffectPortL1};
-
-
 
 /// @brief Hall Effect sensor for the Second level
 /// @return 
@@ -100,18 +89,12 @@ frc::DigitalOutput m_HallEffectL3{ElevatorConstants::kHallEffectPortL3};
 frc::DigitalOutput m_HallEffectL4{ElevatorConstants::kHallEffectPortL4};
 
 
-
 //Encoders
 
 frc::Encoder m_ElevatorEncoder{ElevatorConstants::kEncoderPortA, ElevatorConstants::kEncoderPortB};
  
 //Private Methods
 
-
-
-
-
-
-    
+ 
 };
 }

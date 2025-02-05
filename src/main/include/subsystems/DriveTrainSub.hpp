@@ -12,12 +12,14 @@
 #include <frc/kinematics/SwerveDriveKinematics.h>
 #include <frc/kinematics/SwerveDriveOdometry.h>
 #include <frc2/command/SubsystemBase.h>
-
+#include <frc/smartdashboard/Field2d.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 #include "Constants.hpp"
 #include "SwerveModule.hpp"
 
 namespace Robot2025
 {
+
 
 class DriveSubsystem : public frc2::SubsystemBase {
  public:
@@ -118,6 +120,10 @@ class DriveSubsystem : public frc2::SubsystemBase {
   // Odometry class for tracking robot pose
   // 4 defines the number of modules
   frc::SwerveDriveOdometry<4> m_odometry;
+
+  frc::Field2d m_field;
+
+
 };
 
 }

@@ -18,11 +18,7 @@ class Pivot : public frc2::SubsystemBase
 
    Pivot();
    ~Pivot();
-
-
-
-
-   
+  
 
 //Private member variables
 
@@ -39,7 +35,6 @@ frc::DigitalOutput m_halleffectCloseSafetyStop{PivotConstants::kHalleffectPortCl
 frc::DigitalOutput m_halleffectFarSafetyStop{PivotConstants::kHalleffectPortFarSafetyStop};
 //Low? LOW TAPER FAAADDDDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 frc::Encoder m_encoder{PivotConstants::kEncoderPortA, PivotConstants::kEncoderPortB};
-
 
 
 
