@@ -176,6 +176,7 @@ namespace IntakeConstants
     //Intake constants
     inline constexpr int kIntakeMotorPort1 = 0;
     inline constexpr int kIntakeMotorPort2 = 0;
+    inline constexpr int kSpeed = 0;
 
     //placeholder port please change
     inline constexpr int kUltraSonicPort = 10;
@@ -253,5 +254,5 @@ namespace PivotPIDConstants
 namespace DriverConstants
 {
     inline constexpr int kDriverControllerPort = 0;
-main
+
 }

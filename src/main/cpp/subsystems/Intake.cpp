@@ -1,6 +1,6 @@
 #include "subsystems/Intake.hpp"
 
-namespace Robo2025
+namespace Robot2025
 {
 
 Intake::Intake()
@@ -42,3 +42,5 @@ frc2::CommandPtr Intake::SetMotors(double speed)
    );
 
 };
+
+}
