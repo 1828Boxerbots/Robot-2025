@@ -5,7 +5,6 @@
 #include "commands/DispenseAlgae.hpp"
 
 DispenseAlgae::DispenseAlgae() = default;
-<<<<<<< Updated upstream
 
 
 frc2::CommandPtr DispenseAlgae::ShootProcessorCmd()
@@ -17,5 +16,3 @@ frc2::CommandPtr DispenseAlgae::ShootBargeCmd()
 {
 std::move(m_pivotSubsystem.SetAngle(PivotConstants::kBargeAngle)).AndThen(std::move(m_elevatorSubsystem.MoveLevel())).AndThen(std::move(m_guacoSubsystem.Dispense(GuacoConstants::kSpeed)));
 }
-=======
->>>>>>> Stashed changes
