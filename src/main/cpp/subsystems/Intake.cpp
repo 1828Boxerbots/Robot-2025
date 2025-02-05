@@ -37,16 +37,6 @@ frc2::CommandPtr Intake::Load(double speed)
                 [this]
                 {
 
-frc2::CommandPtr Intake::SetMotors(double speed)
-{
-   return this->RunOnce
-   (
-      [this, speed] 
-      {
-            m_loadMotor1.Set(speed); 
-            m_loadMotor2.Set(speed);
-      }
-   );
                 },
                 //execute
                 [this, speed]
