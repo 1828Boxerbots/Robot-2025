@@ -8,6 +8,13 @@
 
 #include "commands/Autos.hpp"
 #include "commands/ExampleCommand.hpp"
+#include <frc/trajectory/constraint/SwerveDriveKinematicsConstraint.h>
+#include "Constants.hpp"
+#include "subsystems/DriveTrainSub.hpp"
+#include <frc/trajectory/TrajectoryConfig.h>
+#include <frc/trajectory/TrajectoryGenerator.h>
+#include <frc2/command/SwerveControllerCommand.h>
+
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
@@ -31,5 +38,31 @@ void RobotContainer::ConfigureBindings() {
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
-  return autos::ExampleAuto(&m_subsystem);
+
+  // zTODO: Fill in parameters
+  Robot2025::DriveSubsystem m_drivesub;
+  
+  frc::SwerveDriveKinematicsConstraint<4> constraint(m_drivesub.kDriveKinematics, DriveConstants::kMaxSpeed);
+  frc::TrajectoryConfig config{AutoConstants::kMaxSpeed,
+                               AutoConstants::kMaxAcceleration};
+
+  
+   config.AddConstraint(constraint);
+   config.SetKinematics(m_drivesub.kDriveKinematics); 
+
+     auto exampleTrajectory = frc::TrajectoryGenerator::GenerateTrajectory(
+      // Start at the origin facing the +X direction
+      frc::Pose2d{0_m, 0_m, 0_deg},
+      // Pass through these two interior waypoints, making an 's' curve path
+      {frc::Translation2d{1_m, 1_m}, frc::Translation2d{2_m, -1_m}},
+      // End 3 meters straight ahead of where we started, facing forward
+      frc::Pose2d{3_m, 0_m, 0_deg},
+      // Pass the config
+      config);
+
+    
+
+
+
+  return autos::AutosCmd(&m_subsystem);
 }

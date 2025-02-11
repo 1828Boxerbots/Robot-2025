@@ -8,15 +8,17 @@
 
 #include "commands/ExampleCommand.hpp"
 
-#include "frc/trajectory/constraint/RectangularRegionConstraint.h"
+#include "frc/trajectory/constraint/SwerveDriveKinematicsConstraint.h"
 
 
 
-frc2::CommandPtr autos::AutosCmd(ExampleSubsystem* subsystem) {
+frc2::CommandPtr autos::AutosCmd(ExampleSubsystem* subsystem) 
+{
 
-  
 
-  return frc2::cmd::Sequence(subsystem->ExampleMethodCommand(),
+
+  return frc2::cmd::Sequence(ExampleSubsystem* subsystem->ExampleMethodCommand(),
                              ExampleCommand(subsystem).ToPtr());
+
 }
 
