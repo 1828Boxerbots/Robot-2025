@@ -9,6 +9,8 @@
 
 #include "Constants.hpp"
 #include "subsystems/ExampleSubsystem.hpp"
+#include <rev/SparkClosedLoopController.h>
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
