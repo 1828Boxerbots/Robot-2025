@@ -78,15 +78,7 @@ frc2::CommandPtr Pivot::SetAngle(double angle)
       [this,angle] 
       {
          double targetDist = (angle * (360/PivotConstants::kEncoderStudCount)); 
-         double currentDist = m_encoder.Get();
-         if (currentDist < targetDist)
-         {
-           m_pivotMotor.Set(PivotConstants::kSpeed);
-         }    
-         else if (currentDist > targetDist)
-         {
-           m_pivotMotor.Set(-PivotConstants::kSpeed); 
-         }
+         m_PivotPIDController.SetReference(targetDist, rev::spark::SparkBase::ControlType::kPosition);
       }
     );
 
