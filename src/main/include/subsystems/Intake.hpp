@@ -25,8 +25,7 @@ class Intake : public frc2::SubsystemBase
 
 //Private member variables
 
-rev::spark::SparkMax m_loadMotor1{IntakeConstants::kIntakeMotorPort1, rev::spark::SparkMax::MotorType::kBrushless};
-rev::spark::SparkMax m_loadMotor2{IntakeConstants::kIntakeMotorPort2, rev::spark::SparkMax::MotorType::kBrushless};
+rev::spark::SparkMax m_loadMotor1{IntakeConstants::kIntakeMotorPort1, rev::spark::SparkMax::MotorType::kBrushed};
 frc::AnalogInput m_ultraSonic{IntakeConstants::kUltraSonicPort}; 
 
 

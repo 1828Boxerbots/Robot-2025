@@ -5,6 +5,7 @@
 #include <frc/DigitalOutput.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
+#include <frc2/command/FunctionalCommand.h>
 
 namespace Robot2025
 

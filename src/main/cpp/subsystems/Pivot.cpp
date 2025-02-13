@@ -73,12 +73,32 @@ bool Pivot::AtAngleFarSafetyStop()
 frc2::CommandPtr Pivot::SetAngle(double angle)
 {
     //Converts passed angle to move the motor the equivalent distance measured by the encoder. 
-    return this->RunOnce
-    (
+    frc2::FunctionalCommand 
+    (  
+      //init
+      [this]
+      {
+
+      },
+      //execute
       [this,angle] 
       {
          double targetDist = (angle * (360/PivotConstants::kEncoderStudCount)); 
          m_PivotPIDController.SetReference(targetDist, rev::spark::SparkBase::ControlType::kPosition);
+      },
+      //End
+      [this] (bool interrupted)
+      {
+
+      },
+      //Is Finished
+      [this]
+      {
+        if ((m_halleffectCloseSafetyStop.Get() == true) or (m_halleffectFarSafetyStop.Get() == true))
+        {
+          m_pivotMotor.Set(0); //Stops motor, could not stop if PIDS make it keep going. 
+          return true;
+        }
       }
     );
 
@@ -103,11 +123,32 @@ frc2::CommandPtr Pivot::StopMotor()
 
 frc2::CommandPtr Pivot::SetMotorManually(double speed)
 {
-  return this->RunOnce
+  frc2::FunctionalCommand
   (
+    //init
+    [this]
+    {
+
+    },
+    //execute
     [this,speed]
     {
       m_pivotMotor.Set(speed);
+    },
+    //End
+    [this] (bool isinterrupted)
+    {
+
+    },
+    //Isfinished
+    [this]
+    {
+      if ((m_halleffectCloseSafetyStop.Get() == true) or (m_halleffectFarSafetyStop.Get() == true))
+        {
+          m_pivotMotor.Set(0); //Stops motor, could not stop if PIDS make it keep going. 
+          return true;
+        }
+        return true;
     }
   );
 }
