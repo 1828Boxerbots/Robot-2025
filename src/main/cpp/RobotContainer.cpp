@@ -14,6 +14,8 @@
 #include <frc/trajectory/TrajectoryConfig.h>
 #include <frc/trajectory/TrajectoryGenerator.h>
 #include <frc2/command/SwerveControllerCommand.h>
+#include <frc/controller/PIDController.h>
+#include <frc/controller/ProfiledPIDController.h>
 
 
 RobotContainer::RobotContainer() {
@@ -42,9 +44,13 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // zTODO: Fill in parameters
   Robot2025::DriveSubsystem m_drivesub;
   
+
   frc::SwerveDriveKinematicsConstraint<4> constraint(m_drivesub.kDriveKinematics, DriveConstants::kMaxSpeed);
   frc::TrajectoryConfig config{AutoConstants::kMaxSpeed,
                                AutoConstants::kMaxAcceleration};
+
+  
+   frc::ProfiledPIDController<units::radians>::Constraints ProfilePidconstraint = TrapezoidProfile<units::radians>::Constraints;
 
   
    config.AddConstraint(constraint);
@@ -60,7 +66,12 @@ frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
       // Pass the config
       config);
 
+  frc::PIDController PIDx(0.04, 0, 0);
+  frc::PIDController PIDy(0.04, 0, 0);
+  frc::ProfiledPIDController <units::radians> PIDTheta(0.04, 0.0, 0.0,);
+
     
+  frc2::SwerveControllerCommand<4> (exampleTrajectory, m_drivesub.GetPose(), m_drivesub.kDriveKinematics, )
 
 
 
