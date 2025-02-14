@@ -123,8 +123,6 @@ class DriveSubsystem : public frc2::SubsystemBase {
   frc::SwerveDriveOdometry<4> m_odometry;
 
   frc::Field2d m_field;
-
-
 };
 
 }

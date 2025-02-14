@@ -9,6 +9,8 @@
 #include <units/angle.h>
 #include <units/angular_velocity.h>
 #include <units/velocity.h>
+#include <frc/smartdashboard/Field2d.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 #include "Constants.hpp"
 
@@ -16,7 +18,6 @@ using namespace DriveConstants;
 
 namespace Robot2025
 {
-
 DriveSubsystem::DriveSubsystem()
     : m_frontLeft{kFrontLeftDrivingCanId, kFrontLeftTurningCanId,
                   kFrontLeftChassisAngularOffset},
@@ -35,6 +36,8 @@ DriveSubsystem::DriveSubsystem()
   // Usage reporting for MAXSwerve template
   HAL_Report(HALUsageReporting::kResourceType_RobotDrive,
              HALUsageReporting::kRobotDriveSwerve_MaxSwerve);
+//Used for Field2d wiget on glass
+  frc::SmartDashboard::PutData("Field", &m_field);
 }
 
 void DriveSubsystem::Periodic() {
@@ -43,6 +46,8 @@ void DriveSubsystem::Periodic() {
                         m_gyro.GetAngle(frc::ADIS16470_IMU::IMUAxis::kZ)}),
                     {m_frontLeft.GetPosition(), m_rearLeft.GetPosition(),
                      m_frontRight.GetPosition(), m_rearRight.GetPosition()});
+  //Used for Field2d wiget on glass
+  m_field.SetRobotPose(m_odometry.GetPose());
 }
 
 void DriveSubsystem::Drive(units::meters_per_second_t xSpeed,
