@@ -14,10 +14,7 @@
 
 frc2::CommandPtr autos::AutosCmd(ExampleSubsystem* subsystem) 
 {
-
-
-
-  return frc2::cmd::Sequence(ExampleSubsystem* subsystem->ExampleMethodCommand(),
+  return frc2::cmd::Sequence(subsystem->ExampleMethodCommand(),
                              ExampleCommand(subsystem).ToPtr());
 
 }

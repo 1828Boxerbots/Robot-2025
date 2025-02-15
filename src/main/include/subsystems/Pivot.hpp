@@ -33,7 +33,6 @@ frc::DigitalOutput m_halleffectCoral{PivotConstants::kHalleffectPortCoral};
 frc::DigitalOutput m_halleffectGroundPickup{PivotConstants::kHalleffectPortGroundPickup};
 frc::DigitalOutput m_halleffectCloseSafetyStop{PivotConstants::kHalleffectPortCloseSafetyStop};
 frc::DigitalOutput m_halleffectFarSafetyStop{PivotConstants::kHalleffectPortFarSafetyStop};
-//Low? LOW TAPER FAAADDDDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 frc::Encoder m_encoder{PivotConstants::kEncoderPortA, PivotConstants::kEncoderPortB};
 
 
@@ -63,8 +62,6 @@ frc::Encoder m_encoder{PivotConstants::kEncoderPortA, PivotConstants::kEncoderPo
    /// @brief Checks halleffect sensor for FarSafetyStop angle 
 /// @return bool
    bool AtAngleFarSafetyStop();
-   
-   
 
    /// @brief Checks encoder value 
    double GetEncoder();

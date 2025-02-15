@@ -127,6 +127,7 @@ inline constexpr int kHallEffectPortL3 = 0;
 inline constexpr int kHallEffectPortL4 = 0;
 inline constexpr int kEncoderPortA = 0;
 inline constexpr int kEncoderPortB = 0;
+    inline constexpr float kSpeed = 0.0;
 
 inline constexpr int kL0 = 0;
 inline constexpr int kL1 = 1;
