@@ -203,8 +203,8 @@ namespace PivotConstants
     inline constexpr int kPivotMotorPort = 12; 
     //placeholder values, please change. 
 
-    inline constexpr int kHalleffectPortCloseSafetyStop = 10;
-    inline constexpr int kHalleffectPortFarSafetyStop = 11; 
+    inline constexpr int kHalleffectPortLeftSafetyStop = 10;
+    inline constexpr int kHalleffectPortRightSafetyStop = 11; 
     inline constexpr int kHalleffectPortCoral = 12; 
     inline constexpr int kHalleffectPortBarge = 13; 
     inline constexpr int kHalleffectPortBase = 14; 
@@ -217,8 +217,8 @@ namespace PivotConstants
     inline constexpr double kSpeed = 0.5;
     //placeholder values, please change.
 
-    inline constexpr double kCloseSafetyStopAngle = -270;
-    inline constexpr double kFarSafetyStopAngle = 270; 
+    inline constexpr double kLeftSafetyStopAngle = -270;
+    inline constexpr double kRightSafetyStopAngle = 270; 
     inline constexpr double kCoralAngle = 120; 
     inline constexpr double kCoralLoadAngle = 120;
     inline constexpr double kBargeAngle = 95; 

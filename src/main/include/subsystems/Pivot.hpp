@@ -31,8 +31,8 @@ frc::DigitalOutput m_halleffectBarge{PivotConstants::kHalleffectPortBarge};
 frc::DigitalOutput m_halleffectBase{PivotConstants::kHalleffectPortBase};
 frc::DigitalOutput m_halleffectCoral{PivotConstants::kHalleffectPortCoral};
 frc::DigitalOutput m_halleffectGroundPickup{PivotConstants::kHalleffectPortGroundPickup};
-frc::DigitalOutput m_halleffectCloseSafetyStop{PivotConstants::kHalleffectPortCloseSafetyStop};
-frc::DigitalOutput m_halleffectFarSafetyStop{PivotConstants::kHalleffectPortFarSafetyStop};
+frc::DigitalOutput m_halleffectLeftSafetyStop{PivotConstants::kHalleffectPortLeftSafetyStop};
+frc::DigitalOutput m_halleffectRightSafetyStop{PivotConstants::kHalleffectPortRightSafetyStop};
 frc::Encoder m_encoder{PivotConstants::kEncoderPortA, PivotConstants::kEncoderPortB};
 
 
@@ -57,11 +57,11 @@ frc::Encoder m_encoder{PivotConstants::kEncoderPortA, PivotConstants::kEncoderPo
 
    /// @brief Checks halleffect sensor for CloseSafetyStop angle 
 /// @return bool
-   bool AtAngleCloseSafetyStop();
+   bool AtAngleLeftSafetyStop();
 
    /// @brief Checks halleffect sensor for FarSafetyStop angle 
 /// @return bool
-   bool AtAngleFarSafetyStop();
+   bool AtAngleRightSafetyStop();
 
    /// @brief Checks encoder value 
    double GetEncoder();

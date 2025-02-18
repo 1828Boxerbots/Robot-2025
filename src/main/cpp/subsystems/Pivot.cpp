@@ -55,16 +55,16 @@ bool Pivot::AtAngleGroundPickup()
   return m_halleffectGroundPickup.Get();
 }; 
 
-bool Pivot::AtAngleCloseSafetyStop()
+bool Pivot::AtAngleLeftSafetyStop()
 {
 //Checks if at base angle halleffect
-  return m_halleffectCloseSafetyStop.Get();
+  return m_halleffectLeftSafetyStop.Get();
 };
 
-bool Pivot::AtAngleFarSafetyStop()
+bool Pivot::AtAngleRightSafetyStop()
 {
 //Checks if at low angle halleffect
-  return m_halleffectFarSafetyStop.Get();
+  return m_halleffectRightSafetyStop.Get();
 };
 
 
@@ -82,6 +82,7 @@ frc2::CommandPtr Pivot::SetAngle(double angle)
          if (currentDist < targetDist)
          {
            m_pivotMotor.Set(PivotConstants::kSpeed);
+           
          }    
          else if (currentDist > targetDist)
          {
