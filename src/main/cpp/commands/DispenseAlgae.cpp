@@ -17,7 +17,7 @@ DispenseAlgae::~DispenseAlgae()
 
 frc2::CommandPtr DispenseAlgae::ShootAlgaeCmd(int Pivot, int Level)
 {
-std::move(m_pivotSubsystem.SetAngle(Pivot)).AndThen(std::move(m_elevatorSubsystem.MoveLevel(Level))).AndThen(std::move(m_intakeSubsystem.Dispense(IntakeConstants::kSpeed)));
+std::move(m_pivotSubsystem.SetAngle(Pivot)).AndThen(std::move(m_elevatorSubsystem.MoveLevel(Level)));
 }
 
 

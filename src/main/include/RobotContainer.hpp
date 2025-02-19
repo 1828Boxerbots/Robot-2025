@@ -15,6 +15,10 @@
 #include "subsystems/Intake.hpp"
 #include "subsystems/Pivot.hpp"
 #include "subsystems/Camera.hpp"
+#include "commands/DispenseAlgae.hpp"
+#include "commands/DispenseCoralCmd.hpp"
+#include "commands/LoadAlgaeCmd.hpp"
+#include "commands/LoadCoralCmd.hpp"
 #include <rev/SparkClosedLoopController.h>
 
 
@@ -48,6 +52,10 @@ class RobotContainer {
  Robot2025::Intake m_Intake;
  Robot2025::Guaco m_Guaco;
  Robot2025::Pivot m_Pivot;
+ DispenseAlgae m_DispenseAlgaeCmd;
+ DispenseCoralCmd m_DispenseCoralCmd; 
+ LoadAlgaeCmd m_LoadAlgaeCmd;
+ LoadCoralCmd m_LoadCoralCmd;
 
 
   void ConfigureBindings();
