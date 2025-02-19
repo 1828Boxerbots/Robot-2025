@@ -5,6 +5,9 @@
 #include <frc/DigitalOutput.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
+#include <frc2/command/FunctionalCommand.h>
+#include <frc2/command/StartEndCommand.h>
+#include <frc/AnalogPotentiometer.h>
 
 namespace Robot2025
 
@@ -34,6 +37,7 @@ frc::DigitalOutput m_halleffectGroundPickup{PivotConstants::kHalleffectPortGroun
 frc::DigitalOutput m_halleffectLeftSafetyStop{PivotConstants::kHalleffectPortLeftSafetyStop};
 frc::DigitalOutput m_halleffectRightSafetyStop{PivotConstants::kHalleffectPortRightSafetyStop};
 frc::Encoder m_encoder{PivotConstants::kEncoderPortA, PivotConstants::kEncoderPortB};
+frc::AnalogPotentiometer m_potentiometer {PivotConstants::kPotentiometerPort};
 
 
 

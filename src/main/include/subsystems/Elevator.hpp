@@ -8,6 +8,8 @@
 #include <rev/SparkClosedLoopController.h>
 #include <frc2/command/CommandPtr.h> 
 #include <frc2/command/SubsystemBase.h>
+#include <frc2/command/FunctionalCommand.h>
+#include <frc2/command/StartEndCommand.h>
 
 namespace Robot2025
 {
@@ -38,7 +40,7 @@ bool GetHallEffectL4();
     
 int GetMotorValue();
 
-frc2::CommandPtr SetMotorValue(int value);
+frc2::CommandPtr SetMotorValue(double speed);
 
 int GetEncoderValue();
   

@@ -211,6 +211,7 @@ namespace PivotConstants
     inline constexpr int kHalleffectPortGroundPickup = 15; 
     inline constexpr int kEncoderPortA = 16;
     inline constexpr int kEncoderPortB = 17; 
+    inline constexpr int kPotentiometerPort = 20000000; 
     //placeholder values, please change.
 
     inline constexpr int kEncoderStudCount = 2018;

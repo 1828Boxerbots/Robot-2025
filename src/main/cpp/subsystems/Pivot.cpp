@@ -73,25 +73,44 @@ bool Pivot::AtAngleRightSafetyStop()
 frc2::CommandPtr Pivot::SetAngle(double angle)
 {
     //Converts passed angle to move the motor the equivalent distance measured by the encoder. 
-    return this->RunOnce
-    (
+    frc2::FunctionalCommand
+    (  
+      //init
+      [this]
+      {
+
+      },
+      //execute
       [this,angle] 
       {
          double targetDist = (angle * (360/PivotConstants::kEncoderStudCount)); 
-         double currentDist = m_encoder.Get();
-         if (currentDist < targetDist)
-         {
-           m_pivotMotor.Set(PivotConstants::kSpeed);
-           
-         }    
-         else if (currentDist > targetDist)
-         {
-           m_pivotMotor.Set(-PivotConstants::kSpeed); 
-         }
+         m_PivotPIDController.SetReference(targetDist, rev::spark::SparkBase::ControlType::kPosition);
+      },
+      //End
+      [this] (bool interrupted)
+      {
+        m_pivotMotor.Set(0); //Stops motor, could not stop if PIDS make it keep going. 
+      },
+      //Is Finished
+      [this, angle]
+      {
+        //Checks if at safety stop through either detection from halleffect or potentiometer, then must also be attempting to continue that way to cut command. 
+        if (((m_halleffectLeftSafetyStop.Get() == true) || (m_potentiometer.Get() <= PivotConstants::kLeftSafetyStopAngle)) && (m_pivotMotor.Get() < 0))
+        {
+          return true; 
+        }
+        else if (((m_halleffectRightSafetyStop.Get() == true) || (m_potentiometer.Get() >= PivotConstants::kRightSafetyStopAngle)) && (m_pivotMotor.Get() > 0))
+        {
+          return true; 
+        }
+        else if((m_potentiometer.Get() > (angle - 1)) && (m_potentiometer.Get() < (angle + 1)))
+        {
+          return true; 
+        }
+        return false;
+        
       }
     );
-
- 
 }; 
 
 double Pivot::GetEncoder()
@@ -112,11 +131,28 @@ frc2::CommandPtr Pivot::StopMotor()
 
 frc2::CommandPtr Pivot::SetMotorManually(double speed)
 {
-  return this->RunOnce
+  frc2::StartEndCommand
   (
-    [this,speed]
+    //execute
+    [this,speed] 
     {
-      m_pivotMotor.Set(speed);
+      if (((m_halleffectLeftSafetyStop.Get() == true) || (m_potentiometer.Get() <= PivotConstants::kLeftSafetyStopAngle)) && (speed < 0))
+        {
+          m_pivotMotor.Set(0); //Stops motor
+        }
+        else if (((m_halleffectRightSafetyStop.Get() == true) || (m_potentiometer.Get() >= PivotConstants::kRightSafetyStopAngle)) && (speed > 0))
+        {
+          m_pivotMotor.Set(0); //Stops motor
+        }
+        else
+        {
+          m_pivotMotor.Set(speed);
+        }
+    },
+    //end
+    [this]
+    {
+      m_pivotMotor.Set(0);
     }
   );
 }
