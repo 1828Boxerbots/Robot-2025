@@ -46,7 +46,7 @@ void RobotContainer::ConfigureBindings()
 
   //Intake load/dispense: X / Y
   m_driverController.X().WhileTrue(m_Intake.Load(IntakeConstants::kSpeed));
-  m_driverController.Y().WhileTrue(m_Intake.Dispense(GuacoConstants::kSpeed));
+  m_driverController.Y().WhileTrue(m_Intake.Dispense(IntakeConstants::kSpeed));
 
   //Guaco load/dispense: A / B
   m_driverController.A().WhileTrue(m_Guaco.Load(GuacoConstants::kSpeed));
