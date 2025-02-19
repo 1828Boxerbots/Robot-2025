@@ -44,30 +44,35 @@ RobotContainer::RobotContainer() {
 void RobotContainer::ConfigureBindings() 
 {
 
-  //Intake load/dispense: X / Y
-  m_driverController.X().WhileTrue(m_Intake.Load(IntakeConstants::kSpeed));
-  m_driverController.Y().WhileTrue(m_Intake.Dispense(GuacoConstants::kSpeed));
+  //Intake load/dispense: L2 / R2
+  m_driverController.LeftTrigger().WhileTrue(m_Intake.Load(IntakeConstants::kSpeed));
+  m_driverController.RightTrigger().WhileTrue(m_Intake.Dispense(IntakeConstants::kSpeed));
 
   //Guaco load/dispense: A / B
   m_driverController.A().WhileTrue(m_Guaco.Load(GuacoConstants::kSpeed));
   m_driverController.B().WhileTrue(m_Guaco.Dispense(GuacoConstants::kSpeed));
  
-  //Elevator up/down: dpad up / dpad down
-  m_driverController.POVUp().WhileTrue(m_Elevator.SetMotorValue(ElevatorConstants::kSpeed));
-  m_driverController.POVDown().WhileTrue(m_Elevator.SetMotorValue(-ElevatorConstants::kSpeed));
+  //Elevator positions: d-pad (down - E1, left - E2, up - E3, right - E4)
+  m_driverController.POVDown().WhileTrue(m_Elevator.MoveLevel(ElevatorConstants::kL1));
+  m_driverController.POVLeft().WhileTrue(m_Elevator.MoveLevel(ElevatorConstants::kL2));
+  m_driverController.POVUp().WhileTrue(m_Elevator.MoveLevel(ElevatorConstants::kL3));
+  m_driverController.POVRight().WhileTrue(m_Elevator.MoveLevel(ElevatorConstants::kL4));
 
-  //Pivot left/right: dpad left / dpad right
-  m_driverController.POVLeft().WhileTrue(m_Pivot.SetMotorManually(PivotConstants::kSpeed));
-  m_driverController.POVRight().WhileTrue(m_Pivot.SetMotorManually(-PivotConstants::kSpeed));
+  //Pivot positions: d-pad + L1 (down - Intake Ground, left - Guaco In, up - Stow, right - Guaco Out)
+  (m_driverController.LeftBumper()&&
+    m_driverController.POVUp()).WhileTrue(m_Elevator.MoveLevel(PivotConstants::kGroundPickupAngle)); //down d-pad
+  (m_driverController.LeftBumper()&&
+    m_driverController.POVLeft()).WhileTrue(m_Elevator.MoveLevel(PivotConstants::kCoralLoadAngle)); //left d-pad
+  (m_driverController.LeftBumper()&&
+    m_driverController.POVUp()).WhileTrue(m_Elevator.MoveLevel(PivotConstants::kBaseAngle)); //up d-pad
+  (m_driverController.LeftBumper()&&
+    m_driverController.POVRight()).WhileTrue(m_Elevator.MoveLevel(PivotConstants::kCoralAngle)); //right d-pad
 
   //Drive break: right bumper
   m_driverController.RightBumper().WhileTrue(
           new frc2::RunCommand([this] {
             m_DriveSub.SetX();
           }, {&m_DriveSub}));
-  
-  //Drive 
-
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
