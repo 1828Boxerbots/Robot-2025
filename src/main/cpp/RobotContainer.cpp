@@ -43,22 +43,21 @@ RobotContainer::RobotContainer() {
 
 void RobotContainer::ConfigureBindings() 
 {
+//Four main buttons 
+//Note: these are sequential, meaning one happens AFTER the other. Would be better if did both at same time but thats for later
 
-  //Intake load/dispense: X / Y
-  m_driverController.X().WhileTrue(m_Intake.Load(IntakeConstants::kSpeed));
-  m_driverController.Y().WhileTrue(m_Intake.Dispense(IntakeConstants::kSpeed));
-
-  //Guaco load/dispense: A / B
-  m_driverController.A().WhileTrue(m_Guaco.Load(GuacoConstants::kSpeed));
-  m_driverController.B().WhileTrue(m_Guaco.Dispense(GuacoConstants::kSpeed));
+  m_driverController.Y().OnTrue(std::move(m_Pivot.SetAngle(PivotConstants::kBargeAngle)).AndThen(std::move(m_Intake.Dispense(IntakeConstants::kSpeed))));  //Algae Barg sequence: Moves pivot to barg shoot pos. + shoots Algae
+  m_driverController.X().OnTrue(std::move(m_Pivot.SetAngle(PivotConstants::kReef1Angle)).AndThen(std::move(m_Elevator.MoveL2())).AndThen(std::move(m_Intake.Load(IntakeConstants::kSpeed)))); //Algae Reef 1 sequence: Moves pivot to reef pos. + moves Elevator to L2 + loads algae
+  m_driverController.B().OnTrue //Algae Reef 2 sequence: Moves pivot to reef pos. + moves Elevator to L3 + loads algae
+  m_driverController.A().OnTrue //Algae floor sequence: MovesPivot to Algae floor pos. + LoadsAlgae
+  
  
-  //Elevator up/down: dpad up / dpad down
-  m_driverController.POVUp().WhileTrue(m_Elevator.SetMotorValue(ElevatorConstants::kSpeed));
-  m_driverController.POVDown().WhileTrue(m_Elevator.SetMotorValue(-ElevatorConstants::kSpeed));
+//Dpad
 
-  //Pivot left/right: dpad left / dpad right
-  m_driverController.POVLeft().WhileTrue(m_Pivot.SetMotorManually(PivotConstants::kSpeed));
-  m_driverController.POVRight().WhileTrue(m_Pivot.SetMotorManually(-PivotConstants::kSpeed));
+  m_driverController.POVUp().OnTrue   //Place Coral on L3 seq.: Move Elevator (L3) + MovePivot(coral pos)
+  m_driverController.POVDown().OnTrue //Place Coral on L1 seq.: Move Elevator (L1) + MovePivot(coral pos)
+  m_driverController.POVLeft().OnTrue //Place Coral on L2 seq.: Move Elevator (L2) + MovePivot(coral pos)
+  m_driverController.POVRight().OnTrue //Palce Coral on L4 seq.: Move Elevator (L4) + MovePivot(coral pos)
 
   //Drive break: right bumper
   m_driverController.RightBumper().WhileTrue(

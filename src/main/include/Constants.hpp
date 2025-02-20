@@ -226,6 +226,8 @@ namespace PivotConstants
     inline constexpr double kProcessorAngle = 0; 
     inline constexpr double kBaseAngle = 180; 
     inline constexpr double kGroundPickupAngle = -40; 
+    inline constexpr double kReef1Angle = -40; 
+    inline constexpr double kReef2Angle = -40; 
     //placeholder values, please change. 
 
 namespace PivotPIDConstants
