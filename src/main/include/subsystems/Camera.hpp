@@ -27,9 +27,8 @@ class Camera
 
     private:
     // Initialize Camera(s)
-    photon::PhotonCamera m_camera{"kCamName (Change)"};
-    std::span<const photon::PhotonTrackedTarget, 4294967295U> m_aprilTagTargets;
-    
+    photon::PhotonCamera m_camera{"<Input Name>"};
+
     units::meter_t m_camHeight = 0.0_m;
     units::radian_t m_camPitch = 0.0_rad;
     units::radian_t m_targetPitch = 0.0_rad;

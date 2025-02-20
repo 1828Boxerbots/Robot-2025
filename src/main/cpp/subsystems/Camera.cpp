@@ -4,14 +4,15 @@ namespace Robot2025
 {
 
     // Constructor:
-    Camera::Camera() {}
+    Camera::Camera() 
+	{     
+	}
 
     // Target Values (Change each season):
     units::meter_t Camera::AprilTagHeightMeters(int aprilTagID)
     {
         // Grab apriltag height in meters.
 		// Note: Height = center.
-
 		// Variables.
         units::meter_t aprilTagHeight = 0.0_m;
 		units::meter_t coralStation = 1.485_m;
@@ -77,7 +78,6 @@ namespace Robot2025
     std::string Camera::AprilTagGameLocation(int aprilTagID)
     {
         // Grab apriltag game location name.
-
 		// Variables.
         std::string aprilTagGameLocation = " ";
 		std::string coralStation = "Coral Station";
@@ -143,61 +143,64 @@ namespace Robot2025
     // Periodic Function:
     void Camera::ProcessCamAprilTags()
     {
-        // Get camera result.
-        photon::PhotonPipelineResult camResult = m_camera.GetLatestResult();
+		// Clear previous targets.
+		m_aprilTags.clear();
+		
+		// Get camera result.
+		std::vector<photon::PhotonPipelineResult> unreadCamResults = m_camera.GetAllUnreadResults();
 
-        // Check if there are targets.
-        if(camResult.HasTargets() == false)
-        {
-            return;
-        }
+		// Loop through the unread results from camera.
+		for(const photon::PhotonPipelineResult& camResult : unreadCamResults)
+		{
+			// Check if there are targets.
+			if(camResult.HasTargets() == false)
+			{
+				continue;
+			}
 
-        // Get targets from result and get the amount of targets
-        m_aprilTagTargets = camResult.GetTargets();
-        unsigned int aprilTagArraySize = m_aprilTagTargets.size();
+			// Get targets from result and get the amount of targets
+			std::span<const photon::PhotonTrackedTarget, 4294967295U> aprilTagTargets = camResult.GetTargets();
 
-        // Loop through all targets to save data.
-        for (int i = 0; i < aprilTagArraySize; i++)
-        {
-            // Clear previous targets.
-            m_aprilTags.clear();
+			// Loop through all targets to save data.
+			for (const photon::PhotonTrackedTarget &target : aprilTagTargets)
+			{
+				// Get apriltag ID.
+				int targetID = target.GetFiducialId();
+				units::meter_t targetHeightMeters = AprilTagHeightMeters(targetID);
 
-            // Grab target.
-            photon::PhotonTrackedTarget target = m_aprilTagTargets[i];
+				// Get apriltag height.
+				double targetHeightDouble = targetHeightMeters.value();
+				std::string targetGameLocation = AprilTagGameLocation(targetID);
 
-            // Get apriltag ID.
-            int targetID = target.GetFiducialId();
-            units::meter_t targetHeightMeters = AprilTagHeightMeters(targetID);
+				// Get apriltag pitch.
+				double targetPitchDouble = target.GetPitch();
+				units::radian_t targetPitchMeters = units::radian_t{targetPitchDouble};
 
-            // Get apriltag height.
-            double targetHeightDouble = targetHeightMeters.value();
-            std::string targetGameLocation = AprilTagGameLocation(targetID);
+				// Get apriltag estimated distance.
+				units::meter_t targetDistMeters = photon::PhotonUtils::CalculateDistanceToTarget(m_camHeight, targetHeightMeters, m_camPitch, targetPitchMeters);
+				double targetDistDouble = targetDistMeters.value();
 
-            // Get apriltag pitch.
-            double targetPitchDouble = target.GetPitch();
-            units::radian_t targetPitchMeters = units::radian_t{targetPitchDouble};
+				// Save apriltag data.
+				AprilTag curTag;
+				curTag.SetID(targetID);
+				curTag.SetDistance(targetDistDouble);
+				curTag.SetHeight(targetHeightDouble);
+				curTag.SetYaw(target.GetYaw());
+				curTag.SetPitch(targetPitchDouble);
+				curTag.SetSkew(target.GetSkew());
+				curTag.SetGameLocation(targetGameLocation);
 
-            // Get apriltag estimated distance.
-            units::meter_t targetDistMeters = photon::PhotonUtils::CalculateDistanceToTarget(m_camHeight, targetHeightMeters, m_camPitch, targetPitchMeters);
-            double targetDistDouble = targetDistMeters.value();
-
-            // Save apriltag data.
-            AprilTag curTag;
-            curTag.SetID(targetID);
-            curTag.SetDistance(targetDistDouble);
-            curTag.SetHeight(targetHeightDouble);
-            curTag.SetYaw(target.GetYaw());
-            curTag.SetPitch(targetPitchDouble);
-            curTag.SetSkew(target.GetSkew());
-            curTag.SetGameLocation(targetGameLocation);
-
-            m_aprilTags.push_back(curTag);
-        }
-
+				m_aprilTags.push_back(curTag);
+			}
+		}
+			
         return;
-    }
+	} 
 
     // Destructor:
-    Camera::~Camera() {}
+    Camera::~Camera() 
+	{
+		m_camera.~PhotonCamera();
+	}
 
 }
