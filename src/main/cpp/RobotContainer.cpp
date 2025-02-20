@@ -60,13 +60,17 @@ void RobotContainer::ConfigureBindings()
 
   //Pivot positions: d-pad + L1 (down - Intake Ground, left - Guaco In, up - Stow, right - Guaco Out)
   (m_driverController.LeftBumper()&&
-    m_driverController.POVUp()).WhileTrue(m_Elevator.MoveLevel(PivotConstants::kGroundPickupAngle)); //down d-pad
+    m_driverController.POVUp()).WhileTrue(m_Pivot.SetAngle(PivotConstants::kGroundPickupAngle)); //down d-pad
   (m_driverController.LeftBumper()&&
-    m_driverController.POVLeft()).WhileTrue(m_Elevator.MoveLevel(PivotConstants::kCoralLoadAngle)); //left d-pad
+    m_driverController.POVLeft()).WhileTrue(m_Pivot.SetAngle(PivotConstants::kCoralLoadAngle)); //left d-pad
   (m_driverController.LeftBumper()&&
-    m_driverController.POVUp()).WhileTrue(m_Elevator.MoveLevel(PivotConstants::kBaseAngle)); //up d-pad
+    m_driverController.POVUp()).WhileTrue(m_Pivot.SetAngle(PivotConstants::kBaseAngle)); //up d-pad
   (m_driverController.LeftBumper()&&
-    m_driverController.POVRight()).WhileTrue(m_Elevator.MoveLevel(PivotConstants::kCoralAngle)); //right d-pad
+    m_driverController.POVRight()).WhileTrue(m_Pivot.SetAngle(PivotConstants::kCoralAngle)); //right d-pad
+
+  //Pivot Safty positions: X (left) / Y (right)
+  (m_driverController.X().WhileTrue(m_Pivot.SetAngle(PivotConstants::kLeftSafetyStopAngle)));
+  (m_driverController.Y().WhileTrue(m_Pivot.SetAngle(PivotConstants::kRightSafetyStopAngle)));
 
   //Drive break: right bumper
   m_driverController.RightBumper().WhileTrue(
