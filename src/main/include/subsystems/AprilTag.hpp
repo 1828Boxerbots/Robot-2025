@@ -3,6 +3,7 @@
 #include <string>
 #include <units/angle.h>
 #include <units/length.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 namespace Robot2025
 {

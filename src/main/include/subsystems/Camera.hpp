@@ -6,6 +6,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <units/angle.h>
 #include <units/length.h>
+#include <memory.h>
 
 #include "AprilTag.hpp"
 #include "Constants.hpp"
@@ -17,17 +18,21 @@ class Camera
 {
     public:
     // Constructor:
-    Camera();
+    Camera(const std::string& camName = "BoxerCam1");
     
     // Periodic Function:
     void ProcessCamAprilTags();
+
+    // Data Function:
+    AprilTag AprilTagsData(int member);
+    std::vector<AprilTag> AprilTagsDataArray();
 
     // Destructor:
     ~Camera();
 
     private:
     // Initialize Camera(s)
-    photon::PhotonCamera m_camera{"<Input Name>"};
+    std::unique_ptr<photon::PhotonCamera> m_camera;
 
     units::meter_t m_camHeight = 0.0_m;
     units::radian_t m_camPitch = 0.0_rad;

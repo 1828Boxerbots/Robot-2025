@@ -4,8 +4,9 @@ namespace Robot2025
 {
 
     // Constructor:
-    Camera::Camera() 
+    Camera::Camera(const std::string& camName) 
 	{     
+		m_camera = std::make_unique<photon::PhotonCamera>(camName);
 	}
 
     // Target Values (Change each season):
@@ -147,7 +148,7 @@ namespace Robot2025
 		m_aprilTags.clear();
 		
 		// Get camera result.
-		std::vector<photon::PhotonPipelineResult> unreadCamResults = m_camera.GetAllUnreadResults();
+		std::vector<photon::PhotonPipelineResult> unreadCamResults = m_camera->GetAllUnreadResults();
 
 		// Loop through the unread results from camera.
 		for(const photon::PhotonPipelineResult& camResult : unreadCamResults)
@@ -155,6 +156,7 @@ namespace Robot2025
 			// Check if there are targets.
 			if(camResult.HasTargets() == false)
 			{
+				std::cerr << "ERROR: No targets found." << std::endl;
 				continue;
 			}
 
@@ -197,10 +199,37 @@ namespace Robot2025
         return;
 	} 
 
+	// Data Function:
+    AprilTag Camera::AprilTagsData(int member)
+	{
+		if (m_aprilTags.size() > 0)
+		{
+			return m_aprilTags[member];
+		}
+		else
+		{
+			std::cerr << "ERROR: No apriltag data." << std::endl;
+			return AprilTag();
+		}
+	}
+
+    std::vector<AprilTag> Camera::AprilTagsDataArray()
+	{
+		if (m_aprilTags.size() > 0)
+		{
+			return m_aprilTags;
+		}
+		else
+		{
+			std::cerr << "ERROR: No apriltag data." << std::endl;
+			return std::vector<AprilTag>();
+		}
+	}
+
     // Destructor:
     Camera::~Camera() 
 	{
-		m_camera.~PhotonCamera();
+		m_camera->~PhotonCamera();
 	}
 
 }
