@@ -27,11 +27,11 @@ RobotContainer::RobotContainer() {
     [this] {
       m_DriveSub.Drive(
           -units::meters_per_second_t{frc::ApplyDeadband(
-              m_driverController.GetLeftY(), OIConstants::kDriveDeadband)},
+              m_driverController1.GetLeftY(), OIConstants::kDriveDeadband)},
           -units::meters_per_second_t{frc::ApplyDeadband(
-              m_driverController.GetLeftX(), OIConstants::kDriveDeadband)},
+              m_driverController1.GetLeftX(), OIConstants::kDriveDeadband)},
           -units::radians_per_second_t{frc::ApplyDeadband(
-              m_driverController.GetRightX(), OIConstants::kDriveDeadband)},
+              m_driverController1.GetRightX(), OIConstants::kDriveDeadband)},
           true);
     },
     {&m_DriveSub})
@@ -43,30 +43,76 @@ RobotContainer::RobotContainer() {
 
 void RobotContainer::ConfigureBindings() 
 {
-//Four main buttons 
-//Note: these are sequential, meaning one happens AFTER the other. Would be better if did both at same time but thats for later
+  //Note: MOST of these are sequential, meaning one happens AFTER the other
+  //Note: Could be better to do all at same time by using .AlongWith and not .AndThen
 
-  m_driverController.Y().OnTrue(std::move(m_Pivot.SetAngle(PivotConstants::kBargeAngle)).AndThen(std::move(m_Intake.Dispense(IntakeConstants::kSpeed))));  //Algae Barg sequence: Moves pivot to barg shoot pos. + shoots Algae
-  m_driverController.X().OnTrue(std::move(m_Pivot.SetAngle(PivotConstants::kReef1Angle)).AndThen(std::move(m_Elevator.MoveL2())).AndThen(std::move(m_Intake.Load(IntakeConstants::kSpeed)))); //Algae Reef 1 sequence: Moves pivot to reef pos. + moves Elevator to L2 + loads algae
-  m_driverController.B().OnTrue //Algae Reef 2 sequence: Moves pivot to reef pos. + moves Elevator to L3 + loads algae
-  m_driverController.A().OnTrue //Algae floor sequence: MovesPivot to Algae floor pos. + LoadsAlgae
-  
- 
-//Dpad
+//Algae: A B X Y LeftBumper (Controller1)
 
-  m_driverController.POVUp().OnTrue   //Place Coral on L3 seq.: Move Elevator (L3) + MovePivot(coral pos)
-  m_driverController.POVDown().OnTrue //Place Coral on L1 seq.: Move Elevator (L1) + MovePivot(coral pos)
-  m_driverController.POVLeft().OnTrue //Place Coral on L2 seq.: Move Elevator (L2) + MovePivot(coral pos)
-  m_driverController.POVRight().OnTrue //Palce Coral on L4 seq.: Move Elevator (L4) + MovePivot(coral pos)
+  //A - Algae floor: moves Pivot (Algae Floor) + moves Elevator (L1)
+  m_driverController1.A().OnTrue(std::move(m_Pivot.SetAngle(PivotConstants::kGroundPickupAngle))
+    .AndThen(std::move(m_Elevator.MoveLevel(ElevatorConstants::kL1))));
 
-  //Drive break: right bumper
-  m_driverController.RightBumper().WhileTrue(
-          new frc2::RunCommand([this] {
-            m_DriveSub.SetX();
-          }, {&m_DriveSub}));
-  
-  //Drive 
+  //B - Algae Reef 2: moves Pivot (Algae Reef2)+ moves Elevator (L3)
+  m_driverController1.B().OnTrue(std::move(m_Pivot.SetAngle(PivotConstants::kReef2Angle))
+    .AndThen(std::move(m_Elevator.MoveLevel(ElevatorConstants::kL3))));
 
+  //X - Algae Reef 1: moves Pivot (Algae Reef1) + moves Elevator (L2)
+  m_driverController1.X().OnTrue(std::move(m_Pivot.SetAngle(PivotConstants::kReef1Angle))
+    .AndThen(std::move(m_Elevator.MoveLevel(ElevatorConstants::kL2))));
+
+  //Y - Algae Barge: moves Pivot (Barge) + moves Elevator (L4)
+  m_driverController1.Y().OnTrue(std::move(m_Pivot.SetAngle(PivotConstants::kBargeAngle))
+    .AndThen(std::move(m_Elevator.MoveLevel(ElevatorConstants::kL4)))); 
+
+  //LeftBumper - Algae PickUp: moves Pivot (Floor) + moves Elevator (L2?)
+  m_driverController1.LeftBumper().OnTrue(std::move(m_Pivot.SetAngle(PivotConstants::kGroundPickupAngle))
+    .AndThen(std::move(m_Elevator.MoveLevel(ElevatorConstants::kL2))));//   !Elevaor pos. is a placeholder!
+
+
+//Coral: D-pad LeftTrigger (Controller1)
+
+  //Down - Coral L1: move Pivot (Coral) + move Elevator (L1)
+  m_driverController1.POVDown().OnTrue(std::move(m_Pivot.SetAngle(PivotConstants::kCoralAngle))
+    .AndThen(std::move(m_Elevator.MoveLevel(ElevatorConstants::kL1))));
+
+  //Left - Coral L2: move Pivot (Coral) + move Elevator (L2)
+  m_driverController1.POVLeft().OnTrue(std::move(m_Pivot.SetAngle(PivotConstants::kCoralAngle))
+    .AndThen(std::move(m_Elevator.MoveLevel(ElevatorConstants::kL2))));
+
+  //Up - Coral L3: move Pivot (Coral) + move Elevator (L3)
+  m_driverController1.POVUp().OnTrue(std::move(m_Pivot.SetAngle(PivotConstants::kCoralAngle))
+    .AndThen(std::move(m_Elevator.MoveLevel(ElevatorConstants::kL3))));
+
+  //Right - Coral L4: move Pivot (Coral) + move Elevator (L4)
+  m_driverController1.POVRight().OnTrue(std::move(m_Pivot.SetAngle(PivotConstants::kCoralAngle))
+    .AndThen(std::move(m_Elevator.MoveLevel(ElevatorConstants::kL4)))); 
+
+  //LeftTrigger - Coral load: move Pivot (Coral) + move Elevator (L2?)
+  m_driverController1.LeftTrigger().OnTrue(std::move(m_Pivot.SetAngle(PivotConstants::kCoralLoadAngle))
+    .AndThen(std::move(m_Elevator.MoveLevel(ElevatorConstants::kL2))));//   !Elevaor pos. is a placeholder!
+
+
+//Dispense/Load GameElement: A B LeftTrigger RightTrigger (Controller2)
+
+  //A - Coral load: run Guaco (Load)
+  m_driverController2.A().OnTrue(std::move(m_Guaco.Load(GuacoConstants::kSpeed)));
+
+  //B - Algae load: run Intake (Load)
+  m_driverController2.A().OnTrue(std::move(m_Intake.Load(IntakeConstants::kSpeed)));
+
+  //LeftTrigger - Coral dispense: run Guaco (dispense)
+  m_driverController2.LeftTrigger().WhileTrue(std::move(m_Guaco.Dispense(GuacoConstants::kSpeed)));
+
+  //RightTrigger - Algae dispense: run Intake (dispense)
+  m_driverController2.RightTrigger().WhileTrue(std::move(m_Intake.Dispense(IntakeConstants::kSpeed)));
+
+
+//Drivetain Break: RightBumper (Controller1)
+
+  //RightBumper - Break: set Drive (X)
+  m_driverController1.RightBumper().WhileTrue(new frc2::RunCommand([this] {
+    m_DriveSub.SetX();
+  }, {&m_DriveSub}));
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
