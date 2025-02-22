@@ -167,19 +167,20 @@ namespace Robot2025
 			for (const photon::PhotonTrackedTarget &target : aprilTagTargets)
 			{
 				// Get apriltag ID.
-				int targetID = target.GetFiducialId();
-				units::meter_t targetHeightMeters = AprilTagHeightMeters(targetID);
+				int targetID = target.GetFiducialId(); //AprilTag ID.
+
+				// Get apriltag game location.
+				std::string targetGameLocation = AprilTagGameLocation(targetID); //Apriltag location relative to game area.
 
 				// Get apriltag height.
-				double targetHeightDouble = targetHeightMeters.value();
-				std::string targetGameLocation = AprilTagGameLocation(targetID);
-
+				units::meter_t targetHeightMeters = AprilTagHeightMeters(targetID); //Apriltag height in meters from center of target to floor.
+				double targetHeightDouble = targetHeightMeters.value(); 
 				// Get apriltag pitch.
-				double targetPitchDouble = target.GetPitch();
+				double targetPitchDouble = target.GetPitch(); //Apriltag pitch in degrees.
 				units::radian_t targetPitchDegrees = units::degree_t{targetPitchDouble};
 
 				// Get apriltag estimated distance.
-				units::meter_t targetDistMeters = photon::PhotonUtils::CalculateDistanceToTarget(m_camHeightMeters, targetHeightMeters, m_camPitchDegrees, targetPitchDegrees);
+				units::meter_t targetDistMeters = photon::PhotonUtils::CalculateDistanceToTarget(m_camHeightMeters, targetHeightMeters, m_camPitchDegrees, targetPitchDegrees); //Apriltag distance from camera in meters.
 				double targetDistDouble = targetDistMeters.value();
 
 				// Save apriltag data.
