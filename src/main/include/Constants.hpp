@@ -47,15 +47,15 @@ constexpr double kRearLeftChassisAngularOffset = std::numbers::pi;
 constexpr double kRearRightChassisAngularOffset = std::numbers::pi / 2;
 
 // SPARK MAX CAN IDs
-constexpr int kFrontLeftDrivingCanId = 11;
-constexpr int kRearLeftDrivingCanId = 13;
-constexpr int kFrontRightDrivingCanId = 15;
-constexpr int kRearRightDrivingCanId = 17;
+constexpr int kFrontLeftDrivingCanId = 9;
+constexpr int kRearLeftDrivingCanId = 7;
+constexpr int kFrontRightDrivingCanId = 1;
+constexpr int kRearRightDrivingCanId = 3;
 
-constexpr int kFrontLeftTurningCanId = 10;
-constexpr int kRearLeftTurningCanId = 12;
-constexpr int kFrontRightTurningCanId = 14;
-constexpr int kRearRightTurningCanId = 16;
+constexpr int kFrontLeftTurningCanId = 8;
+constexpr int kRearLeftTurningCanId = 6;
+constexpr int kFrontRightTurningCanId = 2;
+constexpr int kRearRightTurningCanId = 4;
 }  // namespace DriveConstants
 
 namespace ModuleConstants {
@@ -119,8 +119,7 @@ namespace ElevatorConstants
 {
     //Elevator constants
 
-inline constexpr int kElevatorMotorPort1 = 0;
-inline constexpr int kElevatorMotorPort2 = 0;
+inline constexpr int kElevatorMotorPort1 = 5;
 inline constexpr int kHallEffectPortL1 = 0;
 inline constexpr int kHallEffectPortL2 = 0;
 inline constexpr int kHallEffectPortL3 = 0;
@@ -166,8 +165,7 @@ inline constexpr int kDriverControllerPort = 0;
 namespace IntakeConstants 
 {
     //Intake constants
-    inline constexpr int kIntakeMotorPort1 = 0;
-    inline constexpr int kIntakeMotorPort2 = 0;
+    inline constexpr int kIntakeMotorPort1 = 11;
     inline constexpr int kSpeed = 0;
 
     //placeholder port please change
@@ -186,7 +184,7 @@ namespace ShooterConstants
 namespace GuacoConstants
 {
     //guaco constants 
-  inline constexpr int kGuacoMotorPort = 8;
+  inline constexpr int kGuacoMotorPort = 12;
     inline constexpr int kPhotodiodePort = 1;
     inline constexpr int kPhotodiodeThreshold = 0;
     inline constexpr int kSpeed = 0.4;
@@ -199,7 +197,7 @@ namespace PivotConstants
 {
     //Pivot constants
 
-    inline constexpr int kPivotMotorPort = 12; 
+    inline constexpr int kPivotMotorPort = 10; 
     //placeholder values, please change. 
 
     inline constexpr int kHalleffectPortCloseSafetyStop = 10;
