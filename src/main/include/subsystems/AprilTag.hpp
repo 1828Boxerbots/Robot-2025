@@ -24,9 +24,9 @@ struct AprilTag
         int GetID();
         double GetDistMeters();
         double GetHeightMeters();
-        double GetYaw();
-        double GetPitch();
-        double GetSkew();
+        double GetYawDegrees();
+        double GetPitchDegrees();
+        double GetSkewDegrees();
         std::string GetGameLocation();
 
 	private:

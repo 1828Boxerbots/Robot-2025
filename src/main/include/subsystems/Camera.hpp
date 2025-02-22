@@ -34,9 +34,9 @@ class Camera
     // Initialize Camera(s)
     std::unique_ptr<photon::PhotonCamera> m_camera;
 
-    units::meter_t m_camHeight = 0.0_m;
-    units::radian_t m_camPitch = 0.0_rad;
-    units::radian_t m_targetPitch = 0.0_rad;
+    units::meter_t m_camHeightMeters = 0.0_m;
+    units::radian_t m_camPitchDegrees = 0.0_deg;
+    units::radian_t m_targetPitchDegrees = 0.0_deg;
 
     std::vector<AprilTag> m_aprilTags;
 

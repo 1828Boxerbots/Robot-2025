@@ -73,17 +73,17 @@ namespace Robot2025
             return m_aprilTagHeight;
         }
 
-        double AprilTag::GetYaw()
+        double AprilTag::GetYawDegrees()
         {
             return m_aprilTagYaw;
         }
 
-        double AprilTag::GetPitch()
+        double AprilTag::GetPitchDegrees()
         {
             return m_aprilTagPitch;
         }
 
-        double AprilTag::GetSkew()
+        double AprilTag::GetSkewDegrees()
         {
             return m_aprilTagSkew;
         }

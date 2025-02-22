@@ -176,10 +176,10 @@ namespace Robot2025
 
 				// Get apriltag pitch.
 				double targetPitchDouble = target.GetPitch();
-				units::radian_t targetPitchMeters = units::radian_t{targetPitchDouble};
+				units::radian_t targetPitchDegrees = units::degree_t{targetPitchDouble};
 
 				// Get apriltag estimated distance.
-				units::meter_t targetDistMeters = photon::PhotonUtils::CalculateDistanceToTarget(m_camHeight, targetHeightMeters, m_camPitch, targetPitchMeters);
+				units::meter_t targetDistMeters = photon::PhotonUtils::CalculateDistanceToTarget(m_camHeightMeters, targetHeightMeters, m_camPitchDegrees, targetPitchDegrees);
 				double targetDistDouble = targetDistMeters.value();
 
 				// Save apriltag data.
