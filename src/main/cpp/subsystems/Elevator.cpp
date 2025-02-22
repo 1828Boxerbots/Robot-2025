@@ -1,10 +1,21 @@
 #include "subsystems/Elevator.hpp"
  
 namespace Robot2025
-  {
-   Elevator::Elevator()
-   {
-      // NOTE: Currently does nothing
+{
+ Elevator::Elevator()
+ {
+    // NOTE: Currently does nothing
+    
+    m_controller.SetReference(ElevatorConstants::ElevatorPID::kSetPoint, rev::spark::SparkBase::ControlType::kPosition);
+    m_ElevatorMotor1.SetInverted(true);
+
+
+   rev::spark::SparkBaseConfig config{};
+   config.closedLoop
+   .P(ElevatorConstants::ElevatorPID::kP)
+   .I(ElevatorConstants::ElevatorPID::kI)
+   .D(ElevatorConstants::ElevatorPID::kD)
+   .OutputRange(ElevatorConstants::ElevatorPID::kMinOutput, ElevatorConstants::ElevatorPID::kMaxOutput);
 
       m_controller.SetReference(ElevatorConstants::ElevatorPID::kSetPoint, rev::spark::SparkBase::ControlType::kPosition);
 

@@ -73,7 +73,7 @@ bool Pivot::AtAngleRightSafetyStop()
 frc2::CommandPtr Pivot::SetAngle(double angle)
 {
     //Converts passed angle to move the motor the equivalent distance measured by the encoder. 
-    frc2::FunctionalCommand
+    frc2::FunctionalCommand 
     (  
       //init
       [this]
@@ -108,7 +108,6 @@ frc2::CommandPtr Pivot::SetAngle(double angle)
           return true; 
         }
         return false;
-        
       }
     );
 }; 

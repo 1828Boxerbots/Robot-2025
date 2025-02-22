@@ -41,13 +41,11 @@ frc2::CommandPtr Intake::Load(double speed)
                 [this, speed]
                 {
                         m_loadMotor1.Set(speed); //Positive speed assuming Positive = push in
-                        m_loadMotor2.Set(speed);
                 },
                 //end
                 [this] (bool interrupted)
                 {
                         m_loadMotor1.Set(0);
-                        m_loadMotor2.Set(0);
                 },
                 //isfinished
                 [this]
@@ -70,13 +68,11 @@ frc2::CommandPtr Intake::Dispense(double speed)
                 [this, speed]
                 {
                         m_loadMotor1.Set(-speed); //Negative speed assuming Positive = push in
-                        m_loadMotor2.Set(-speed);
                 },
                 //end
                 [this] (bool interrupted)
                 {
                         m_loadMotor1.Set(0);
-                        m_loadMotor2.Set(0);
                 },
                 //isfinished
                 [this]
