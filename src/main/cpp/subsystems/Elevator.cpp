@@ -32,6 +32,21 @@ namespace Robot2025
     // NOTE: Currently does nothing
  }
 
+void Elevator::Init()
+{
+
+}
+
+void Elevator::Periodic() 
+{
+  frc::SmartDashboard::PutBoolean("Elevator Halleffect L1", m_HallEffectL1.Get());
+  frc::SmartDashboard::PutBoolean("Elevator Halleffect L2", m_HallEffectL2.Get());
+  frc::SmartDashboard::PutBoolean("Elevator Halleffect L3", m_HallEffectL3.Get());
+  frc::SmartDashboard::PutBoolean("Elevator Halleffect L4", m_HallEffectL4.Get());
+  frc::SmartDashboard::PutNumber("Elevator Encoder Distance", m_ElevatorEncoder.GetDistance());
+  frc::SmartDashboard::PutNumber("Elevator Encoder Count", m_ElevatorEncoder.Get());
+  frc::SmartDashboard::PutNumber("Elevator Motor", m_ElevatorMotor1.Get());
+}
  
  frc2::CommandPtr Elevator::MoveLevel(int level)
  {

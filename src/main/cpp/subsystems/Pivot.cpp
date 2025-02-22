@@ -29,6 +29,24 @@ Pivot::~Pivot()
         //Pivot deconstructor
 };
 
+void Pivot::Init()
+{
+
+}
+
+void Pivot::Periodic() 
+{
+  frc::SmartDashboard::PutNumber("Pivot Motor", m_pivotMotor.Get());
+  frc::SmartDashboard::PutNumber("Pivot Encoder Distance", m_encoder.GetDistance());
+  frc::SmartDashboard::PutNumber("Pivot Encoder Count", m_encoder.Get());
+  frc::SmartDashboard::PutBoolean("Pivot Halleffect Left Safetystop", m_halleffectCloseSafetyStop.Get());
+  frc::SmartDashboard::PutBoolean("Pivot Halleffect Right Safetystop", m_halleffectFarSafetyStop.Get());
+  frc::SmartDashboard::PutBoolean("Pivot Halleffect Barge", m_halleffectBarge.Get());
+  frc::SmartDashboard::PutBoolean("Pivot Halleffect Base", m_halleffectBase.Get());
+  frc::SmartDashboard::PutBoolean("Pivot Halleffect Coral", m_halleffectCoral.Get());
+  frc::SmartDashboard::PutBoolean("Pivot Halleffect Ground Pickup", m_halleffectGroundPickup.Get());
+}
+
 
 
 bool Pivot::AtAngleBarge()

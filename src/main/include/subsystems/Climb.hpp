@@ -3,13 +3,15 @@
 #include <rev/SparkMax.h>
 #include <frc/Encoder.h>
 #include "Constants.hpp"
+#include <frc2/command/SubsystemBase.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 
 namespace Robot2025
 {
    
 
-class Climb
+class Climb : public frc2::SubsystemBase
 {
    public:
 
@@ -17,6 +19,8 @@ class Climb
 
    Climb();
    ~Climb();
+   void Init();
+   void Periodic() override;
 
 
   

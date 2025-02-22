@@ -43,6 +43,7 @@ void DriveSubsystem::Periodic() {
                         m_gyro.GetAngle(frc::ADIS16470_IMU::IMUAxis::kZ)}),
                     {m_frontLeft.GetPosition(), m_rearLeft.GetPosition(),
                      m_frontRight.GetPosition(), m_rearRight.GetPosition()});
+  //frc::SmartDashboard::PutNumber("Drive Gyro Angle", m_gyro.GetAngle()) No suitable conversion degrees to double
 }
 
 void DriveSubsystem::Drive(units::meters_per_second_t xSpeed,

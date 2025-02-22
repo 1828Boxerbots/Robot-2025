@@ -2,6 +2,17 @@
 
 namespace Robot2025
 {
+
+void Climb::Init()
+{
+
+}
+
+void Climb::Periodic() 
+{
+
+}
+
 Climb::Climb()
 {
     //climb constructor
