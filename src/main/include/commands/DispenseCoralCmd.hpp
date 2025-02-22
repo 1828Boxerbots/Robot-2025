@@ -18,5 +18,4 @@ frc2::CommandPtr DispenseCoralCmdFunction(int CoralLevel);
     //Change namespace of Camera Robo2025 to Robot2025
     Robot2025::Camera m_visionSubsystem;
 
-
 };

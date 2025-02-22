@@ -127,6 +127,7 @@ inline constexpr int kHallEffectPortL3 = 0;
 inline constexpr int kHallEffectPortL4 = 0;
 inline constexpr int kEncoderPortA = 0;
 inline constexpr int kEncoderPortB = 0;
+    inline constexpr float kSpeed = 0.0;
 
 inline constexpr int kL0 = 0;
 inline constexpr int kL1 = 1;
@@ -202,22 +203,23 @@ namespace PivotConstants
     inline constexpr int kPivotMotorPort = 12; 
     //placeholder values, please change. 
 
-    inline constexpr int kHalleffectPortCloseSafetyStop = 10;
-    inline constexpr int kHalleffectPortFarSafetyStop = 11; 
+    inline constexpr int kHalleffectPortLeftSafetyStop = 10;
+    inline constexpr int kHalleffectPortRightSafetyStop = 11; 
     inline constexpr int kHalleffectPortCoral = 12; 
     inline constexpr int kHalleffectPortBarge = 13; 
     inline constexpr int kHalleffectPortBase = 14; 
     inline constexpr int kHalleffectPortGroundPickup = 15; 
     inline constexpr int kEncoderPortA = 16;
     inline constexpr int kEncoderPortB = 17; 
+    inline constexpr int kPotentiometerPort = 20000000; 
     //placeholder values, please change.
 
     inline constexpr int kEncoderStudCount = 2018;
     inline constexpr double kSpeed = 0.5;
     //placeholder values, please change.
 
-    inline constexpr double kCloseSafetyStopAngle = -270;
-    inline constexpr double kFarSafetyStopAngle = 270; 
+    inline constexpr double kLeftSafetyStopAngle = -270;
+    inline constexpr double kRightSafetyStopAngle = 270; 
     inline constexpr double kCoralAngle = 120; 
     inline constexpr double kCoralLoadAngle = 120;
     inline constexpr double kBargeAngle = 95; 

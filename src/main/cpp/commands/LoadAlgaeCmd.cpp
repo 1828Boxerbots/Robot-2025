@@ -18,6 +18,5 @@ frc2::CommandPtr LoadAlgaeCmd::LoadAlgaeCmdFunction(int PivotLevel, int Elevator
         std::move(m_pivotSubsystem.SetAngle(PivotLevel)).AndThen(std::move(m_elevatorSubsystem.MoveLevel(ElevatorLevel))).AndThen(std::move(m_intakeSubsystem.Load(IntakeConstants::kSpeed)));
         //
     }
-    
 }
 

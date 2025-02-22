@@ -6,6 +6,8 @@
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 #include <frc2/command/FunctionalCommand.h>
+#include <frc2/command/StartEndCommand.h>
+#include <frc/AnalogPotentiometer.h>
 
 namespace Robot2025
 
@@ -19,11 +21,7 @@ class Pivot : public frc2::SubsystemBase
 
    Pivot();
    ~Pivot();
-
-
-
-
-   
+  
 
 //Private member variables
 
@@ -36,11 +34,10 @@ frc::DigitalOutput m_halleffectBarge{PivotConstants::kHalleffectPortBarge};
 frc::DigitalOutput m_halleffectBase{PivotConstants::kHalleffectPortBase};
 frc::DigitalOutput m_halleffectCoral{PivotConstants::kHalleffectPortCoral};
 frc::DigitalOutput m_halleffectGroundPickup{PivotConstants::kHalleffectPortGroundPickup};
-frc::DigitalOutput m_halleffectCloseSafetyStop{PivotConstants::kHalleffectPortCloseSafetyStop};
-frc::DigitalOutput m_halleffectFarSafetyStop{PivotConstants::kHalleffectPortFarSafetyStop};
-//Low? LOW TAPER FAAADDDDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+frc::DigitalOutput m_halleffectLeftSafetyStop{PivotConstants::kHalleffectPortLeftSafetyStop};
+frc::DigitalOutput m_halleffectRightSafetyStop{PivotConstants::kHalleffectPortRightSafetyStop};
 frc::Encoder m_encoder{PivotConstants::kEncoderPortA, PivotConstants::kEncoderPortB};
-
+frc::AnalogPotentiometer m_potentiometer {PivotConstants::kPotentiometerPort};
 
 
 
@@ -64,13 +61,11 @@ frc::Encoder m_encoder{PivotConstants::kEncoderPortA, PivotConstants::kEncoderPo
 
    /// @brief Checks halleffect sensor for CloseSafetyStop angle 
 /// @return bool
-   bool AtAngleCloseSafetyStop();
+   bool AtAngleLeftSafetyStop();
 
    /// @brief Checks halleffect sensor for FarSafetyStop angle 
 /// @return bool
-   bool AtAngleFarSafetyStop();
-   
-   
+   bool AtAngleRightSafetyStop();
 
    /// @brief Checks encoder value 
    double GetEncoder();
