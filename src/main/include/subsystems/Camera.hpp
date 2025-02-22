@@ -3,6 +3,8 @@
 #include <string>
 #include <photon/PhotonCamera.h>
 #include <photon/PhotonUtils.h>
+#include <photon/PhotonPoseEstimator.h>
+#include <frc/apriltag/AprilTagFieldLayout.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <units/angle.h>
 #include <units/length.h>
@@ -22,6 +24,7 @@ class Camera
     
     // Periodic Function:
     void ProcessCamAprilTags();
+    void ProcessCamAprilTagsExperimental(); //Experimental (DO NOT USE UNLESS OTHERWISE).
 
     // Data Function:
     AprilTag AprilTagsData(int member);
@@ -37,6 +40,8 @@ class Camera
     units::meter_t m_camHeightMeters = 0.0_m; //Camera height in meters from center of lens to floor.
     units::radian_t m_camPitchDegrees = 0.0_deg; //Camera pitch in degrees. 
     units::radian_t m_targetPitchDegrees = 0.0_deg; //Apriltag pitch in degrees.
+
+    frc::AprilTagFieldLayout m_aprilTagLayout{"https://github.com/wpilibsuite/allwpilib/blob/main/apriltag/src/main/native/resources/edu/wpi/first/apriltag/2025-reefscape-welded.json"};
 
     std::vector<AprilTag> m_aprilTags;
 

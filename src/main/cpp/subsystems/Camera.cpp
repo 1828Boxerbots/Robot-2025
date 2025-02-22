@@ -200,6 +200,77 @@ namespace Robot2025
         return;
 	} 
 
+	void Camera::ProcessCamAprilTagsExperimental()
+	{
+		// Clear previous targets.
+		m_aprilTags.clear();
+		
+		// Get camera result.
+		std::vector<photon::PhotonPipelineResult> unreadCamResults = m_camera->GetAllUnreadResults();
+
+		// Loop through the unread results from camera.
+		for(const photon::PhotonPipelineResult& camResult : unreadCamResults)
+		{
+			// Check if there are targets.
+			if(camResult.HasTargets() == false)
+			{
+				std::cerr << "ERROR: No targets found." << std::endl;
+				continue;
+			}
+
+			// Get targets from result and get the amount of targets
+			std::span<const photon::PhotonTrackedTarget, 4294967295U> aprilTagTargets = camResult.GetTargets();
+
+			// Loop through all targets to save data.
+			for (const photon::PhotonTrackedTarget &target : aprilTagTargets)
+			{
+				// Get apriltag ID.
+				int targetID = target.GetFiducialId(); //AprilTag ID.
+
+				// Get apriltag game location.
+				std::string targetGameLocation = AprilTagGameLocation(targetID); //Apriltag location relative to game area.
+
+				// Get apriltag height.
+				units::meter_t targetHeightMeters = AprilTagHeightMeters(targetID); //Apriltag height in meters from center of target to floor.
+				double targetHeightDouble = targetHeightMeters.value(); 
+				
+				// Get apriltag pitch.
+				double targetPitchDouble = target.GetPitch(); //Apriltag pitch in degrees.
+				units::radian_t targetPitchDegrees = units::degree_t(targetPitchDouble);
+				
+				// Get apriltag yaw.
+				double targetYawDouble = target.GetYaw(); //Apriltag yaw in degrees.
+				units::radian_t targetYawDegrees = units::degree_t(targetYawDouble);
+				
+				// Get apriltag skew.
+				double targetSkewDouble = target.GetSkew(); //Apriltag skew in degrees.
+				units::radian_t targetSkewDegrees = units::degree_t(targetSkewDouble);
+
+				// Get apriltag estimated distance.
+				units::meter_t targetDistMeters = photon::PhotonUtils::CalculateDistanceToTarget(m_camHeightMeters, targetHeightMeters, m_camPitchDegrees, targetPitchDegrees); //Apriltag distance from camera in meters.
+				double targetDistDouble = targetDistMeters.value();
+
+				// EXPERIMENTAL.
+				//photon::tran
+				//photon::PhotonPoseEstimator poseEstimator(m_aprilTagLayout, photon::CLOSEST_TO_REFERENCE_POSE, );
+
+				// Save apriltag data.
+				AprilTag curTag;
+				curTag.SetID(targetID);
+				curTag.SetDistance(targetDistDouble);
+				curTag.SetHeight(targetHeightDouble);
+				curTag.SetYaw(target.GetYaw());
+				curTag.SetPitch(targetPitchDouble);
+				curTag.SetSkew(target.GetSkew());
+				curTag.SetGameLocation(targetGameLocation);
+
+				m_aprilTags.push_back(curTag);
+			}
+		}
+			
+        return;
+	}
+
 	// Data Function:
     AprilTag Camera::AprilTagsData(int member)
 	{
