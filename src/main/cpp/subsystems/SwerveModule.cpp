@@ -30,6 +30,16 @@ MAXSwerveModule::MAXSwerveModule(const int drivingCANId, const int turningCANId,
   m_drivingEncoder.SetPosition(0);
 }
 
+void MAXSwerveModule::Periodic()
+{
+  frc::SmartDashboard::PutNumber("SwerveModule DriveEncoder Position", m_drivingEncoder.GetPosition());
+  frc::SmartDashboard::PutNumber("SwerveModule DriveEncoder Velocity", m_drivingEncoder.GetVelocity());
+  frc::SmartDashboard::PutNumber("SwerveModule AbsoluteTurnEncoder Position", m_turningAbsoluteEncoder.GetPosition());
+  frc::SmartDashboard::PutNumber("SwerveModule AbsoluteTurnEncoder Velocity", m_turningAbsoluteEncoder.GetVelocity());
+  frc::SmartDashboard::PutNumber("SwerveModule DriveMotor Speed", m_drivingSpark.Get());
+  frc::SmartDashboard::PutNumber("SwerveModule TurnMotor Speed", m_turningSpark.Get());
+}
+
 frc::SwerveModuleState MAXSwerveModule::GetState() const {
   return {units::meters_per_second_t{m_drivingEncoder.GetVelocity()},
           units::radian_t{m_turningAbsoluteEncoder.GetPosition() -

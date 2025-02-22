@@ -38,12 +38,13 @@ DriveSubsystem::DriveSubsystem()
 }
 
 void DriveSubsystem::Periodic() {
-  // Implementation of subsystem periodic method goes here.
+  //Implementation of subsystem periodic method goes here.
   m_odometry.Update(frc::Rotation2d(units::radian_t{
                         m_gyro.GetAngle(frc::ADIS16470_IMU::IMUAxis::kZ)}),
                     {m_frontLeft.GetPosition(), m_rearLeft.GetPosition(),
                      m_frontRight.GetPosition(), m_rearRight.GetPosition()});
-  //frc::SmartDashboard::PutNumber("Drive Gyro Angle", m_gyro.GetAngle()) No suitable conversion degrees to double
+  frc::SmartDashboard::PutNumber("Drive Gyro Angle", m_gyro.GetAngle().value());
+  //frc::SmartDashboard::PutData("Drive Front Left Position", m_frontLeft.GetPosition()); Swervemodule position is not suitible conversion
 }
 
 void DriveSubsystem::Drive(units::meters_per_second_t xSpeed,
