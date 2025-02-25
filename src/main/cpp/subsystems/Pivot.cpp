@@ -107,16 +107,19 @@ frc2::CommandPtr Pivot::SetAngle(double angle)
       //End
       [this] (bool interrupted)
       {
-
+        m_pivotMotor.Set(0); //Stops motor so PIDS doesn't possibly continue endlessly (PLEASE CHECK THIS KNOWLEDGE)
       },
       //Is Finished
       [this]
       {
-        if ((m_halleffectCloseSafetyStop.Get() == true) or (m_halleffectFarSafetyStop.Get() == true))
-        {
-          m_pivotMotor.Set(0); //Stops motor, could not stop if PIDS make it keep going. 
-          return true;
-        }
+        //if ((m_halleffectCloseSafetyStop.Get() == true) or (m_halleffectFarSafetyStop.Get() == true))
+        //{
+        //  m_pivotMotor.Set(0); //Stops motor, could not stop if PIDS make it keep going. 
+        //  return true;
+        //}
+
+        return false;
+
       }
     );
 

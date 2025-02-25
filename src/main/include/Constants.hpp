@@ -237,7 +237,7 @@ namespace PivotPIDConstants
     //ALL are placeholder values please calibrate
     inline constexpr int kSetPoint = 0;
     inline constexpr int kP = 0;
-    inline constexpr int kI = 0;
+    inline constexpr int kI = 0; //Leave zero for Integral, otherwise error builds on continuous gravity correction
     inline constexpr int kD = 0;
     inline constexpr int kMinOutput = 0;
     inline constexpr int kMaxOutput = 0;
