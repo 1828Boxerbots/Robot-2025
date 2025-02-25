@@ -56,6 +56,11 @@ constexpr int kFrontLeftTurningCanId = 8;
 constexpr int kRearLeftTurningCanId = 6;
 constexpr int kFrontRightTurningCanId = 2;
 constexpr int kRearRightTurningCanId = 4;
+
+constexpr double MinDriveSpeed = 0;
+constexpr double MinTurnSpeed = 0;
+
+
 }  // namespace DriveConstants
 
 namespace ModuleConstants {
@@ -132,6 +137,9 @@ inline constexpr int kL1 = 1;
 inline constexpr int kL2= 2;
 inline constexpr int kL3 = 3;
 inline constexpr int kL4 = 4; 
+inline constexpr int MaxElevatorHeight = 0; 
+
+
 
 
 namespace ElevatorPID

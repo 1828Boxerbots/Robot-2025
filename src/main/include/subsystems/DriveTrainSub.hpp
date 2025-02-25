@@ -13,6 +13,7 @@
 #include <frc/kinematics/SwerveDriveOdometry.h>
 #include <frc2/command/SubsystemBase.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include "subsystems/Elevator.hpp"
 
 #include "Constants.hpp"
 #include "SwerveModule.hpp"
@@ -104,6 +105,9 @@ class DriveSubsystem : public frc2::SubsystemBase {
       frc::Translation2d{-DriveConstants::kWheelBase / 2,
                          -DriveConstants::kTrackWidth / 2}};
 
+  double Clamp(double Joystick, double MinSpeed);
+
+
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
@@ -119,6 +123,14 @@ class DriveSubsystem : public frc2::SubsystemBase {
   // Odometry class for tracking robot pose
   // 4 defines the number of modules
   frc::SwerveDriveOdometry<4> m_odometry;
+
+  Robot2025::Elevator m_ElevatorSub;
+
+
 };
+
+
+
+
 
 }

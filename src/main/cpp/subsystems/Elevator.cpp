@@ -181,7 +181,7 @@ frc2::CommandPtr Elevator::SetMotorValue(int value)
 int Elevator::GetEncoderValue()
 {
    return m_ElevatorEncoder.Get();
-   
+    
 };
 
 };

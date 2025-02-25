@@ -9,7 +9,7 @@
 
 #include "Constants.hpp"
 #include "subsystems/ExampleSubsystem.hpp"
-
+#include "subsystems/DriveTrainSub.hpp"
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -30,6 +30,6 @@ class RobotContainer {
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
-
+  Robot2025::DriveSubsystem m_DriveSub;
   void ConfigureBindings();
 };

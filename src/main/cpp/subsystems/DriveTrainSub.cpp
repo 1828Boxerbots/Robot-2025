@@ -9,6 +9,8 @@
 #include <units/angle.h>
 #include <units/angular_velocity.h>
 #include <units/velocity.h>
+#include <algorithm>
+
 
 #include "Constants.hpp"
 
@@ -125,6 +127,15 @@ void DriveSubsystem::ResetOdometry(frc::Pose2d pose) {
       {m_frontLeft.GetPosition(), m_frontRight.GetPosition(),
        m_rearLeft.GetPosition(), m_rearRight.GetPosition()},
       pose);
+}
+
+double DriveSubsystem::Clamp(double Joystick, double Minspeed)
+{
+    double CurrHeight = m_ElevatorSub.GetEncoderValue();
+
+   double calculation = (1.0 - CurrHeight/ElevatorConstants::MaxElevatorHeight);
+
+    return std::max(calculation, Minspeed) * Joystick;
 }
 
 }
