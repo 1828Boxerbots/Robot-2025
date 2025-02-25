@@ -56,7 +56,7 @@ frc2::CommandPtr Intake::Load(double speed)
                 //end
                 [this] (bool interrupted)
                 {
-                        m_loadMotor1.Set(0);
+                        m_loadMotor1.Set(0.00025);
                 },
                 //isfinished
                 [this]
