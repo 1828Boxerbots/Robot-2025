@@ -129,8 +129,6 @@ inline constexpr int kHallEffectPortL1 = 0;
 inline constexpr int kHallEffectPortL2 = 0;
 inline constexpr int kHallEffectPortL3 = 0;
 inline constexpr int kHallEffectPortL4 = 0;
-inline constexpr int kEncoderPortA = 0;
-inline constexpr int kEncoderPortB = 0;
 
 inline constexpr int kL0 = 0;
 inline constexpr int kL1 = 1;
@@ -214,8 +212,6 @@ namespace PivotConstants
     inline constexpr int kHalleffectPortBarge = 13; 
     inline constexpr int kHalleffectPortBase = 14; 
     inline constexpr int kHalleffectPortGroundPickup = 15; 
-    inline constexpr int kEncoderPortA = 16;
-    inline constexpr int kEncoderPortB = 17; 
     //placeholder values, please change.
 
     inline constexpr int kEncoderStudCount = 2018;
