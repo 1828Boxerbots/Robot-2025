@@ -84,17 +84,18 @@ constexpr double kDriveWheelFreeSpeedRps =
     kDrivingMotorReduction;
 }  // namespace ModuleConstants
 
-namespace AutoConstants {
-constexpr auto kMaxSpeed = 3_mps;
-constexpr auto kMaxAcceleration = 3_mps_sq;
-constexpr auto kMaxAngularSpeed = 3.142_rad_per_s;
-constexpr auto kMaxAngularAcceleration = 3.142_rad_per_s_sq;
-
-constexpr double kPXController = 0.5;
-constexpr double kPYController = 0.5;
-constexpr double kPThetaController = 0.5;
-
-extern const frc::TrapezoidProfile<units::radians>::Constraints
+namespace AutoConstants 
+{
+    constexpr auto kMaxSpeed = 3_mps;
+    constexpr auto kMaxAcceleration = 3_mps_sq;
+    constexpr auto kMaxAngularSpeed = 3.142_rad_per_s;
+    constexpr auto kMaxAngularAcceleration = 3.142_rad_per_s_sq;
+    
+    constexpr double kPXController = 0.5;
+    constexpr double kPYController = 0.5;
+    constexpr double kPThetaController = 0.5;
+    
+    extern const frc::TrapezoidProfile<units::radians>::Constraints
     kThetaControllerConstraints;
 }  // namespace AutoConstants
 
@@ -110,62 +111,48 @@ namespace CameraConstants
 
 }  // namespace OperatorConstants
 
-
-namespace ClimbConstants 
-{
-    //Climbconstants
-inline constexpr int kClimbMotorPort1 = 0;
-inline constexpr int kClimbMotorPort2 = 0;
-
-
-}  
-
 namespace ElevatorConstants 
 {
     //Elevator constants
 
-inline constexpr int kElevatorMotorPort1 = 5;
-inline constexpr int kHallEffectPortL1 = 0;
-inline constexpr int kHallEffectPortL2 = 0;
-inline constexpr int kHallEffectPortL3 = 0;
-inline constexpr int kHallEffectPortL4 = 0;
+    inline constexpr int kElevatorMotorPort1 = 5;
+    inline constexpr int kHallEffectPortL1 = 0;
+    inline constexpr int kHallEffectPortL2 = 0;
+    inline constexpr int kHallEffectPortL3 = 0;
+    inline constexpr int kHallEffectPortL4 = 0;
     inline constexpr float kSpeed = 0.0;
 
-inline constexpr int kL0 = 0;
-inline constexpr int kL1 = 1;
-inline constexpr int kL2= 2;
-inline constexpr int kL3 = 3;
-inline constexpr int kL4 = 4; 
-inline constexpr int MaxElevatorHeight = 0; 
+    inline constexpr int kL0 = 0;
+    inline constexpr int kL1 = 1;
+    inline constexpr int kL2= 2;
+    inline constexpr int kL3 = 3;
+    inline constexpr int kL4 = 4; 
+    inline constexpr int MaxElevatorHeight = 0; 
 
+    namespace ElevatorPID
+    {
+        //Pids constants
+        inline constexpr int kSetPoint = 0;
+        inline constexpr int kPosition = 0;
 
-
-
-namespace ElevatorPID
-{
-    //Pids constants
-    inline constexpr int kSetPoint = 0;
-    inline constexpr int kPosition = 0;
-
-    inline constexpr int kP = 0;
-    inline constexpr int kI = 0;
-    inline constexpr int kD = 0;
-    inline constexpr int kMaxOutput = 0;
-    inline constexpr int kMinOutput = 0;
-    inline constexpr int kv = 0;
-    inline constexpr int kMaxVelocity = 0;
-    inline constexpr int kMaxAcceleration = 0;
-    inline constexpr int kAllowedError = 0;
-}
+        inline constexpr int kP = 0;
+        inline constexpr int kI = 0;
+        inline constexpr int kD = 0;
+        inline constexpr int kMaxOutput = 0;
+        inline constexpr int kMinOutput = 0;
+        inline constexpr int kv = 0;
+        inline constexpr int kMaxVelocity = 0;
+        inline constexpr int kMaxAcceleration = 0;
+        inline constexpr int kAllowedError = 0;
+    }
 
 }  
 
 
 namespace DriveConstants 
 {
-        //Drive constants
-
-inline constexpr int kDriverControllerPort = 0;
+    //Drive constants
+    inline constexpr int kDriverControllerPort = 0;
 
 }  
 
@@ -180,18 +167,10 @@ namespace IntakeConstants
     //inline constexpr double kUltraSonicThreshHold = 0.01;
 }  
 
-namespace ShooterConstants 
-{
-    //Shooter constants
-    
-    inline constexpr int kShooterMotorPort1 = 0;
-    inline constexpr int kShooterMotorPort2 = 0;
-}  
-
 namespace GuacoConstants
 {
     //guaco constants 
-  inline constexpr int kGuacoMotorPort = 12;
+    inline constexpr int kGuacoMotorPort = 12;
     inline constexpr int kPhotogatePort = 1;
     //inline constexpr int kPhotodiodeThreshold = 0;
     inline constexpr int kSpeed = 0.4;
