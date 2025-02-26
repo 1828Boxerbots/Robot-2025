@@ -45,7 +45,7 @@ int GetMotorValue();
 
 frc2::CommandPtr SetMotorValue(double speed);
 
-int GetEncoderValue();
+int GetEncoder();
   
 
   

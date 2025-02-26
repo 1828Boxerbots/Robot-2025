@@ -37,8 +37,8 @@ void Pivot::Init()
 void Pivot::Periodic() 
 {
   frc::SmartDashboard::PutNumber("Pivot Motor", m_pivotMotor.Get());
-  frc::SmartDashboard::PutNumber("Pivot Encoder Distance", m_encoder.GetDistance());
-  frc::SmartDashboard::PutNumber("Pivot Encoder Count", m_encoder.Get());
+  frc::SmartDashboard::PutNumber("Pivot Encoder Velocity", m_encoder.GetVelocity());
+  frc::SmartDashboard::PutNumber("Pivot Encoder Count Revolved", m_encoder.GetPosition());
   frc::SmartDashboard::PutBoolean("Pivot Halleffect Left Safetystop", m_halleffectCloseSafetyStop.Get());
   frc::SmartDashboard::PutBoolean("Pivot Halleffect Right Safetystop", m_halleffectFarSafetyStop.Get());
   frc::SmartDashboard::PutBoolean("Pivot Halleffect Barge", m_halleffectBarge.Get());
@@ -129,7 +129,7 @@ frc2::CommandPtr Pivot::SetAngle(double angle)
 
 double Pivot::GetEncoder()
 {
-    return m_encoder.Get();
+    return m_encoder.GetPosition();
 };
 
 frc2::CommandPtr Pivot::StopMotor()
