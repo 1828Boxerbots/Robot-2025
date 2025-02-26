@@ -51,12 +51,24 @@ void Robot::TeleopInit() {
   if (m_autonomousCommand) {
     m_autonomousCommand->Cancel();
   }
+  
+  m_Elevator.Init();
+  m_Guaco.Init();
+  m_Intake.Init();
+  m_Pivot.Init();
 }
 
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() 
+{
+  m_DriveSub.Periodic();
+  m_Elevator.Periodic();
+  m_Guaco.Periodic();
+  m_Intake.Periodic();
+  m_Pivot.Periodic();
+}
 
 /**
  * This function is called periodically during test mode.
