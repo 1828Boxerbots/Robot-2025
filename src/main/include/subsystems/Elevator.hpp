@@ -106,7 +106,7 @@ frc::DigitalOutput m_HallEffectL4{ElevatorConstants::kHallEffectPortL4};
 
 //Encoders
 
-frc::Encoder m_ElevatorEncoder{ElevatorConstants::kEncoderPortA, ElevatorConstants::kEncoderPortB};
+rev::spark::SparkRelativeEncoder m_ElevatorEncoder = m_pivotMotor.GetEncoder();
  
 //Private Methods
 

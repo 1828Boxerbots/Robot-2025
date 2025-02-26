@@ -8,6 +8,8 @@
 #include <frc2/command/FunctionalCommand.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
+#include <rev/SparkRelativeEncoder.h>
+
 namespace Robot2025
 
 {
@@ -42,10 +44,7 @@ frc::DigitalOutput m_halleffectGroundPickup{PivotConstants::kHalleffectPortGroun
 frc::DigitalOutput m_halleffectCloseSafetyStop{PivotConstants::kHalleffectPortCloseSafetyStop};
 frc::DigitalOutput m_halleffectFarSafetyStop{PivotConstants::kHalleffectPortFarSafetyStop};
 //Low? LOW TAPER FAAADDDDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-frc::Encoder m_encoder{PivotConstants::kEncoderPortA, PivotConstants::kEncoderPortB};
-
-
-
+rev::spark::SparkRelativeEncoder m_encoder = m_pivotMotor.GetEncoder();
 
 //Private methods
 
