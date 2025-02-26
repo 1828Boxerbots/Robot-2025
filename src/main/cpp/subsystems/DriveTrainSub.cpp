@@ -138,8 +138,12 @@ void DriveSubsystem::ResetOdometry(frc::Pose2d pose) {
 double DriveSubsystem::Clamp(double Joystick, double Minspeed)
 {
     double CurrHeight = m_ElevatorSub.GetEncoder();
+    double calculation = 0.0;
 
-   double calculation = (1.0 - CurrHeight/ElevatorConstants::MaxElevatorHeight);
+    if(ElevatorConstants::MaxElevatorHeight != 0.0)
+    {
+      calculation = (1.0 - (CurrHeight/ElevatorConstants::MaxElevatorHeight));
+    }
 
     return std::max(calculation, Minspeed) * Joystick;
 }
