@@ -140,7 +140,7 @@ double DriveSubsystem::Clamp(double Joystick, double Minspeed)
     double CurrHeight = m_ElevatorSub.GetEncoder();
     double calculation = 0.0;
 
-    if(ElevatorConstants::MaxElevatorHeight != 0)
+    if(ElevatorConstants::MaxElevatorHeight != 0.0)
     {
       calculation = (1.0 - (CurrHeight/ElevatorConstants::MaxElevatorHeight));
     }
