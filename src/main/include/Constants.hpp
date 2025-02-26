@@ -176,8 +176,8 @@ namespace IntakeConstants
     inline constexpr int kSpeed = 0;
 
     //placeholder port please change
-    inline constexpr int kUltraSonicPort = 10;
-    inline constexpr double kUltraSonicThreshHold = 0.01;
+    inline constexpr int kPhotogatePort = 10;
+    //inline constexpr double kUltraSonicThreshHold = 0.01;
 }  
 
 namespace ShooterConstants 
@@ -192,8 +192,8 @@ namespace GuacoConstants
 {
     //guaco constants 
   inline constexpr int kGuacoMotorPort = 12;
-    inline constexpr int kPhotodiodePort = 1;
-    inline constexpr int kPhotodiodeThreshold = 0;
+    inline constexpr int kPhotogatePort = 1;
+    //inline constexpr int kPhotodiodeThreshold = 0;
     inline constexpr int kSpeed = 0.4;
     //placeholder speed
 

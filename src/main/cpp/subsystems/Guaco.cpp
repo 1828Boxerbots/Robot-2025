@@ -22,21 +22,12 @@ void Guaco::Init()
 void Guaco::Periodic() 
 {
         frc::SmartDashboard::PutNumber("Guaco Motor", m_guacoMotor.Get());
-        frc::SmartDashboard::PutNumber("Guaco Photodiode Voltage", m_photodiode.GetVoltage());
+        frc::SmartDashboard::PutBoolean("Guaco Photodiode Voltage", m_photogate.Get());
 }
 
-double Guaco::GetPhotodiodeVoltage()
+double Guaco::GetPhotogate()
 {
-        return m_photodiode.GetVoltage();
-}
-
-bool Guaco::PhotodiodeThreshold()
-{
-        if(m_photodiode.GetVoltage() >= GuacoConstants::kPhotodiodeThreshold)
-        {
-                return true;
-        }
-        return false;
+        return m_photogate.Get();
 }
 
 frc2::CommandPtr Guaco::Dispense(double speed)
@@ -61,7 +52,7 @@ frc2::CommandPtr Guaco::Dispense(double speed)
                 //isfinished
                 [this]
                 {
-                        return m_photodiode.GetVoltage() < GuacoConstants::kPhotodiodeThreshold;
+                        return m_photogate.Get() != true;
                 }
         );
 }
@@ -88,7 +79,7 @@ frc2::CommandPtr Guaco::Load(double speed)
                 //isfinished
                 [this]
                 {
-                        return m_photodiode.GetVoltage() >= GuacoConstants::kPhotodiodeThreshold;
+                        return m_photogate.Get() == true;
                 }
         );
 }

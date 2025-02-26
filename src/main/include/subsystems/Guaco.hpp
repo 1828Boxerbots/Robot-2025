@@ -3,7 +3,7 @@
 #include <rev/SparkMax.h>
 #include "Constants.hpp"
 #include <frc/DigitalOutput.h>
-#include <frc/AnalogInput.h>
+#include <frc/DigitalInput.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 #include <frc2/command/FunctionalCommand.h>
@@ -28,18 +28,18 @@ public:
 //private member variables
 
     rev::spark::SparkMax m_guacoMotor{GuacoConstants::kGuacoMotorPort, rev::spark::SparkMax::MotorType::kBrushed};
-    frc::AnalogInput m_photodiode{GuacoConstants::kPhotodiodePort};
+    frc::DigitalInput m_photogate{GuacoConstants::kPhotogatePort};
     
 
 //private methods
 
     /// @brief Finds out what the voltage of the photodiode
     /// @return The voltage of it
-    double GetPhotodiodeVoltage();
+    double GetPhotogate();
 
     /// @brief Compare and check if coral inside Guaco
     /// @return True is pass and false if is doesn't pass
-    bool PhotodiodeThreshold();
+    //bool PhotodiodeThreshold();
 
     /// @brief Used to set the speed the motor needs to go
     frc2::CommandPtr Dispense(double speed);
