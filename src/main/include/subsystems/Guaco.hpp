@@ -25,7 +25,6 @@ public:
     void Periodic() override;
 
 
-
 //private member variables
 
     rev::spark::SparkMax m_guacoMotor{GuacoConstants::kGuacoMotorPort, rev::spark::SparkMax::MotorType::kBrushed};

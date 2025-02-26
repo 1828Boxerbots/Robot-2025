@@ -20,7 +20,5 @@ namespace autos {
  */
 frc2::CommandPtr AutosCmd(ExampleSubsystem* subsystem);
 
- 
-
 
 }  // namespace autos
