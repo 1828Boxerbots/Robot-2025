@@ -23,12 +23,14 @@ RobotContainer::RobotContainer() {
   m_DriveSub.SetDefaultCommand(frc2::RunCommand(
     [this] {
       m_DriveSub.Drive(
-          -units::meters_per_second_t{frc::ApplyDeadband(
-              m_driverController.GetLeftY(), OIConstants::kDriveDeadband)},
-          -units::meters_per_second_t{frc::ApplyDeadband(
-              m_driverController.GetLeftX(), OIConstants::kDriveDeadband)},
-          -units::radians_per_second_t{frc::ApplyDeadband(
-              m_driverController.GetRightX(), OIConstants::kDriveDeadband)},
+          -units::meters_per_second_t{m_DriveSub.Clamp(frc::ApplyDeadband(
+              m_driverController.GetLeftY(), OIConstants::kDriveDeadband), 0.1)},
+              
+          -units::meters_per_second_t{m_DriveSub.Clamp(frc::ApplyDeadband(
+              m_driverController.GetLeftX(), OIConstants::kDriveDeadband), 0.1)},
+
+          -units::radians_per_second_t{m_DriveSub.Clamp(frc::ApplyDeadband(
+              m_driverController.GetRightX(), OIConstants::kDriveDeadband), 0.1)},
           true);
     },
     {&m_DriveSub})
