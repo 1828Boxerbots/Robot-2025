@@ -39,8 +39,8 @@ void Pivot::Periodic()
   frc::SmartDashboard::PutNumber("Pivot Motor", m_pivotMotor.Get());
   frc::SmartDashboard::PutNumber("Pivot Encoder Velocity", m_encoder.GetVelocity());
   frc::SmartDashboard::PutNumber("Pivot Encoder Count Revolved", m_encoder.GetPosition());
-  frc::SmartDashboard::PutBoolean("Pivot Halleffect Left Safetystop", m_halleffectCloseSafetyStop.Get());
-  frc::SmartDashboard::PutBoolean("Pivot Halleffect Right Safetystop", m_halleffectFarSafetyStop.Get());
+  frc::SmartDashboard::PutBoolean("Pivot Halleffect Left Safetystop", m_halleffectLeftSafetyStop.Get());
+  frc::SmartDashboard::PutBoolean("Pivot Halleffect Right Safetystop", m_halleffectRightSafetyStop.Get());
   frc::SmartDashboard::PutBoolean("Pivot Halleffect Barge", m_halleffectBarge.Get());
   frc::SmartDashboard::PutBoolean("Pivot Halleffect Base", m_halleffectBase.Get());
   frc::SmartDashboard::PutBoolean("Pivot Halleffect Coral", m_halleffectCoral.Get());
@@ -111,7 +111,7 @@ frc2::CommandPtr Pivot::SetAngle(double angle)
       },
       //Is Finished
       [this, angle]
-      
+      {
         //Checks if at safety stop through either detection from halleffect or potentiometer, then must also be attempting to continue that way to cut command. 
         if (((m_halleffectLeftSafetyStop.Get() == true) || (m_potentiometer.Get() <= PivotConstants::kLeftSafetyStopAngle)) && (m_pivotMotor.Get() < 0))
         {

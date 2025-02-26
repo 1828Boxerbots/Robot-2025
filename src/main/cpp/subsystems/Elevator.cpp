@@ -17,14 +17,8 @@ namespace Robot2025
    .D(ElevatorConstants::ElevatorPID::kD)
    .OutputRange(ElevatorConstants::ElevatorPID::kMinOutput, ElevatorConstants::ElevatorPID::kMaxOutput);
 
-      m_controller.SetReference(ElevatorConstants::ElevatorPID::kSetPoint, rev::spark::SparkBase::ControlType::kPosition);
 
-     rev::spark::SparkBaseConfig config{};
-     config.closedLoop
-     .P(ElevatorConstants::ElevatorPID::kP)
-     .I(ElevatorConstants::ElevatorPID::kI)
-     .D(ElevatorConstants::ElevatorPID::kD)
-     .OutputRange(ElevatorConstants::ElevatorPID::kMinOutput, ElevatorConstants::ElevatorPID::kMaxOutput);
+
 
      config.closedLoop.VelocityFF(1/ElevatorConstants::ElevatorPID::kv);
 
@@ -55,74 +49,6 @@ void Elevator::Periodic()
   frc::SmartDashboard::PutNumber("Elevator Motor", m_ElevatorMotor1.Get());
 }
  
- frc2::CommandPtr Elevator::MoveLevel(int level)
- {
-   switch (level)
-   {
-      case ElevatorConstants::kL0: 
-      return this->RunOnce
-      (
-        [this] 
-        {
-          m_controller.SetReference(ElevatorConstants::kL0, rev::spark::SparkBase::ControlType::kPosition);
-        }
-      ); 
-
-           case ElevatorConstants::kL1:
-           return this->RunOnce
-      (
-        [this] 
-        {
-          m_controller.SetReference(ElevatorConstants::kL1, rev::spark::SparkBase::ControlType::kPosition);
-        }
-      ); 
-
-           case ElevatorConstants::kL2:
-           return this->RunOnce
-      (
-        [this] 
-        {
-          m_controller.SetReference(ElevatorConstants::kL2, rev::spark::SparkBase::ControlType::kPosition);
-        }
-      ); 
-
-           case ElevatorConstants::kL3:
-           return this->RunOnce
-      (
-        [this] 
-        {
-          m_controller.SetReference(ElevatorConstants::kL3, rev::spark::SparkBase::ControlType::kPosition);
-        }
-      ); 
-
-           case ElevatorConstants::kL4:
-           return this->RunOnce
-      (
-        [this] 
-        {
-          m_controller.SetReference(ElevatorConstants::kL4, rev::spark::SparkBase::ControlType::kPosition);
-        }
-      ); 
-
-        break;
-    }
- }
-
-frc2::CommandPtr Elevator::MoveL2()
-{
-   return this->RunOnce
-    (
-      [this] 
-      {
-        m_controller.SetReference(ElevatorConstants::kL2, rev::spark::SparkBase::ControlType::kPosition);
-      }
-     ); 
-};
-
-   Elevator::~Elevator()
-   {
-      // NOTE: Currently does nothing
-   }
 
   
    frc2::CommandPtr Elevator::MoveLevel(int level)
@@ -167,19 +93,6 @@ frc2::CommandPtr Elevator::MoveL2()
       );
   };
 
-
-  frc2::CommandPtr Elevator::MoveL4()
-  {
-    return this->RunOnce
-    (
-      [this] 
-      {
-        m_controller.SetReference(ElevatorConstants::kL4, rev::spark::SparkBase::ControlType::kPosition);
-      }
-    ); 
-  
-  };
-
   bool Elevator::GetHallEffectL1()
   {
 
@@ -189,7 +102,6 @@ frc2::CommandPtr Elevator::MoveL2()
 
   bool Elevator::GetHallEffectL2()
   {
-
      return m_HallEffectL2.Get();
   };
 
@@ -229,7 +141,7 @@ frc2::CommandPtr Elevator::MoveL2()
           else
           {
             m_ElevatorMotor1.Set(speed);
-          }
+          } 
     },
     //end
     [this]
@@ -242,3 +154,4 @@ int Elevator::GetEncoder()
 {
    return m_ElevatorEncoder.GetPosition();
 };
+}

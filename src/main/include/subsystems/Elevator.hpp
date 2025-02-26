@@ -52,15 +52,6 @@ int GetEncoder();
 /// @brief Moves height of taco to Level 1 on the reef (trough)
 frc2::CommandPtr MoveLevel(int level);
 
-/// @brief Moves height of taco to Level 2 on the reef 
-frc2::CommandPtr MoveL2();
-
-/// @brief Moves height of taco to Level 3 on the reef 
-frc2::CommandPtr MoveL3();
-
-/// @brief Moves height of taco to Level 4 on the reef 
-frc2::CommandPtr MoveL4();
-  
 
     private:
 
@@ -96,7 +87,7 @@ frc::DigitalOutput m_HallEffectL4{ElevatorConstants::kHallEffectPortL4};
 
 //Encoders
 
-rev::spark::SparkRelativeEncoder m_ElevatorEncoder = m_pivotMotor.GetEncoder();
+rev::spark::SparkRelativeEncoder m_ElevatorEncoder = m_ElevatorMotor1.GetEncoder();
  
 //Private Methods
 
