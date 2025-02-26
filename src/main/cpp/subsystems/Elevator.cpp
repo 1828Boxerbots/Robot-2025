@@ -130,11 +130,11 @@ void Elevator::Periodic()
     //execute
     [this,speed] 
     {
-      if (((m_HallEffectL1.Get() == true) || (m_ElevatorEncoder.GetPosition() <= ElevatorConstants::kL1)) && (m_ElevatorMotor1.Get() < 0))
+      if (((m_HallEffectL1.Get() == true) || (m_ElevatorEncoder.GetPosition() <= ElevatorConstants::kL1)) && (speed < 0))
           {
             m_ElevatorMotor1.Set(0);
           }
-          else if (((m_HallEffectL4.Get() == true) || (m_ElevatorEncoder.GetPosition() >= ElevatorConstants::kL4)) && (m_ElevatorMotor1.Get() > 0))
+          else if (((m_HallEffectL4.Get() == true) || (m_ElevatorEncoder.GetPosition() >= ElevatorConstants::kL4)) && (speed > 0))
           {
             m_ElevatorMotor1.Set(0);
           }
