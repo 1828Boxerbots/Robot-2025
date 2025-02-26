@@ -32,6 +32,7 @@ namespace Robot2025
      .MaxVelocity(ElevatorConstants::ElevatorPID::kMaxVelocity)
      .MaxAcceleration(ElevatorConstants::ElevatorPID::kMaxAcceleration)
      .AllowedClosedLoopError(ElevatorConstants::ElevatorPID::kAllowedError);
+ }
 
  Elevator::~Elevator()
  {
@@ -56,57 +57,56 @@ void Elevator::Periodic()
  
  frc2::CommandPtr Elevator::MoveLevel(int level)
  {
-     switch (level)
-     {
-         case ElevatorConstants::kL0: 
-         return this->RunOnce
-    (
-      [this] 
-      {
-        m_controller.SetReference(ElevatorConstants::kL0, rev::spark::SparkBase::ControlType::kPosition);
-      }
-     ); 
+   switch (level)
+   {
+      case ElevatorConstants::kL0: 
+      return this->RunOnce
+      (
+        [this] 
+        {
+          m_controller.SetReference(ElevatorConstants::kL0, rev::spark::SparkBase::ControlType::kPosition);
+        }
+      ); 
 
-         case ElevatorConstants::kL1:
-         return this->RunOnce
-    (
-      [this] 
-      {
-        m_controller.SetReference(ElevatorConstants::kL1, rev::spark::SparkBase::ControlType::kPosition);
-      }
-     ); 
+           case ElevatorConstants::kL1:
+           return this->RunOnce
+      (
+        [this] 
+        {
+          m_controller.SetReference(ElevatorConstants::kL1, rev::spark::SparkBase::ControlType::kPosition);
+        }
+      ); 
 
-         case ElevatorConstants::kL2:
-         return this->RunOnce
-    (
-      [this] 
-      {
-        m_controller.SetReference(ElevatorConstants::kL2, rev::spark::SparkBase::ControlType::kPosition);
-      }
-     ); 
+           case ElevatorConstants::kL2:
+           return this->RunOnce
+      (
+        [this] 
+        {
+          m_controller.SetReference(ElevatorConstants::kL2, rev::spark::SparkBase::ControlType::kPosition);
+        }
+      ); 
 
-         case ElevatorConstants::kL3:
-         return this->RunOnce
-    (
-      [this] 
-      {
-        m_controller.SetReference(ElevatorConstants::kL3, rev::spark::SparkBase::ControlType::kPosition);
-      }
-     ); 
+           case ElevatorConstants::kL3:
+           return this->RunOnce
+      (
+        [this] 
+        {
+          m_controller.SetReference(ElevatorConstants::kL3, rev::spark::SparkBase::ControlType::kPosition);
+        }
+      ); 
 
-         case ElevatorConstants::kL4:
-         return this->RunOnce
-    (
-      [this] 
-      {
-        m_controller.SetReference(ElevatorConstants::kL4, rev::spark::SparkBase::ControlType::kPosition);
-      }
-     ); 
-         
-         break;
-     }
- };
+           case ElevatorConstants::kL4:
+           return this->RunOnce
+      (
+        [this] 
+        {
+          m_controller.SetReference(ElevatorConstants::kL4, rev::spark::SparkBase::ControlType::kPosition);
+        }
+      ); 
 
+        break;
+    }
+ }
 
 frc2::CommandPtr Elevator::MoveL2()
 {
@@ -118,8 +118,6 @@ frc2::CommandPtr Elevator::MoveL2()
       }
      ); 
 };
-
-   }
 
    Elevator::~Elevator()
    {
@@ -135,8 +133,7 @@ frc2::CommandPtr Elevator::MoveL2()
         //init
         [this]
         {
-
-<<<<<<< Updated upstream
+          
         },
         //execute
         [this,level] 
@@ -152,15 +149,15 @@ frc2::CommandPtr Elevator::MoveL2()
         [this, level]
         {
           //Checks if at safety stop through either detection from halleffect or potentiometer, then must also be attempting to continue that way to cut command. 
-          if (((m_HallEffectL1.Get() == true) || (m_ElevatorEncoder.Get() <= ElevatorConstants::kL1)) && (m_ElevatorMotor1.Get() < 0))
+          if (((m_HallEffectL1.Get() == true) || (m_ElevatorEncoder.GetPosition() <= ElevatorConstants::kL1)) && (m_ElevatorMotor1.Get() < 0))
           {
             return true; 
           }
-          else if (((m_HallEffectL4.Get() == true) || (m_ElevatorEncoder.Get() >= ElevatorConstants::kL4)) && (m_ElevatorMotor1.Get() > 0))
+          else if (((m_HallEffectL4.Get() == true) || (m_ElevatorEncoder.GetPosition() >= ElevatorConstants::kL4)) && (m_ElevatorMotor1.Get() > 0))
           {
             return true; 
           }
-          else if((m_ElevatorEncoder.Get() > (level - 30)) && (m_ElevatorEncoder.Get() < (level + 30)))
+          else if((m_ElevatorEncoder.GetPosition() > (level - 30)) && (m_ElevatorEncoder.GetPosition() < (level + 30)))
           {
             return true; 
           }
@@ -168,19 +165,18 @@ frc2::CommandPtr Elevator::MoveL2()
 
         }
       );
-
   };
 
 
   frc2::CommandPtr Elevator::MoveL4()
   {
-        return this->RunOnce
-      (
-        [this] 
-        {
-          m_controller.SetReference(ElevatorConstants::kL4, rev::spark::SparkBase::ControlType::kPosition);
-        }
-       ); 
+    return this->RunOnce
+    (
+      [this] 
+      {
+        m_controller.SetReference(ElevatorConstants::kL4, rev::spark::SparkBase::ControlType::kPosition);
+      }
+    ); 
   
   };
 
@@ -206,7 +202,7 @@ frc2::CommandPtr Elevator::MoveL2()
   bool Elevator::GetHallEffectL4()
   {
 
-     return  m_HallEffectL4.Get();;
+     return  m_HallEffectL4.Get();
   };
 
   int Elevator::GetMotorValue()
@@ -222,11 +218,11 @@ frc2::CommandPtr Elevator::MoveL2()
     //execute
     [this,speed] 
     {
-      if (((m_HallEffectL1.Get() == true) || (m_ElevatorEncoder.Get() <= ElevatorConstants::kL1)) && (m_ElevatorMotor1.Get() < 0))
+      if (((m_HallEffectL1.Get() == true) || (m_ElevatorEncoder.GetPosition() <= ElevatorConstants::kL1)) && (m_ElevatorMotor1.Get() < 0))
           {
             m_ElevatorMotor1.Set(0);
           }
-          else if (((m_HallEffectL4.Get() == true) || (m_ElevatorEncoder.Get() >= ElevatorConstants::kL4)) && (m_ElevatorMotor1.Get() > 0))
+          else if (((m_HallEffectL4.Get() == true) || (m_ElevatorEncoder.GetPosition() >= ElevatorConstants::kL4)) && (m_ElevatorMotor1.Get() > 0))
           {
             m_ElevatorMotor1.Set(0);
           }
@@ -239,20 +235,10 @@ frc2::CommandPtr Elevator::MoveL2()
     [this]
     {
       m_ElevatorMotor1.Set(0);
-    }
-=======
+    });
+  }
+
 int Elevator::GetEncoder()
 {
    return m_ElevatorEncoder.GetPosition();
->>>>>>> Stashed changes
-    
-  );
-
-  };
-
-  int Elevator::GetEncoderValue()
-  {
-     return m_ElevatorEncoder.Get();
-  };
-
 };
