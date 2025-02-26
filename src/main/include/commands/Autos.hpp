@@ -8,6 +8,9 @@
 
 #include "subsystems/ExampleSubsystem.hpp"
 
+#include "frc/trajectory/constraint/SwerveDriveKinematicsConstraint.h"
+
+
 namespace autos {
 
 
@@ -16,8 +19,6 @@ namespace autos {
  * Example static factory for an autonomous command.
  */
 frc2::CommandPtr AutosCmd(ExampleSubsystem* subsystem);
-
-
 
 
 }  // namespace autos

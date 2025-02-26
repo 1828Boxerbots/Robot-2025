@@ -10,6 +10,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <frc2/command/StartEndCommand.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 namespace Robot2025
 {
@@ -22,6 +23,8 @@ class Elevator : public frc2::SubsystemBase
 
     Elevator();
     ~Elevator();
+    void Init();
+    void Periodic() override;
 
     //getters / setters
 
@@ -93,7 +96,7 @@ frc::DigitalOutput m_HallEffectL4{ElevatorConstants::kHallEffectPortL4};
 
 //Encoders
 
-frc::Encoder m_ElevatorEncoder{ElevatorConstants::kEncoderPortA, ElevatorConstants::kEncoderPortB};
+rev::spark::SparkRelativeEncoder m_ElevatorEncoder = m_pivotMotor.GetEncoder();
  
 //Private Methods
 

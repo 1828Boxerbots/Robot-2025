@@ -14,6 +14,17 @@ Intake::~Intake()
         //Intake deconstructor
 }
 
+void Intake::Init()
+{
+
+}
+
+void Intake::Periodic() 
+{
+        frc::SmartDashboard::PutNumber("Intake Motor", m_loadMotor1.Get());
+        frc::SmartDashboard::PutNumber("Intake Ultrasonic Voltage", m_ultraSonic.GetVoltage());
+}
+
 
 bool Intake::IsBallIn()
 {
@@ -45,7 +56,7 @@ frc2::CommandPtr Intake::Load(double speed)
                 //end
                 [this] (bool interrupted)
                 {
-                        m_loadMotor1.Set(0);
+                        m_loadMotor1.Set(0.00025);
                 },
                 //isfinished
                 [this]

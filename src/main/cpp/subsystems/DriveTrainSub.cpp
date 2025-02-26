@@ -11,6 +11,7 @@
 #include <units/velocity.h>
 #include <frc/smartdashboard/Field2d.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <algorithm>
 
 #include "Constants.hpp"
 
@@ -41,13 +42,17 @@ DriveSubsystem::DriveSubsystem()
 }
 
 void DriveSubsystem::Periodic() {
-  // Implementation of subsystem periodic method goes here.
+  //Implementation of subsystem periodic method goes here.
   m_odometry.Update(frc::Rotation2d(units::radian_t{
                         m_gyro.GetAngle(frc::ADIS16470_IMU::IMUAxis::kZ)}),
                     {m_frontLeft.GetPosition(), m_rearLeft.GetPosition(),
                      m_frontRight.GetPosition(), m_rearRight.GetPosition()});
+  
   //Used for Field2d wiget on glass
   m_field.SetRobotPose(m_odometry.GetPose());
+  
+  frc::SmartDashboard::PutNumber("Drive Gyro Angle", m_gyro.GetAngle().value());
+  //frc::SmartDashboard::PutData("Drive Front Left Position", m_frontLeft.GetPosition()); Swervemodule position is not suitible conversion?
 }
 
 void DriveSubsystem::Drive(units::meters_per_second_t xSpeed,
@@ -130,6 +135,13 @@ void DriveSubsystem::ResetOdometry(frc::Pose2d pose) {
       pose);
 }
 
+double DriveSubsystem::Clamp(double Joystick, double Minspeed)
+{
+    double CurrHeight = m_ElevatorSub.GetEncoderValue();
 
+   double calculation = (1.0 - CurrHeight/ElevatorConstants::MaxElevatorHeight);
+
+    return std::max(calculation, Minspeed) * Joystick;
+}
 
 }
