@@ -47,15 +47,20 @@ constexpr double kRearLeftChassisAngularOffset = std::numbers::pi;
 constexpr double kRearRightChassisAngularOffset = std::numbers::pi / 2;
 
 // SPARK MAX CAN IDs
-constexpr int kFrontLeftDrivingCanId = 11;
-constexpr int kRearLeftDrivingCanId = 13;
-constexpr int kFrontRightDrivingCanId = 15;
-constexpr int kRearRightDrivingCanId = 17;
+constexpr int kFrontLeftDrivingCanId = 9;
+constexpr int kRearLeftDrivingCanId = 7;
+constexpr int kFrontRightDrivingCanId = 1;
+constexpr int kRearRightDrivingCanId = 3;
 
-constexpr int kFrontLeftTurningCanId = 10;
-constexpr int kRearLeftTurningCanId = 12;
-constexpr int kFrontRightTurningCanId = 14;
-constexpr int kRearRightTurningCanId = 16;
+constexpr int kFrontLeftTurningCanId = 8;
+constexpr int kRearLeftTurningCanId = 6;
+constexpr int kFrontRightTurningCanId = 2;
+constexpr int kRearRightTurningCanId = 4;
+
+constexpr double MinDriveSpeed = 0;
+constexpr double MinTurnSpeed = 0;
+
+
 }  // namespace DriveConstants
 
 namespace ModuleConstants {
@@ -119,20 +124,21 @@ namespace ElevatorConstants
 {
     //Elevator constants
 
-inline constexpr int kElevatorMotorPort1 = 0;
-inline constexpr int kElevatorMotorPort2 = 0;
+inline constexpr int kElevatorMotorPort1 = 5;
 inline constexpr int kHallEffectPortL1 = 0;
 inline constexpr int kHallEffectPortL2 = 0;
 inline constexpr int kHallEffectPortL3 = 0;
 inline constexpr int kHallEffectPortL4 = 0;
-inline constexpr int kEncoderPortA = 0;
-inline constexpr int kEncoderPortB = 0;
+    inline constexpr float kSpeed = 0.0;
 
 inline constexpr int kL0 = 0;
 inline constexpr int kL1 = 1;
 inline constexpr int kL2= 2;
 inline constexpr int kL3 = 3;
 inline constexpr int kL4 = 4; 
+inline constexpr int MaxElevatorHeight = 0; 
+
+
 
 
 namespace ElevatorPID
@@ -166,8 +172,7 @@ inline constexpr int kDriverControllerPort = 0;
 namespace IntakeConstants 
 {
     //Intake constants
-    inline constexpr int kIntakeMotorPort1 = 0;
-    inline constexpr int kIntakeMotorPort2 = 0;
+    inline constexpr int kIntakeMotorPort1 = 11;
     inline constexpr int kSpeed = 0;
 
     //placeholder port please change
@@ -186,7 +191,7 @@ namespace ShooterConstants
 namespace GuacoConstants
 {
     //guaco constants 
-  inline constexpr int kGuacoMotorPort = 8;
+  inline constexpr int kGuacoMotorPort = 12;
     inline constexpr int kPhotodiodePort = 1;
     inline constexpr int kPhotodiodeThreshold = 0;
     inline constexpr int kSpeed = 0.4;
@@ -199,25 +204,24 @@ namespace PivotConstants
 {
     //Pivot constants
 
-    inline constexpr int kPivotMotorPort = 12; 
+    inline constexpr int kPivotMotorPort = 10; 
     //placeholder values, please change. 
 
-    inline constexpr int kHalleffectPortCloseSafetyStop = 10;
-    inline constexpr int kHalleffectPortFarSafetyStop = 11; 
+    inline constexpr int kHalleffectPortLeftSafetyStop = 10;
+    inline constexpr int kHalleffectPortRightSafetyStop = 11; 
     inline constexpr int kHalleffectPortCoral = 12; 
     inline constexpr int kHalleffectPortBarge = 13; 
     inline constexpr int kHalleffectPortBase = 14; 
     inline constexpr int kHalleffectPortGroundPickup = 15; 
-    inline constexpr int kEncoderPortA = 16;
-    inline constexpr int kEncoderPortB = 17; 
+    inline constexpr int kPotentiometerPort = 20000000; 
     //placeholder values, please change.
 
     inline constexpr int kEncoderStudCount = 2018;
     inline constexpr double kSpeed = 0.5;
     //placeholder values, please change.
 
-    inline constexpr double kCloseSafetyStopAngle = -270;
-    inline constexpr double kFarSafetyStopAngle = 270; 
+    inline constexpr double kLeftSafetyStopAngle = -270;
+    inline constexpr double kRightSafetyStopAngle = 270; 
     inline constexpr double kCoralAngle = 120; 
     inline constexpr double kCoralLoadAngle = 120;
     inline constexpr double kBargeAngle = 95; 
@@ -231,7 +235,7 @@ namespace PivotPIDConstants
     //ALL are placeholder values please calibrate
     inline constexpr int kSetPoint = 0;
     inline constexpr int kP = 0;
-    inline constexpr int kI = 0;
+    inline constexpr int kI = 0; //Leave zero for Integral, otherwise error builds on continuous gravity correction
     inline constexpr int kD = 0;
     inline constexpr int kMinOutput = 0;
     inline constexpr int kMaxOutput = 0;

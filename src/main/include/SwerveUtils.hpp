@@ -3,12 +3,24 @@
 #include <rev/config/SparkMaxConfig.h>
 
 #include "Constants.hpp"
+#include "subsystems/Elevator.hpp"
+
 
 using namespace rev::spark;
 
 namespace Configs {
 class MAXSwerveModule {
+
+
+private:
+
+Robot2025::Elevator m_ElevatorSub;
+
  public:
+
+
+
+
   static SparkMaxConfig& DrivingConfig() {
     static SparkMaxConfig drivingConfig{};
 
@@ -64,5 +76,11 @@ class MAXSwerveModule {
 
     return turningConfig;
   }
+
+
+
+} ;
+
 };
-}  // namespace Configs
+
+ // namespace Configs

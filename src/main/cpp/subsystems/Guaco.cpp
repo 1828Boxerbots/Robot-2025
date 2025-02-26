@@ -14,6 +14,17 @@ Guaco::~Guaco()
         //Guaco deconstructor
 }
 
+void Guaco::Init()
+{
+
+}
+
+void Guaco::Periodic() 
+{
+        frc::SmartDashboard::PutNumber("Guaco Motor", m_guacoMotor.Get());
+        frc::SmartDashboard::PutNumber("Guaco Photodiode Voltage", m_photodiode.GetVoltage());
+}
+
 double Guaco::GetPhotodiodeVoltage()
 {
         return m_photodiode.GetVoltage();

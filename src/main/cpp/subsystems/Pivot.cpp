@@ -29,6 +29,24 @@ Pivot::~Pivot()
         //Pivot deconstructor
 };
 
+void Pivot::Init()
+{
+
+}
+
+void Pivot::Periodic() 
+{
+  frc::SmartDashboard::PutNumber("Pivot Motor", m_pivotMotor.Get());
+  frc::SmartDashboard::PutNumber("Pivot Encoder Distance", m_encoder.GetDistance());
+  frc::SmartDashboard::PutNumber("Pivot Encoder Count", m_encoder.Get());
+  frc::SmartDashboard::PutBoolean("Pivot Halleffect Left Safetystop", m_halleffectCloseSafetyStop.Get());
+  frc::SmartDashboard::PutBoolean("Pivot Halleffect Right Safetystop", m_halleffectFarSafetyStop.Get());
+  frc::SmartDashboard::PutBoolean("Pivot Halleffect Barge", m_halleffectBarge.Get());
+  frc::SmartDashboard::PutBoolean("Pivot Halleffect Base", m_halleffectBase.Get());
+  frc::SmartDashboard::PutBoolean("Pivot Halleffect Coral", m_halleffectCoral.Get());
+  frc::SmartDashboard::PutBoolean("Pivot Halleffect Ground Pickup", m_halleffectGroundPickup.Get());
+}
+
 
 
 bool Pivot::AtAngleBarge()
@@ -55,16 +73,16 @@ bool Pivot::AtAngleGroundPickup()
   return m_halleffectGroundPickup.Get();
 }; 
 
-bool Pivot::AtAngleCloseSafetyStop()
+bool Pivot::AtAngleLeftSafetyStop()
 {
 //Checks if at base angle halleffect
-  return m_halleffectCloseSafetyStop.Get();
+  return m_halleffectLeftSafetyStop.Get();
 };
 
-bool Pivot::AtAngleFarSafetyStop()
+bool Pivot::AtAngleRightSafetyStop()
 {
 //Checks if at low angle halleffect
-  return m_halleffectFarSafetyStop.Get();
+  return m_halleffectRightSafetyStop.Get();
 };
 
 
@@ -89,20 +107,24 @@ frc2::CommandPtr Pivot::SetAngle(double angle)
       //End
       [this] (bool interrupted)
       {
-
+        m_pivotMotor.Set(0); //Stops motor so PIDS doesn't possibly continue endlessly (PLEASE CHECK THIS KNOWLEDGE)
       },
       //Is Finished
-      [this]
-      {
-        if ((m_halleffectCloseSafetyStop.Get() == true) or (m_halleffectFarSafetyStop.Get() == true))
+      [this, angle]
+      
+        //Checks if at safety stop through either detection from halleffect or potentiometer, then must also be attempting to continue that way to cut command. 
+        if (((m_halleffectLeftSafetyStop.Get() == true) || (m_potentiometer.Get() <= PivotConstants::kLeftSafetyStopAngle)) && (m_pivotMotor.Get() < 0))
         {
-          m_pivotMotor.Set(0); //Stops motor, could not stop if PIDS make it keep going. 
-          return true;
+          return true; 
         }
+        else if (((m_halleffectRightSafetyStop.Get() == true) || (m_potentiometer.Get() >= PivotConstants::kRightSafetyStopAngle)) && (m_pivotMotor.Get() > 0))
+        {
+          return true; 
+        }
+
+        return false;
       }
     );
-
- 
 }; 
 
 double Pivot::GetEncoder()
@@ -123,32 +145,28 @@ frc2::CommandPtr Pivot::StopMotor()
 
 frc2::CommandPtr Pivot::SetMotorManually(double speed)
 {
-  frc2::FunctionalCommand
+  frc2::StartEndCommand
   (
-    //init
-    [this]
-    {
-
-    },
     //execute
-    [this,speed]
+    [this,speed] 
     {
-      m_pivotMotor.Set(speed);
+      if (((m_halleffectLeftSafetyStop.Get() == true) || (m_potentiometer.Get() <= PivotConstants::kLeftSafetyStopAngle)) && (speed < 0))
+        {
+          m_pivotMotor.Set(0); //Stops motor
+        }
+        else if (((m_halleffectRightSafetyStop.Get() == true) || (m_potentiometer.Get() >= PivotConstants::kRightSafetyStopAngle)) && (speed > 0))
+        {
+          m_pivotMotor.Set(0); //Stops motor
+        }
+        else
+        {
+          m_pivotMotor.Set(speed);
+        }
     },
-    //End
-    [this] (bool isinterrupted)
-    {
-
-    },
-    //Isfinished
+    //end
     [this]
     {
-      if ((m_halleffectCloseSafetyStop.Get() == true) or (m_halleffectFarSafetyStop.Get() == true))
-        {
-          m_pivotMotor.Set(0); //Stops motor, could not stop if PIDS make it keep going. 
-          return true;
-        }
-        return true;
+      m_pivotMotor.Set(0);
     }
   );
 }

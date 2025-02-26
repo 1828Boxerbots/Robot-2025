@@ -11,6 +11,7 @@
 #include <rev/SparkClosedLoopController.h>
 #include <rev/SparkMax.h>
 #include <rev/SparkRelativeEncoder.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 using namespace rev::spark;
 
@@ -24,6 +25,8 @@ class MAXSwerveModule {
    */
   MAXSwerveModule(int driveCANId, int turningCANId,
                   double chassisAngularOffset);
+
+void Periodic();
 
   /**
    * Returns the current state of the module.

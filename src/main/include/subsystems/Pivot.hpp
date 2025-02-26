@@ -6,6 +6,11 @@
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 #include <frc2/command/FunctionalCommand.h>
+#include <frc2/command/StartEndCommand.h>
+#include <frc/AnalogPotentiometer.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+
+#include <rev/SparkRelativeEncoder.h>
 
 namespace Robot2025
 
@@ -20,10 +25,8 @@ class Pivot : public frc2::SubsystemBase
    Pivot();
    ~Pivot();
 
-
-
-
-   
+   void Init();
+   void Periodic() override;
 
 //Private member variables
 
@@ -36,13 +39,11 @@ frc::DigitalOutput m_halleffectBarge{PivotConstants::kHalleffectPortBarge};
 frc::DigitalOutput m_halleffectBase{PivotConstants::kHalleffectPortBase};
 frc::DigitalOutput m_halleffectCoral{PivotConstants::kHalleffectPortCoral};
 frc::DigitalOutput m_halleffectGroundPickup{PivotConstants::kHalleffectPortGroundPickup};
-frc::DigitalOutput m_halleffectCloseSafetyStop{PivotConstants::kHalleffectPortCloseSafetyStop};
-frc::DigitalOutput m_halleffectFarSafetyStop{PivotConstants::kHalleffectPortFarSafetyStop};
+frc::DigitalOutput m_halleffectLeftSafetyStop{PivotConstants::kHalleffectPortLeftSafetyStop};
+frc::DigitalOutput m_halleffectRightSafetyStop{PivotConstants::kHalleffectPortRightSafetyStop};
+frc::AnalogPotentiometer m_potentiometer {PivotConstants::kPotentiometerPort};
 //Low? LOW TAPER FAAADDDDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-frc::Encoder m_encoder{PivotConstants::kEncoderPortA, PivotConstants::kEncoderPortB};
-
-
-
+rev::spark::SparkRelativeEncoder m_encoder = m_pivotMotor.GetEncoder();
 
 //Private methods
 
@@ -64,13 +65,11 @@ frc::Encoder m_encoder{PivotConstants::kEncoderPortA, PivotConstants::kEncoderPo
 
    /// @brief Checks halleffect sensor for CloseSafetyStop angle 
 /// @return bool
-   bool AtAngleCloseSafetyStop();
+   bool AtAngleLeftSafetyStop();
 
    /// @brief Checks halleffect sensor for FarSafetyStop angle 
 /// @return bool
-   bool AtAngleFarSafetyStop();
-   
-   
+   bool AtAngleRightSafetyStop();
 
    /// @brief Checks encoder value 
    double GetEncoder();

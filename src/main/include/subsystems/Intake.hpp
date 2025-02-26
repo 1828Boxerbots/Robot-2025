@@ -5,7 +5,7 @@
 #include <frc/Encoder.h>
 #include <frc/AnalogInput.h>
 #include <frc2/command/FunctionalCommand.h>
-
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 
@@ -21,6 +21,8 @@ class Intake : public frc2::SubsystemBase
 
    Intake();
    ~Intake();
+   void Init();
+   void Periodic() override;
 
 
 //Private member variables
