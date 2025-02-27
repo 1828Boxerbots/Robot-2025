@@ -34,8 +34,8 @@ class Climb : public frc2::SubsystemBase
 
 // Private Member variables:
 
-   rev::spark::SparkMax m_climbMotor1{ClimbConstants::kClimbMotorPort1, rev::spark::SparkMax::MotorType::kBrushless};
-   rev::spark::SparkMax m_climbMotor2{ClimbConstants::kClimbMotorPort2, rev::spark::SparkMax::MotorType::kBrushless};
+//   rev::spark::SparkMax m_climbMotor1{ClimbConstants::kClimbMotorPort1, rev::spark::SparkMax::MotorType::kBrushless};
+//   rev::spark::SparkMax m_climbMotor2{ClimbConstants::kClimbMotorPort2, rev::spark::SparkMax::MotorType::kBrushless};
 
 
  //Private Methods
