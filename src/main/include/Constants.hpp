@@ -120,7 +120,7 @@ namespace ElevatorConstants
     inline constexpr int kHallEffectPortL2 = 0;
     inline constexpr int kHallEffectPortL3 = 0;
     inline constexpr int kHallEffectPortL4 = 0;
-    inline constexpr float kSpeed = 0.0;
+    inline constexpr float kSpeed = 0.2;
 
     inline constexpr int kL0 = 0;
     inline constexpr int kL1 = 1;
@@ -160,7 +160,7 @@ namespace IntakeConstants
 {
     //Intake constants
     inline constexpr int kIntakeMotorPort1 = 12;
-    inline constexpr int kSpeed = 0;
+    inline constexpr int kSpeed = 0.2;
 
     //placeholder port please change
     inline constexpr int kPhotogatePort = 10;
@@ -173,7 +173,7 @@ namespace GuacoConstants
     inline constexpr int kGuacoMotorPort = 13;
     inline constexpr int kPhotogatePort = 1;
     //inline constexpr int kPhotodiodeThreshold = 0;
-    inline constexpr int kSpeed = 0.4;
+    inline constexpr int kSpeed = 0.2;
     //placeholder speed
 
     //Placeholder port, change once known. 
@@ -195,9 +195,9 @@ namespace PivotConstants
     inline constexpr int kPotentiometerPort = 20000000; 
     //placeholder values, please change.
 
-    inline constexpr int kEncoderStudCount = 2018;
-    inline constexpr double kSpeed = 0.5;
-    //placeholder values, please change.
+    inline constexpr int kEncoderStudCount = 42;
+    inline constexpr double kSpeed = 0.2;
+    //placeholder values possibly? Please check. 
 
     inline constexpr double kLeftSafetyStopAngle = -270;
     inline constexpr double kRightSafetyStopAngle = 270; 

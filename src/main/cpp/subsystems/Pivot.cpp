@@ -101,7 +101,7 @@ frc2::CommandPtr Pivot::SetAngle(double angle)
       //execute
       [this,angle] 
       {
-         double targetDist = (angle * (360/PivotConstants::kEncoderStudCount)); 
+         double targetDist = (angle * (PivotConstants::kEncoderStudCount/360)); //Fraction was previously the reciprocal, double check conversion factor. 
          m_PivotPIDController.SetReference(targetDist, rev::spark::SparkBase::ControlType::kPosition);
       },
       //End
