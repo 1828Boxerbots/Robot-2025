@@ -47,15 +47,15 @@ constexpr double kRearLeftChassisAngularOffset = std::numbers::pi;
 constexpr double kRearRightChassisAngularOffset = std::numbers::pi / 2;
 
 // SPARK MAX CAN IDs
-constexpr int kFrontLeftDrivingCanId = 9;
-constexpr int kRearLeftDrivingCanId = 7;
-constexpr int kFrontRightDrivingCanId = 1;
-constexpr int kRearRightDrivingCanId = 3;
+constexpr int kFrontLeftDrivingCanId = 10;
+constexpr int kRearLeftDrivingCanId = 8;
+constexpr int kFrontRightDrivingCanId = 2;
+constexpr int kRearRightDrivingCanId = 4;
 
-constexpr int kFrontLeftTurningCanId = 8;
-constexpr int kRearLeftTurningCanId = 6;
-constexpr int kFrontRightTurningCanId = 2;
-constexpr int kRearRightTurningCanId = 4;
+constexpr int kFrontLeftTurningCanId = 9;
+constexpr int kRearLeftTurningCanId = 7;
+constexpr int kFrontRightTurningCanId = 3;
+constexpr int kRearRightTurningCanId = 5;
 
 constexpr double MinDriveSpeed = 0;
 constexpr double MinTurnSpeed = 0;
@@ -115,7 +115,7 @@ namespace ElevatorConstants
 {
     //Elevator constants
 
-    inline constexpr int kElevatorMotorPort1 = 5;
+    inline constexpr int kElevatorMotorPort1 = 6;
     inline constexpr int kHallEffectPortL1 = 0;
     inline constexpr int kHallEffectPortL2 = 0;
     inline constexpr int kHallEffectPortL3 = 0;
@@ -159,7 +159,7 @@ namespace DriveConstants
 namespace IntakeConstants 
 {
     //Intake constants
-    inline constexpr int kIntakeMotorPort1 = 11;
+    inline constexpr int kIntakeMotorPort1 = 12;
     inline constexpr int kSpeed = 0;
 
     //placeholder port please change
@@ -170,7 +170,7 @@ namespace IntakeConstants
 namespace GuacoConstants
 {
     //guaco constants 
-    inline constexpr int kGuacoMotorPort = 12;
+    inline constexpr int kGuacoMotorPort = 13;
     inline constexpr int kPhotogatePort = 1;
     //inline constexpr int kPhotodiodeThreshold = 0;
     inline constexpr int kSpeed = 0.4;
@@ -183,7 +183,7 @@ namespace PivotConstants
 {
     //Pivot constants
 
-    inline constexpr int kPivotMotorPort = 10; 
+    inline constexpr int kPivotMotorPort = 11; 
     //placeholder values, please change. 
 
     inline constexpr int kHalleffectPortLeftSafetyStop = 10;
