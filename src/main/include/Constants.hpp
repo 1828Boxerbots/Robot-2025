@@ -127,7 +127,7 @@ namespace ElevatorConstants
     inline constexpr int kL2= 2;
     inline constexpr int kL3 = 3;
     inline constexpr int kL4 = 4; 
-    inline constexpr int MaxElevatorHeight = 0; 
+    inline constexpr int MaxElevatorHeight = 1; //CHANGE
 
     namespace ElevatorPID
     {
@@ -140,7 +140,7 @@ namespace ElevatorConstants
         inline constexpr int kD = 0;
         inline constexpr int kMaxOutput = 0;
         inline constexpr int kMinOutput = 0;
-        inline constexpr int kv = 0;
+        inline constexpr int kv = 1;  //CHANGE
         inline constexpr int kMaxVelocity = 0;
         inline constexpr int kMaxAcceleration = 0;
         inline constexpr int kAllowedError = 0;
@@ -218,7 +218,7 @@ namespace PivotPIDConstants
     inline constexpr int kD = 0;
     inline constexpr int kMinOutput = 0;
     inline constexpr int kMaxOutput = 0;
-    inline constexpr int kV = 0;
+    inline constexpr int kV = 1; //CHANGE
     inline constexpr int kMaxVel = 0;
     inline constexpr int kMaxAccel = 0;
     inline constexpr int kAllowedErr = 0;
