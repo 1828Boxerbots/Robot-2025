@@ -1,6 +1,7 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
+#pragma once
 
 #include <frc/trajectory/TrapezoidProfile.h>
 #include <rev/SparkMax.h>
@@ -13,7 +14,6 @@
 
 #include <numbers>
 
-#pragma once
 
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
@@ -192,7 +192,7 @@ namespace PivotConstants
     inline constexpr int kHalleffectPortBarge = 13; 
     inline constexpr int kHalleffectPortBase = 14; 
     inline constexpr int kHalleffectPortGroundPickup = 15; 
-    inline constexpr int kPotentiometerPort = 20000000; 
+    inline constexpr int kPotentiometerPort = 0; 
     //placeholder values, please change.
 
     inline constexpr int kEncoderStudCount = 42;
