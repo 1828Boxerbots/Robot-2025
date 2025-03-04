@@ -19,22 +19,22 @@
 #include <frc2/command/RunCommand.h>
 
 RobotContainer::RobotContainer() {
-  // Initialize all of your commands and subsystems here
+  //Initialize all of your commands and subsystems here
   m_DriveSub.SetDefaultCommand(frc2::RunCommand(
     [this] {
       m_DriveSub.Drive(
           -units::meters_per_second_t{m_DriveSub.Clamp(frc::ApplyDeadband(
-              m_driverController.GetLeftY(), OIConstants::kDriveDeadband), 0.1)},
+              m_driverController.GetLeftY(), OIConstants::kDriveDeadband, 0.1), 0.1, m_Elevator)},
               
           -units::meters_per_second_t{m_DriveSub.Clamp(frc::ApplyDeadband(
-              m_driverController.GetLeftX(), OIConstants::kDriveDeadband), 0.1)},
+              m_driverController.GetLeftX(), OIConstants::kDriveDeadband), 0.1, m_Elevator)},
 
           -units::radians_per_second_t{m_DriveSub.Clamp(frc::ApplyDeadband(
-              m_driverController.GetRightX(), OIConstants::kDriveDeadband), 0.1)},
+              m_driverController.GetRightX(), OIConstants::kDriveDeadband), 0.1, m_Elevator)},
           true);
     },
     {&m_DriveSub})
-  );
+);
   
   // Configure the button bindings
   ConfigureBindings();
@@ -43,21 +43,21 @@ RobotContainer::RobotContainer() {
 void RobotContainer::ConfigureBindings() 
 {
 
-  //Intake load/dispense: X / Y
-  m_driverController.X().WhileTrue(m_Intake.Load(IntakeConstants::kSpeed));
-  m_driverController.Y().WhileTrue(m_Intake.Dispense(IntakeConstants::kSpeed));
+  // Intake load/dispense: X / Y
+   m_driverController.X().WhileTrue(new frc2::RunCommand([this] {m_Intake.Load(IntakeConstants::kSpeed);}, {&m_Intake}));
+   m_driverController.Y().WhileTrue(new frc2::RunCommand([this] {m_Intake.Dispense(IntakeConstants::kSpeed);}, {&m_Intake}));
 
   //Guaco load/dispense: A / B
-  m_driverController.A().WhileTrue(m_Guaco.Load(GuacoConstants::kSpeed));
-  m_driverController.B().WhileTrue(m_Guaco.Dispense(GuacoConstants::kSpeed));
+  // m_driverController.A().WhileTrue(m_Guaco.Load(GuacoConstants::kSpeed));
+  // m_driverController.B().WhileTrue(m_Guaco.Dispense(GuacoConstants::kSpeed));
  
   //Elevator up/down: dpad up / dpad down
-  m_driverController.POVUp().WhileTrue(m_Elevator.SetMotorValue(ElevatorConstants::kSpeed));
-  m_driverController.POVDown().WhileTrue(m_Elevator.SetMotorValue(-ElevatorConstants::kSpeed));
+  // m_driverController.POVUp().WhileTrue(m_Elevator.SetMotorValue(ElevatorConstants::kSpeed));
+  // m_driverController.POVDown().WhileTrue(m_Elevator.SetMotorValue(-ElevatorConstants::kSpeed));
 
   //Pivot left/right: dpad left / dpad right
-  m_driverController.POVLeft().WhileTrue(m_Pivot.SetMotorManually(PivotConstants::kSpeed));
-  m_driverController.POVRight().WhileTrue(m_Pivot.SetMotorManually(-PivotConstants::kSpeed));
+  //m_driverController.POVLeft().WhileTrue(m_Pivot.SetMotorManually(PivotConstants::kSpeed));
+  //m_driverController.POVRight().WhileTrue(m_Pivot.SetMotorManually(-PivotConstants::kSpeed));
 
   //Drive break: right bumper
   m_driverController.RightBumper().WhileTrue(
@@ -65,20 +65,20 @@ void RobotContainer::ConfigureBindings()
             m_DriveSub.SetX();
           }, {&m_DriveSub}));
   
-  //Drive 
+  // // Drive 
 
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // // An example command will be run in autonomous
 
-  // // zTODO: Fill in parameters
-  // Robot2025::DriveSubsystem m_drivesub;
-  // Robot2025::Pivot m_Pivot;
-  // Robot2025::Elevator m_Elevator;
-  // Robot2025::Guaco m_Guaco;
-  // Robot2025::Intake m_Intake;
-  // Robot2025::Camera m_Camera;
+  // zTODO: Fill in parameters
+  // // Robot2025::DriveSubsystem m_drivesub;
+  // // Robot2025::Pivot m_Pivot;
+  // // Robot2025::Elevator m_Elevator;
+  // // Robot2025::Guaco m_Guaco;
+  // // Robot2025::Intake m_Intake;
+  // // Robot2025::Camera m_Camera;
   
 
   // frc::SwerveDriveKinematicsConstraint<4> constraint(m_drivesub.kDriveKinematics, DriveConstants::kMaxSpeed);

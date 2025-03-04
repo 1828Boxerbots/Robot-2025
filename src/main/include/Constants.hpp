@@ -116,10 +116,10 @@ namespace ElevatorConstants
     //Elevator constants
 
     inline constexpr int kElevatorMotorPort1 = 6;
-    inline constexpr int kHallEffectPortL1 = 0;
-    inline constexpr int kHallEffectPortL2 = 0;
-    inline constexpr int kHallEffectPortL3 = 0;
-    inline constexpr int kHallEffectPortL4 = 0;
+    inline constexpr int kHallEffectPortL1 = 5; //saftey down
+   // inline constexpr int kHallEffectPortL2 = 0;
+   // inline constexpr int kHallEffectPortL3 = 0;
+    inline constexpr int kHallEffectPortL4 = 3; // safwty up
     inline constexpr float kSpeed = 0.2;
 
     inline constexpr int kL0 = 0;
@@ -163,7 +163,7 @@ namespace IntakeConstants
     inline constexpr int kSpeed = 0.2;
 
     //placeholder port please change
-    inline constexpr int kPhotogatePort = 10;
+    inline constexpr int kPhotogatePort = 0;
     //inline constexpr double kUltraSonicThreshHold = 0.01;
 }  
 
@@ -171,7 +171,7 @@ namespace GuacoConstants
 {
     //guaco constants 
     inline constexpr int kGuacoMotorPort = 13;
-    inline constexpr int kPhotogatePort = 1;
+    inline constexpr int kPhotogatePort = 2;
     //inline constexpr int kPhotodiodeThreshold = 0;
     inline constexpr int kSpeed = 0.2;
     //placeholder speed
@@ -186,12 +186,12 @@ namespace PivotConstants
     inline constexpr int kPivotMotorPort = 11; 
     //placeholder values, please change. 
 
-    inline constexpr int kHalleffectPortLeftSafetyStop = 10;
-    inline constexpr int kHalleffectPortRightSafetyStop = 11; 
-    inline constexpr int kHalleffectPortCoral = 12; 
-    inline constexpr int kHalleffectPortBarge = 13; 
-    inline constexpr int kHalleffectPortBase = 14; 
-    inline constexpr int kHalleffectPortGroundPickup = 15; 
+    inline constexpr int kHalleffectPortLeftSafetyStop = 4; //either or could be 1 or 4
+    inline constexpr int kHalleffectPortRightSafetyStop = 1;  //either or could be 1 or 4
+    // inline constexpr int kHalleffectPortCoral = 12; 
+    // inline constexpr int kHalleffectPortBarge = 13; 
+    // inline constexpr int kHalleffectPortBase = 14; 
+    // inline constexpr int kHalleffectPortGroundPickup = 15; 
     inline constexpr int kPotentiometerPort = 0; 
     //placeholder values, please change.
 

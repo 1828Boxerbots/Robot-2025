@@ -74,11 +74,11 @@ frc::DigitalOutput m_HallEffectL1{ElevatorConstants::kHallEffectPortL1};
 
 /// @brief Hall Effect sensor for the Second level
 /// @return 
-frc::DigitalOutput m_HallEffectL2{ElevatorConstants::kHallEffectPortL2};
+//frc::DigitalOutput m_HallEffectL2{ElevatorConstants::kHallEffectPortL2};
 
 /// @brief Hall Effect sensor for the Third level
 /// @return 
-frc::DigitalOutput m_HallEffectL3{ElevatorConstants::kHallEffectPortL3};
+//frc::DigitalOutput m_HallEffectL3{ElevatorConstants::kHallEffectPortL3};
 
 /// @brief Hall Effect sensor for the fourth level
 /// @return 

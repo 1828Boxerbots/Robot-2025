@@ -31,9 +31,9 @@ class Robot : public frc::TimedRobot {
   std::optional<frc2::CommandPtr> m_autonomousCommand;
 
   RobotContainer m_container;
-  Robot2025::DriveSubsystem m_DriveSub;
-  Robot2025::Elevator m_Elevator; 
-  Robot2025::Guaco m_Guaco;
-  Robot2025::Intake m_Intake; 
-  Robot2025::Pivot m_Pivot;
+  // Robot2025::DriveSubsystem m_DriveSub;
+  //Robot2025::Elevator m_Elevator; 
+  //Robot2025::Guaco m_Guaco;
+  //Robot2025::Intake m_Intake; 
+  //Robot2025::Pivot m_Pivot;
 };

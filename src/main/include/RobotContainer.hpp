@@ -15,6 +15,7 @@
 #include "subsystems/Intake.hpp"
 #include "subsystems/Pivot.hpp"
 #include "subsystems/Camera.hpp"
+#include "subsystems/SwerveModule.hpp"
 #include <rev/SparkClosedLoopController.h>
 
 /**
@@ -38,10 +39,10 @@ class RobotContainer {
   frc2::CommandXboxController m_driverController{
       OIConstants::kDriverControllerPort};
 
-  // The robot's subsystems are defined here...
+//   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
 
- Robot2025::DriveSubsystem m_DriveSub;
+Robot2025::DriveSubsystem m_DriveSub;
  Robot2025::Elevator m_Elevator;
  Robot2025::Intake m_Intake;
  Robot2025::Guaco m_Guaco;

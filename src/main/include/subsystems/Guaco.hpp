@@ -3,7 +3,7 @@
 #include <rev/SparkMax.h>
 #include "Constants.hpp"
 #include <frc/DigitalOutput.h>
-#include <frc/DigitalInput.h>
+#include <frc/DigitalOutput.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 #include <frc2/command/FunctionalCommand.h>
@@ -28,7 +28,7 @@ public:
 //private member variables
 
     rev::spark::SparkMax m_guacoMotor{GuacoConstants::kGuacoMotorPort, rev::spark::SparkMax::MotorType::kBrushed};
-    frc::DigitalInput m_photogate{GuacoConstants::kPhotogatePort};
+    frc::DigitalOutput m_photogate{GuacoConstants::kPhotogatePort};
     
 
 //private methods

@@ -41,37 +41,37 @@ void Pivot::Periodic()
   frc::SmartDashboard::PutNumber("Pivot Encoder Count Revolved", m_encoder.GetPosition());
   frc::SmartDashboard::PutBoolean("Pivot Halleffect Left Safetystop", m_halleffectLeftSafetyStop.Get());
   frc::SmartDashboard::PutBoolean("Pivot Halleffect Right Safetystop", m_halleffectRightSafetyStop.Get());
-  frc::SmartDashboard::PutBoolean("Pivot Halleffect Barge", m_halleffectBarge.Get());
-  frc::SmartDashboard::PutBoolean("Pivot Halleffect Base", m_halleffectBase.Get());
-  frc::SmartDashboard::PutBoolean("Pivot Halleffect Coral", m_halleffectCoral.Get());
-  frc::SmartDashboard::PutBoolean("Pivot Halleffect Ground Pickup", m_halleffectGroundPickup.Get());
+  //frc::SmartDashboard::PutBoolean("Pivot Halleffect Barge", m_halleffectBarge.Get());
+  //frc::SmartDashboard::PutBoolean("Pivot Halleffect Base", m_halleffectBase.Get());
+  //frc::SmartDashboard::PutBoolean("Pivot Halleffect Coral", m_halleffectCoral.Get());
+  //frc::SmartDashboard::PutBoolean("Pivot Halleffect Ground Pickup", m_halleffectGroundPickup.Get());
 }
 
 
 
-bool Pivot::AtAngleBarge()
-{
-//Checks if at Barge angle halleffect
-  return m_halleffectBarge.Get();
-}; 
+// bool Pivot::AtAngleBarge()
+// {
+// //Checks if at Barge angle halleffect
+//   return m_halleffectBarge.Get();
+// }; 
 
-bool Pivot::AtAngleBase()
-{
-//Checks if at Base angle halleffect
-  return m_halleffectBase.Get();
-};
+// bool Pivot::AtAngleBase()
+// {
+// //Checks if at Base angle halleffect
+//   return m_halleffectBase.Get();
+// };
 
-bool Pivot::AtAngleCoral()
-{
-//Checks if at Coral angle halleffect
-  return m_halleffectCoral.Get();
-};
+// bool Pivot::AtAngleCoral()
+// {
+// //Checks if at Coral angle halleffect
+//   return m_halleffectCoral.Get();
+// };
 
-bool Pivot::AtAngleGroundPickup()
-{
-//Checks if at high angle halleffect
-  return m_halleffectGroundPickup.Get();
-}; 
+// bool Pivot::AtAngleGroundPickup()
+// {
+// //Checks if at high angle halleffect
+//   return m_halleffectGroundPickup.Get();
+// }; 
 
 bool Pivot::AtAngleLeftSafetyStop()
 {
