@@ -20,21 +20,21 @@
 
 RobotContainer::RobotContainer() {
   //Initialize all of your commands and subsystems here
-  m_DriveSub.SetDefaultCommand(frc2::RunCommand(
-    [this] {
-      m_DriveSub.Drive(
-          -units::meters_per_second_t{m_DriveSub.Clamp(frc::ApplyDeadband(
-              m_driverController.GetLeftY(), OIConstants::kDriveDeadband, 0.1), 0.1, m_Elevator)},
+//   m_DriveSub.SetDefaultCommand(frc2::RunCommand(
+//     [this] {
+//       m_DriveSub.Drive(
+//           -units::meters_per_second_t{m_DriveSub.Clamp(frc::ApplyDeadband(
+//               m_driverController.GetLeftY(), OIConstants::kDriveDeadband, 0.1), 0.1, m_Elevator)},
               
-          -units::meters_per_second_t{m_DriveSub.Clamp(frc::ApplyDeadband(
-              m_driverController.GetLeftX(), OIConstants::kDriveDeadband), 0.1, m_Elevator)},
+//           -units::meters_per_second_t{m_DriveSub.Clamp(frc::ApplyDeadband(
+//               m_driverController.GetLeftX(), OIConstants::kDriveDeadband), 0.1, m_Elevator)},
 
-          -units::radians_per_second_t{m_DriveSub.Clamp(frc::ApplyDeadband(
-              m_driverController.GetRightX(), OIConstants::kDriveDeadband), 0.1, m_Elevator)},
-          true);
-    },
-    {&m_DriveSub})
-);
+//           -units::radians_per_second_t{m_DriveSub.Clamp(frc::ApplyDeadband(
+//               m_driverController.GetRightX(), OIConstants::kDriveDeadband), 0.1, m_Elevator)},
+//           true);
+//     },
+//     {&m_DriveSub})
+// );
   
   // Configure the button bindings
   ConfigureBindings();
@@ -44,12 +44,12 @@ void RobotContainer::ConfigureBindings()
 {
 
   // Intake load/dispense: X / Y
-   m_driverController.X().WhileTrue(new frc2::RunCommand([this] {m_Intake.Load(IntakeConstants::kSpeed);}, {&m_Intake}));
-   m_driverController.Y().WhileTrue(new frc2::RunCommand([this] {m_Intake.Dispense(IntakeConstants::kSpeed);}, {&m_Intake}));
+  m_driverController.X().WhileTrue(frc2::CommandPtr(m_Intake.Load(IntakeConstants::kSpeed)));
+  m_driverController.Y().WhileTrue(frc2::CommandPtr(m_Intake.Dispense(IntakeConstants::kSpeed)));
 
   //Guaco load/dispense: A / B
-  // m_driverController.A().WhileTrue(m_Guaco.Load(GuacoConstants::kSpeed));
-  // m_driverController.B().WhileTrue(m_Guaco.Dispense(GuacoConstants::kSpeed));
+  // m_driverController.A().WhileTrue(std::move(m_Guaco.Load(GuacoConstants::kSpeed)).Repeatedly());
+  // m_driverController.B().WhileTrue(std::move(m_Guaco.Dispense(GuacoConstants::kSpeed)).Repeatedly());
  
   //Elevator up/down: dpad up / dpad down
   // m_driverController.POVUp().WhileTrue(m_Elevator.SetMotorValue(ElevatorConstants::kSpeed));

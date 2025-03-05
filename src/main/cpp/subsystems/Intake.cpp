@@ -39,10 +39,10 @@ bool Intake::IsBallIn()
   }
 };
 
-frc2::CommandPtr Intake::
+frc2::FunctionalCommand Intake::
 Load(double speed)
 {       
-        frc2::FunctionalCommand 
+        return frc2::FunctionalCommand 
         (
                 //init 
                 [this]
@@ -70,9 +70,9 @@ Load(double speed)
         );
 }
 
-frc2::CommandPtr Intake::Dispense(double speed)
+frc2::FunctionalCommand Intake::Dispense(double speed)
 {       
-        frc2::FunctionalCommand 
+        return frc2::FunctionalCommand 
         (
                 //init 
                 [this]

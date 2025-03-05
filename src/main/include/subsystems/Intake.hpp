@@ -8,6 +8,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
+#include <memory.h>
 
 namespace Robot2025
 
@@ -39,8 +40,8 @@ frc::DigitalOutput m_Photogate{IntakeConstants::kPhotogatePort};
    bool IsBallIn();
 
 /// @brief sets Shintake motors 
-   frc2::CommandPtr Load(double speed);
-   frc2::CommandPtr Dispense(double speed);
+   frc2::FunctionalCommand Load(double speed);
+   frc2::FunctionalCommand Dispense(double speed);
 
 private:
 
