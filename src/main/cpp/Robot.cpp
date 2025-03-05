@@ -48,14 +48,15 @@ void Robot::TeleopInit() {
   // teleop starts running. If you want the autonomous to
   // continue until interrupted by another command, remove
   // this line or comment it out.
-  if (m_autonomousCommand) {
-    m_autonomousCommand->Cancel();
-  }
+
+  // if (m_autonomousCommand) {
+  //   m_autonomousCommand->Cancel();
+  // }
   
-  m_Elevator.Init();
-  m_Guaco.Init();
-  m_Intake.Init();
-  m_Pivot.Init();
+  // m_Elevator.Init();  
+  // m_Guaco.Init();
+  // m_Intake.Init();
+  // m_Pivot.Init();
 }
 
 /**
@@ -63,11 +64,11 @@ void Robot::TeleopInit() {
  */
 void Robot::TeleopPeriodic() 
 {
-  m_DriveSub.Periodic();
-  m_Elevator.Periodic();
-  m_Guaco.Periodic();
-  m_Intake.Periodic();
-  m_Pivot.Periodic();
+  // m_DriveSub.Periodic();
+  // m_Elevator.Periodic();
+  // m_Guaco.Periodic();
+  // m_Intake.Periodic();
+  // m_Pivot.Periodic();
 }
 
 /**

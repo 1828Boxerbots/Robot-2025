@@ -3,7 +3,7 @@
 #include <rev/SparkMax.h>
 #include "Constants.hpp"
 #include <frc/Encoder.h>
-#include <frc/DigitalInput.h>
+#include <frc/DigitalOutput.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandPtr.h>
@@ -28,7 +28,7 @@ class Intake : public frc2::SubsystemBase
 //Private member variables
 
 rev::spark::SparkMax m_loadMotor1{IntakeConstants::kIntakeMotorPort1, rev::spark::SparkMax::MotorType::kBrushed};
-frc::DigitalInput m_Photogate{IntakeConstants::kPhotogatePort}; 
+frc::DigitalOutput m_Photogate{IntakeConstants::kPhotogatePort}; 
 
 
 
@@ -46,7 +46,7 @@ private:
 
 
 
-private:
+
 
 };
 

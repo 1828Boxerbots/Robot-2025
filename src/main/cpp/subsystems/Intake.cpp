@@ -39,7 +39,8 @@ bool Intake::IsBallIn()
   }
 };
 
-frc2::CommandPtr Intake::Load(double speed)
+frc2::CommandPtr Intake::
+Load(double speed)
 {       
         frc2::FunctionalCommand 
         (
@@ -63,6 +64,9 @@ frc2::CommandPtr Intake::Load(double speed)
                 {
                         return m_Photogate.Get() == true; //placeholder ultrasonic value
                 }
+             
+
+
         );
 }
 
@@ -90,6 +94,7 @@ frc2::CommandPtr Intake::Dispense(double speed)
                 {
                         return m_Photogate.Get() != true; //placeholder ultrasonic value
                 }
+               
         );
 }
 

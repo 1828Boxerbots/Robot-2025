@@ -108,7 +108,7 @@ class DriveSubsystem : public frc2::SubsystemBase {
       frc::Translation2d{-DriveConstants::kWheelBase / 2,
                          -DriveConstants::kTrackWidth / 2}};
 
-  double Clamp(double Joystick, double MinSpeed);
+  double Clamp(double Joystick, double MinSpeed, Elevator& sub);
 
 
  private:
@@ -129,7 +129,7 @@ class DriveSubsystem : public frc2::SubsystemBase {
 
   frc::Field2d m_field;
 
-  Robot2025::Elevator m_ElevatorSub;
+ 
 };
 
 

@@ -35,10 +35,10 @@ rev::spark::SparkMax m_pivotMotor{PivotConstants::kPivotMotorPort, rev::spark::S
 rev::spark::SparkClosedLoopController m_PivotPIDController = m_pivotMotor.GetClosedLoopController();
 
 
-frc::DigitalOutput m_halleffectBarge{PivotConstants::kHalleffectPortBarge};
-frc::DigitalOutput m_halleffectBase{PivotConstants::kHalleffectPortBase};
-frc::DigitalOutput m_halleffectCoral{PivotConstants::kHalleffectPortCoral};
-frc::DigitalOutput m_halleffectGroundPickup{PivotConstants::kHalleffectPortGroundPickup};
+//frc::DigitalOutput m_halleffectBarge{PivotConstants::kHalleffectPortBarge};
+//frc::DigitalOutput m_halleffectBase{PivotConstants::kHalleffectPortBase};
+//frc::DigitalOutput m_halleffectCoral{PivotConstants::kHalleffectPortCoral};
+//frc::DigitalOutput m_halleffectGroundPickup{PivotConstants::kHalleffectPortGroundPickup};
 frc::DigitalOutput m_halleffectLeftSafetyStop{PivotConstants::kHalleffectPortLeftSafetyStop};
 frc::DigitalOutput m_halleffectRightSafetyStop{PivotConstants::kHalleffectPortRightSafetyStop};
 frc::AnalogPotentiometer m_potentiometer {PivotConstants::kPotentiometerPort};

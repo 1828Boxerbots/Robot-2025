@@ -41,8 +41,8 @@ void Elevator::Init()
 void Elevator::Periodic() 
 {
   frc::SmartDashboard::PutBoolean("Elevator Halleffect L1", m_HallEffectL1.Get());
-  frc::SmartDashboard::PutBoolean("Elevator Halleffect L2", m_HallEffectL2.Get());
-  frc::SmartDashboard::PutBoolean("Elevator Halleffect L3", m_HallEffectL3.Get());
+  //frc::SmartDashboard::PutBoolean("Elevator Halleffect L2", m_HallEffectL2.Get());
+  //frc::SmartDashboard::PutBoolean("Elevator Halleffect L3", m_HallEffectL3.Get());
   frc::SmartDashboard::PutBoolean("Elevator Halleffect L4", m_HallEffectL4.Get());
   frc::SmartDashboard::PutNumber("Elevator Encoder Distance", m_ElevatorEncoder.GetPosition());
   frc::SmartDashboard::PutNumber("Elevator Encoderd Speed", m_ElevatorEncoder.GetVelocity());
@@ -100,16 +100,16 @@ void Elevator::Periodic()
   }
 
 
-  bool Elevator::GetHallEffectL2()
-  {
-     return m_HallEffectL2.Get();
-  };
+  // bool Elevator::GetHallEffectL2()
+  // {
+  //    return m_HallEffectL2.Get();
+  // };
 
-  bool Elevator::GetHallEffectL3()
-  {
+  // bool Elevator::GetHallEffectL3()
+  // {
 
-     return m_HallEffectL3.Get();
-  };
+  //    return m_HallEffectL3.Get();
+  // };
 
   bool Elevator::GetHallEffectL4()
   {

@@ -1,6 +1,7 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
+#pragma once
 
 #include <frc/trajectory/TrapezoidProfile.h>
 #include <rev/SparkMax.h>
@@ -13,7 +14,6 @@
 
 #include <numbers>
 
-#pragma once
 
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
@@ -116,10 +116,10 @@ namespace ElevatorConstants
     //Elevator constants
 
     inline constexpr int kElevatorMotorPort1 = 6;
-    inline constexpr int kHallEffectPortL1 = 0;
-    inline constexpr int kHallEffectPortL2 = 0;
-    inline constexpr int kHallEffectPortL3 = 0;
-    inline constexpr int kHallEffectPortL4 = 0;
+    inline constexpr int kHallEffectPortL1 = 5; //saftey down
+   // inline constexpr int kHallEffectPortL2 = 0;
+   // inline constexpr int kHallEffectPortL3 = 0;
+    inline constexpr int kHallEffectPortL4 = 3; // safwty up
     inline constexpr float kSpeed = 0.2;
 
     inline constexpr int kL0 = 0;
@@ -127,7 +127,7 @@ namespace ElevatorConstants
     inline constexpr int kL2= 2;
     inline constexpr int kL3 = 3;
     inline constexpr int kL4 = 4; 
-    inline constexpr int MaxElevatorHeight = 0; 
+    inline constexpr int MaxElevatorHeight = 1; //CHANGE
 
     namespace ElevatorPID
     {
@@ -140,7 +140,7 @@ namespace ElevatorConstants
         inline constexpr int kD = 0;
         inline constexpr int kMaxOutput = 0;
         inline constexpr int kMinOutput = 0;
-        inline constexpr int kv = 0;
+        inline constexpr int kv = 1;  //CHANGE
         inline constexpr int kMaxVelocity = 0;
         inline constexpr int kMaxAcceleration = 0;
         inline constexpr int kAllowedError = 0;
@@ -163,7 +163,7 @@ namespace IntakeConstants
     inline constexpr int kSpeed = 0.2;
 
     //placeholder port please change
-    inline constexpr int kPhotogatePort = 10;
+    inline constexpr int kPhotogatePort = 0;
     //inline constexpr double kUltraSonicThreshHold = 0.01;
 }  
 
@@ -171,7 +171,7 @@ namespace GuacoConstants
 {
     //guaco constants 
     inline constexpr int kGuacoMotorPort = 13;
-    inline constexpr int kPhotogatePort = 1;
+    inline constexpr int kPhotogatePort = 2;
     //inline constexpr int kPhotodiodeThreshold = 0;
     inline constexpr int kSpeed = 0.2;
     //placeholder speed
@@ -186,13 +186,13 @@ namespace PivotConstants
     inline constexpr int kPivotMotorPort = 11; 
     //placeholder values, please change. 
 
-    inline constexpr int kHalleffectPortLeftSafetyStop = 10;
-    inline constexpr int kHalleffectPortRightSafetyStop = 11; 
-    inline constexpr int kHalleffectPortCoral = 12; 
-    inline constexpr int kHalleffectPortBarge = 13; 
-    inline constexpr int kHalleffectPortBase = 14; 
-    inline constexpr int kHalleffectPortGroundPickup = 15; 
-    inline constexpr int kPotentiometerPort = 20000000; 
+    inline constexpr int kHalleffectPortLeftSafetyStop = 4; //either or could be 1 or 4
+    inline constexpr int kHalleffectPortRightSafetyStop = 1;  //either or could be 1 or 4
+    // inline constexpr int kHalleffectPortCoral = 12; 
+    // inline constexpr int kHalleffectPortBarge = 13; 
+    // inline constexpr int kHalleffectPortBase = 14; 
+    // inline constexpr int kHalleffectPortGroundPickup = 15; 
+    inline constexpr int kPotentiometerPort = 0; 
     //placeholder values, please change.
 
     inline constexpr int kEncoderStudCount = 42;
@@ -218,7 +218,7 @@ namespace PivotPIDConstants
     inline constexpr int kD = 0;
     inline constexpr int kMinOutput = 0;
     inline constexpr int kMaxOutput = 0;
-    inline constexpr int kV = 0;
+    inline constexpr int kV = 1; //CHANGE
     inline constexpr int kMaxVel = 0;
     inline constexpr int kMaxAccel = 0;
     inline constexpr int kAllowedErr = 0;
