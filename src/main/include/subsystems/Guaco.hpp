@@ -42,8 +42,8 @@ public:
     //bool PhotodiodeThreshold();
 
     /// @brief Used to set the speed the motor needs to go
-    frc2::CommandPtr Dispense(double speed);
-    frc2::CommandPtr Load(double speed);
+    frc2::FunctionalCommand Dispense(double speed);
+    frc2::FunctionalCommand Load(double speed);
 
     private: 
 

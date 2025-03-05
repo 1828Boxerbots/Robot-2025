@@ -17,14 +17,14 @@ DispenseAlgae::~DispenseAlgae()
 }
 
 
-frc2::CommandPtr DispenseAlgae::ShootAlgaeCmd(int Pivot, int Level)
-{
-    if ((m_pivotSubsystem != nullptr) and (m_elevatorSubsystem != nullptr) and (m_intakeSubsystem != nullptr))
-    {
-        std::move(m_pivotSubsystem->SetAngle(Pivot)).AndThen(std::move(m_elevatorSubsystem->MoveLevel(Level))).AndThen(std::move(m_intakeSubsystem->Dispense(IntakeConstants::kSpeed)));
-    }
+// frc2::CommandPtr DispenseAlgae::ShootAlgaeCmd(int Pivot, int Level)
+// {
+//     if ((m_pivotSubsystem != nullptr) and (m_elevatorSubsystem != nullptr) and (m_intakeSubsystem != nullptr))
+//     {
+//         std::move(m_pivotSubsystem->SetAngle(Pivot)).AndThen(std::move(m_elevatorSubsystem->MoveLevel(Level))).AndThen(std::move(m_intakeSubsystem->Dispense(IntakeConstants::kSpeed)));
+//     }
 
-}
+// }
 
 
 

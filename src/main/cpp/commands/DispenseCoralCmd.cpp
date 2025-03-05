@@ -12,13 +12,13 @@ DispenseCoralCmd::~DispenseCoralCmd()
 
 }
 
-frc2::CommandPtr DispenseCoralCmd::DispenseCoralCmdFunction(int CoralLevel)
-{
-    //CoralLevel = Level to put coral on reef 
-    if ((m_pivotSubsystem != nullptr) and (m_elevatorSubsystem != nullptr) and (m_guacoSubsystem != nullptr))
-    {
-        std::move(m_pivotSubsystem->SetAngle(PivotConstants::kCoralAngle)).AndThen(std::move(m_elevatorSubsystem->MoveLevel(CoralLevel)));
-    }
+// frc2::CommandPtr DispenseCoralCmd::DispenseCoralCmdFunction(int CoralLevel)
+// {
+//     //CoralLevel = Level to put coral on reef 
+//     if ((m_pivotSubsystem != nullptr) and (m_elevatorSubsystem != nullptr) and (m_guacoSubsystem != nullptr))
+//     {
+//         std::move(m_pivotSubsystem->SetAngle(PivotConstants::kCoralAngle)).AndThen(std::move(m_elevatorSubsystem->MoveLevel(CoralLevel)));
+//     }
    
-}
+// }
 

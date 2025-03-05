@@ -30,9 +30,9 @@ double Guaco::GetPhotogate()
         return m_photogate.Get();
 }
 
-frc2::CommandPtr Guaco::Dispense(double speed)
+frc2::FunctionalCommand Guaco::Dispense(double speed)
 {       
-        frc2::FunctionalCommand 
+        return frc2::FunctionalCommand 
         (
                 //init 
                 [this]
@@ -57,9 +57,9 @@ frc2::CommandPtr Guaco::Dispense(double speed)
         );
 }
 
-frc2::CommandPtr Guaco::Load(double speed)
+frc2::FunctionalCommand Guaco::Load(double speed)
 {       
-        frc2::FunctionalCommand 
+        return frc2::FunctionalCommand 
         (
                 //init 
                 [this]
