@@ -51,10 +51,10 @@ void Elevator::Periodic()
  
 
   
-   frc2::CommandPtr Elevator::MoveLevel(int level)
+   frc2::FunctionalCommand Elevator::MoveLevel(int level, Robot2025::Elevator& elevator)
    {
        //Converts passed angle to move the motor the equivalent distance measured by the encoder. 
-      frc2::FunctionalCommand
+      return frc2::FunctionalCommand
       (  
         //init
         [this]
@@ -89,7 +89,8 @@ void Elevator::Periodic()
           }
           return false;
 
-        }
+        },
+        {&elevator}
       );
   };
 
@@ -122,10 +123,10 @@ void Elevator::Periodic()
      return m_ElevatorMotor1.Get();
   };
 
-  frc2::CommandPtr Elevator::SetMotorValue(double speed)
+  frc2::StartEndCommand Elevator::SetMotorValue(double speed, Robot2025::Elevator& elevator)
   {
 
-    frc2::StartEndCommand
+    return frc2::StartEndCommand
   (
     //execute
     [this,speed] 
@@ -147,7 +148,9 @@ void Elevator::Periodic()
     [this]
     {
       m_ElevatorMotor1.Set(0);
-    });
+    },
+    {&elevator}
+    );
   }
 
 int Elevator::GetEncoder()
