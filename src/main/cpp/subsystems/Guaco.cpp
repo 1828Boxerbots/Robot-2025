@@ -30,34 +30,7 @@ double Guaco::GetPhotogate()
         return m_photogate.Get();
 }
 
-frc2::FunctionalCommand Guaco::Dispense(double speed)
-{       
-        return frc2::FunctionalCommand 
-        (
-                //init 
-                [this]
-                {
-
-                },
-                //execute
-                [this, speed]
-                {
-                        m_guacoMotor.Set(speed); //Positive speed assuming same direction to push through and eject
-                },
-                //end
-                [this] (bool interrupted)
-                {
-                        m_guacoMotor.Set(0);
-                },
-                //isfinished
-                [this]
-                {
-                        return m_photogate.Get() != true;
-                }
-        );
-}
-
-frc2::FunctionalCommand Guaco::Load(double speed)
+frc2::FunctionalCommand Guaco::Dispense(double speed,Robot2025::Guaco& guaco)
 {       
         return frc2::FunctionalCommand 
         (
@@ -80,8 +53,43 @@ frc2::FunctionalCommand Guaco::Load(double speed)
                 [this]
                 {
                         return m_photogate.Get() == true;
-                }
+                },
+                {&guaco}
+        );
+}
+
+frc2::FunctionalCommand Guaco::Load(double speed, Robot2025::Guaco& guaco)
+{       
+        return frc2::FunctionalCommand 
+        (
+                //init 
+                [this]
+                {
+
+                },
+                //execute
+                [this, speed]
+                {
+                        m_guacoMotor.Set(speed); //Positive speed assuming same direction to push through and eject
+                },
+                //end
+                [this] (bool interrupted)
+                {
+                        m_guacoMotor.Set(0);
+                },
+                //isfinished
+                [this]
+                {
+                        return m_photogate.Get() != true;
+                },
+                {&guaco}
         );
 }
 
 }
+
+
+//  void Guaco::SetMotor(double speed)
+//  {
+
+//  }

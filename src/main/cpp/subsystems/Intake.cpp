@@ -40,7 +40,7 @@ bool Intake::IsBallIn()
 };
 
 frc2::FunctionalCommand Intake::
-Load(double speed)
+Load(double speed, Robot2025::Intake& intake)
 {       
         return frc2::FunctionalCommand 
         (
@@ -63,14 +63,14 @@ Load(double speed)
                 [this]
                 {
                         return m_Photogate.Get() == true; //placeholder ultrasonic value
-                }
-             
+                },
+                {&intake}
 
 
         );
 }
 
-frc2::FunctionalCommand Intake::Dispense(double speed)
+frc2::FunctionalCommand Intake::Dispense(double speed, Robot2025::Intake& intake)
 {       
         return frc2::FunctionalCommand 
         (
@@ -93,7 +93,8 @@ frc2::FunctionalCommand Intake::Dispense(double speed)
                 [this]
                 {
                         return m_Photogate.Get() != true; //placeholder ultrasonic value
-                }
+                },
+                {&intake}
                
         );
 }

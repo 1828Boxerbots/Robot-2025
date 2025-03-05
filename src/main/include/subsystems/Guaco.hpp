@@ -2,8 +2,7 @@
 
 #include <rev/SparkMax.h>
 #include "Constants.hpp"
-#include <frc/DigitalOutput.h>
-#include <frc/DigitalOutput.h>
+#include <frc/DigitalInput.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 #include <frc2/command/FunctionalCommand.h>
@@ -28,7 +27,7 @@ public:
 //private member variables
 
     rev::spark::SparkMax m_guacoMotor{GuacoConstants::kGuacoMotorPort, rev::spark::SparkMax::MotorType::kBrushed};
-    frc::DigitalOutput m_photogate{GuacoConstants::kPhotogatePort};
+    frc::DigitalInput m_photogate{GuacoConstants::kPhotogatePort};
     
 
 //private methods
@@ -42,8 +41,8 @@ public:
     //bool PhotodiodeThreshold();
 
     /// @brief Used to set the speed the motor needs to go
-    frc2::FunctionalCommand Dispense(double speed);
-    frc2::FunctionalCommand Load(double speed);
+    frc2::FunctionalCommand Dispense(double speed, Robot2025::Guaco& guaco);
+    frc2::FunctionalCommand Load(double speed, Robot2025::Guaco& guaco);
 
     private: 
 

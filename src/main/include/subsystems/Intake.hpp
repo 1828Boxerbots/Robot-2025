@@ -3,7 +3,7 @@
 #include <rev/SparkMax.h>
 #include "Constants.hpp"
 #include <frc/Encoder.h>
-#include <frc/DigitalOutput.h>
+#include <frc/DigitalInput.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandPtr.h>
@@ -29,7 +29,7 @@ class Intake : public frc2::SubsystemBase
 //Private member variables
 
 rev::spark::SparkMax m_loadMotor1{IntakeConstants::kIntakeMotorPort1, rev::spark::SparkMax::MotorType::kBrushed};
-frc::DigitalOutput m_Photogate{IntakeConstants::kPhotogatePort}; 
+frc::DigitalInput m_Photogate{IntakeConstants::kPhotogatePort}; 
 
 
 
@@ -40,8 +40,8 @@ frc::DigitalOutput m_Photogate{IntakeConstants::kPhotogatePort};
    bool IsBallIn();
 
 /// @brief sets Shintake motors 
-   frc2::FunctionalCommand Load(double speed);
-   frc2::FunctionalCommand Dispense(double speed);
+   frc2::FunctionalCommand Load(double speed, Robot2025::Intake& intake);
+   frc2::FunctionalCommand Dispense(double speed, Robot2025::Intake& intake);
 
 private:
 

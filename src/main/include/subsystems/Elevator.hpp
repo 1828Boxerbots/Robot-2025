@@ -2,7 +2,7 @@
 #include "Constants.hpp"
 
 #include <frc/Encoder.h>
-#include <frc/DigitalOutput.h>
+#include <frc/DigitalInput.h>
 
 #include <rev/SparkMax.h>
 #include <rev/SparkClosedLoopController.h>
@@ -70,7 +70,7 @@ rev::spark::SparkClosedLoopController m_controller = m_ElevatorMotor1.GetClosedL
 
 /// @brief Hall Effect sensor for the first level (trough)
 /// @return 
-frc::DigitalOutput m_HallEffectL1{ElevatorConstants::kHallEffectPortL1};
+frc::DigitalInput m_HallEffectL1{ElevatorConstants::kHallEffectPortL1};
 
 /// @brief Hall Effect sensor for the Second level
 /// @return 
@@ -82,7 +82,7 @@ frc::DigitalOutput m_HallEffectL1{ElevatorConstants::kHallEffectPortL1};
 
 /// @brief Hall Effect sensor for the fourth level
 /// @return 
-frc::DigitalOutput m_HallEffectL4{ElevatorConstants::kHallEffectPortL4};
+frc::DigitalInput m_HallEffectL4{ElevatorConstants::kHallEffectPortL4};
 
 
 //Encoders

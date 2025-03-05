@@ -160,7 +160,7 @@ namespace IntakeConstants
 {
     //Intake constants
     inline constexpr int kIntakeMotorPort1 = 12;
-    inline constexpr int kSpeed = 0.2;
+    inline constexpr double kSpeed = 0.2;
 
     //placeholder port please change
     inline constexpr int kPhotogatePort = 0;
@@ -173,7 +173,7 @@ namespace GuacoConstants
     inline constexpr int kGuacoMotorPort = 13;
     inline constexpr int kPhotogatePort = 2;
     //inline constexpr int kPhotodiodeThreshold = 0;
-    inline constexpr int kSpeed = 0.2;
+    inline constexpr double kSpeed = 0.5;
     //placeholder speed
 
     //Placeholder port, change once known. 

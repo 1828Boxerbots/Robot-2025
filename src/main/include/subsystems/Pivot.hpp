@@ -2,7 +2,7 @@
 #include <rev/SparkMax.h>
 #include "Constants.hpp"
 #include <frc/Encoder.h>
-#include <frc/DigitalOutput.h>
+#include <frc/DigitalInput.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 #include <frc2/command/FunctionalCommand.h>
@@ -35,12 +35,12 @@ rev::spark::SparkMax m_pivotMotor{PivotConstants::kPivotMotorPort, rev::spark::S
 rev::spark::SparkClosedLoopController m_PivotPIDController = m_pivotMotor.GetClosedLoopController();
 
 
-//frc::DigitalOutput m_halleffectBarge{PivotConstants::kHalleffectPortBarge};
-//frc::DigitalOutput m_halleffectBase{PivotConstants::kHalleffectPortBase};
-//frc::DigitalOutput m_halleffectCoral{PivotConstants::kHalleffectPortCoral};
-//frc::DigitalOutput m_halleffectGroundPickup{PivotConstants::kHalleffectPortGroundPickup};
-frc::DigitalOutput m_halleffectLeftSafetyStop{PivotConstants::kHalleffectPortLeftSafetyStop};
-frc::DigitalOutput m_halleffectRightSafetyStop{PivotConstants::kHalleffectPortRightSafetyStop};
+//frc::DigitalInput m_halleffectBarge{PivotConstants::kHalleffectPortBarge};
+//frc::DigitalInput m_halleffectBase{PivotConstants::kHalleffectPortBase};
+//frc::DigitalInput m_halleffectCoral{PivotConstants::kHalleffectPortCoral};
+//frc::DigitalInput m_halleffectGroundPickup{PivotConstants::kHalleffectPortGroundPickup};
+frc::DigitalInput m_halleffectLeftSafetyStop{PivotConstants::kHalleffectPortLeftSafetyStop};
+frc::DigitalInput m_halleffectRightSafetyStop{PivotConstants::kHalleffectPortRightSafetyStop};
 frc::AnalogPotentiometer m_potentiometer {PivotConstants::kPotentiometerPort};
 //Low? LOW TAPER FAAADDDDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 rev::spark::SparkRelativeEncoder m_encoder = m_pivotMotor.GetEncoder();

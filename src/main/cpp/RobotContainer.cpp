@@ -44,15 +44,15 @@ void RobotContainer::ConfigureBindings()
 {
 
   // Intake load/dispense: X / Y
-  m_driverController.X().OnTrue(frc2::CommandPtr(m_Intake.Load(IntakeConstants::kSpeed)));
-  m_driverController.Y().OnTrue(frc2::CommandPtr(m_Intake.Dispense(IntakeConstants::kSpeed)));
+  m_driverController.X().OnTrue(frc2::CommandPtr(m_Intake.Load(IntakeConstants::kSpeed, m_Intake)));
+  m_driverController.Y().OnTrue(frc2::CommandPtr(m_Intake.Dispense(IntakeConstants::kSpeed, m_Intake)));
 
   //Guaco load/dispense: A / B
-  m_driverController.A().OnTrue(frc2::CommandPtr(m_Guaco.Load(GuacoConstants::kSpeed)));
-  m_driverController.B().OnTrue(frc2::CommandPtr(m_Guaco.Dispense(GuacoConstants::kSpeed)));
+  m_driverController.A().OnTrue(frc2::CommandPtr(m_Guaco.Load(GuacoConstants::kSpeed, m_Guaco)));
+  m_driverController.B().OnTrue(frc2::CommandPtr(m_Guaco.Dispense(GuacoConstants::kSpeed, m_Guaco)));
  
   //Elevator up/down: dpad up / dpad down
-  // m_driverController.POVUp().WhileTrue(m_Elevator.SetMotorValue(ElevatorConstants::kSpeed));
+  // m_driverController.POVUp().WhileTrue(m_Elevator.SetMotorValue(ElevatorConstants::kSpeed,));
   // m_driverController.POVDown().WhileTrue(m_Elevator.SetMotorValue(-ElevatorConstants::kSpeed));
 
   //Pivot left/right: dpad left / dpad right
