@@ -14,13 +14,13 @@ class DispenseAlgae
 {
 
  public:
- DispenseAlgae();
+ DispenseAlgae(Robot2025::Pivot& p, Robot2025::Elevator& e, Robot2025::Intake& i);
   ~DispenseAlgae();
  
-frc2::CommandPtr ShootAlgaeCmd(int Pivot, int Level);
+frc2::CommandPtr ShootAlgaeCmd(int Pivot, int Level); 
 
-  Robot2025::Pivot m_pivotSubsystem;
-  Robot2025::Elevator m_elevatorSubsystem;
-  Robot2025::Intake m_intakeSubsystem;
+  Robot2025::Pivot* m_pivotSubsystem = nullptr;
+  Robot2025::Elevator* m_elevatorSubsystem = nullptr;
+  Robot2025::Intake* m_intakeSubsystem = nullptr;
  
 };

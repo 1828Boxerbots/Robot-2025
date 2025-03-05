@@ -4,9 +4,11 @@
 
 #include "commands/DispenseAlgae.hpp"
 
-DispenseAlgae::DispenseAlgae()
+DispenseAlgae::DispenseAlgae(Robot2025::Pivot& p, Robot2025::Elevator& e, Robot2025::Intake& i)
 {
-
+    m_pivotSubsystem = &p;
+    m_elevatorSubsystem = &e;
+    m_intakeSubsystem = &i;
 }
 
 DispenseAlgae::~DispenseAlgae()
@@ -17,7 +19,11 @@ DispenseAlgae::~DispenseAlgae()
 
 frc2::CommandPtr DispenseAlgae::ShootAlgaeCmd(int Pivot, int Level)
 {
-std::move(m_pivotSubsystem.SetAngle(Pivot)).AndThen(std::move(m_elevatorSubsystem.MoveLevel(Level))).AndThen(std::move(m_intakeSubsystem.Dispense(IntakeConstants::kSpeed)));
+    if ((m_pivotSubsystem != nullptr) and (m_elevatorSubsystem != nullptr) and (m_intakeSubsystem != nullptr))
+    {
+        std::move(m_pivotSubsystem->SetAngle(Pivot)).AndThen(std::move(m_elevatorSubsystem->MoveLevel(Level))).AndThen(std::move(m_intakeSubsystem->Dispense(IntakeConstants::kSpeed)));
+    }
+
 }
 
 
