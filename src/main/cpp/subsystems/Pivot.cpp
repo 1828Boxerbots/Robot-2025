@@ -88,10 +88,10 @@ bool Pivot::AtAngleRightSafetyStop()
 
 
 
-frc2::CommandPtr Pivot::SetAngle(double angle)
+frc2::FunctionalCommand Pivot::SetAngle(double angle, Robot2025::Pivot& Pivot)
 {
     //Converts passed angle to move the motor the equivalent distance measured by the encoder. 
-    frc2::FunctionalCommand 
+    return frc2::FunctionalCommand 
     (  
       //init
       [this]
@@ -123,7 +123,8 @@ frc2::CommandPtr Pivot::SetAngle(double angle)
         }
 
         return false;
-      }
+      },
+      {&Pivot}
     );
 }; 
 
@@ -143,9 +144,9 @@ frc2::CommandPtr Pivot::StopMotor()
   );
 }
 
-frc2::CommandPtr Pivot::SetMotorManually(double speed)
+frc2::FunctionalCommand Pivot::SetMotorManually(double speed, Robot2025::Pivot& Pivot)
 {
-  frc2::StartEndCommand
+  return frc2::StartEndCommand
   (
     //execute
     [this,speed] 
@@ -167,7 +168,8 @@ frc2::CommandPtr Pivot::SetMotorManually(double speed)
     [this]
     {
       m_pivotMotor.Set(0);
-    }
+    },
+    {&Pivot}
   );
 }
 

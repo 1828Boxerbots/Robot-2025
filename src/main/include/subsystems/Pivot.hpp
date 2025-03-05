@@ -75,11 +75,11 @@ rev::spark::SparkRelativeEncoder m_encoder = m_pivotMotor.GetEncoder();
    double GetEncoder();
 
 /// @brief Moves the pivot motor to wanted angle 
-   frc2::CommandPtr SetAngle(double angle);
+   frc2::FunctionalCommand SetAngle(double angle, Robot2025::Pivot& Pivot);
 // Stops Motor
    frc2::CommandPtr StopMotor();
 // Sets Motor manually to specified speed
-   frc2::CommandPtr SetMotorManually(double speed);
+   frc2::FunctionalCommand SetMotorManually(double speed, Robot2025::Pivot& Pivot);
 
    private:
 
