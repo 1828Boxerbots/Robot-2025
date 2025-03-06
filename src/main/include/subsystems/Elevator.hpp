@@ -43,14 +43,14 @@ bool GetHallEffectL4();
     
 int GetMotorValue();
 
-frc2::CommandPtr SetMotorValue(double speed);
+frc2::StartEndCommand SetMotorValue(double speed, Robot2025::Elevator& elevator);
 
 int GetEncoder();
   
 
   
 /// @brief Moves height of taco to Level 1 on the reef (trough)
-frc2::CommandPtr MoveLevel(int level);
+frc2::FunctionalCommand MoveLevel(int level, Robot2025::Elevator& elevator);
 
 
     private:
