@@ -53,7 +53,7 @@ void RobotContainer::ConfigureBindings()
  
   //Elevator up/down: dpad up / dpad down
   //m_driverController.POVUp().OnTrue(frc2::CommandPtr(m_Elevator.SetMotorValue(ElevatorConstants::kSpeed, m_Elevator)));
-  //m_driverController.POVUp().OnTrue(frc2::CommandPtr(m_Elevator.SetMotorValue(ElevatorConstants::kSpeed, m_Elevator)));
+  //m_driverController.POVDown().OnTrue(frc2::CommandPtr(m_Elevator.SetMotorValue(-ElevatorConstants::kSpeed, m_Elevator)));
 
   //Pivot left/right: dpad left / dpad right
   //m_driverController.POVRight().OnTure(frc2::CommandPtr(m_Pivot.SetMotorManually(PivotConstants::kSpeed, m_Pivot)));
