@@ -160,10 +160,10 @@ namespace IntakeConstants
 {
     //Intake constants
     inline constexpr int kIntakeMotorPort1 = 12;
-    inline constexpr double kSpeed = 0.2;
+    inline constexpr double kSpeed = 0.8;
 
     //placeholder port please change
-    inline constexpr int kPhotogatePort = 0;
+    inline constexpr int kLimitSwitchPort = 0;
     //inline constexpr double kUltraSonicThreshHold = 0.01;
 }  
 

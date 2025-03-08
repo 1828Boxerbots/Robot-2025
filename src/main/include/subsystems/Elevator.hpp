@@ -63,7 +63,16 @@ frc2::FunctionalCommand MoveLevel(int level, Robot2025::Elevator& elevator);
 rev::spark::SparkMax m_ElevatorMotor1{ElevatorConstants::kElevatorMotorPort1, rev::spark::SparkMax::MotorType::kBrushless};
 
 //PIDS
-rev::spark::SparkClosedLoopController m_controller = m_ElevatorMotor1.GetClosedLoopController();
+ rev::spark::SparkClosedLoopController m_controller = m_ElevatorMotor1.GetClosedLoopController();
+
+
+//Encoder
+rev::spark::SparkRelativeEncoder m_ElevatorEncoder = m_ElevatorMotor1.GetEncoder();
+ 
+
+static rev::spark::SparkBaseConfig ElevatorConfig();
+
+
 
 
 //Hall effect sensors
@@ -85,11 +94,9 @@ frc::DigitalInput m_HallEffectL1{ElevatorConstants::kHallEffectPortL1};
 frc::DigitalInput m_HallEffectL4{ElevatorConstants::kHallEffectPortL4};
 
 
-//Encoders
 
-rev::spark::SparkRelativeEncoder m_ElevatorEncoder = m_ElevatorMotor1.GetEncoder();
- 
-//Private Methods
+
+
 
  
 };

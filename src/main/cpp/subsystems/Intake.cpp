@@ -22,14 +22,14 @@ void Intake::Init()
 void Intake::Periodic() 
 {
         frc::SmartDashboard::PutNumber("Intake Motor", m_loadMotor1.Get());
-        frc::SmartDashboard::PutBoolean("Intake Photogate", m_Photogate.Get());
+        frc::SmartDashboard::PutBoolean("Intake Photogate", m_LimitSwitch.Get());
 }
 
 
 bool Intake::IsBallIn()
 {
 //Checks if the ball is in 
-  if(m_Photogate.Get() == true) //placeholder target voltage value, theoretically correct but check.
+  if(m_LimitSwitch.Get() == true) //placeholder target voltage value, theoretically correct but check.
   {
         return true;
   }
@@ -62,7 +62,7 @@ Load(double speed, Robot2025::Intake& intake)
                 //isfinished
                 [this]
                 {
-                        return m_Photogate.Get() == true; //placeholder ultrasonic value
+                        return m_LimitSwitch.Get() != true; //placeholder ultrasonic value
                 },
                 {&intake}
 
@@ -92,7 +92,7 @@ frc2::FunctionalCommand Intake::Dispense(double speed, Robot2025::Intake& intake
                 //isfinished
                 [this]
                 {
-                        return m_Photogate.Get() != true; //placeholder ultrasonic value
+                        return m_LimitSwitch.Get() == true; //placeholder ultrasonic value
                 },
                 {&intake}
                
