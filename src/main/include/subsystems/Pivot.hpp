@@ -41,7 +41,11 @@ rev::spark::SparkClosedLoopController m_PivotPIDController = m_pivotMotor.GetClo
 //frc::DigitalInput m_halleffectGroundPickup{PivotConstants::kHalleffectPortGroundPickup};
 frc::DigitalInput m_halleffectLeftSafetyStop{PivotConstants::kHalleffectPortLeftSafetyStop};
 frc::DigitalInput m_halleffectRightSafetyStop{PivotConstants::kHalleffectPortRightSafetyStop};
-frc::AnalogPotentiometer m_potentiometer {PivotConstants::kPotentiometerPort, 3600, 1576.8};
+
+frc::AnalogInput input{0};
+
+frc::AnalogPotentiometer m_potentiometer {input&, 3600, 1576.8};
+
 //Low? LOW TAPER FAAADDDDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 rev::spark::SparkRelativeEncoder m_encoder = m_pivotMotor.GetEncoder();
 

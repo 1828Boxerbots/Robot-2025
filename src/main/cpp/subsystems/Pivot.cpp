@@ -20,6 +20,8 @@ Pivot::Pivot()
     .AllowedClosedLoopError(PivotConstants::PivotPIDConstants::kAllowedErr);
 
      m_PivotPIDController.SetReference(PivotConstants::PivotPIDConstants::kSetPoint, rev::spark::SparkBase::ControlType::kPosition);
+
+     input.SetAverageBits(8);
 };
 
 
@@ -41,6 +43,7 @@ void Pivot::Periodic()
   frc::SmartDashboard::PutNumber("Pivot Encoder Count Revolved", m_encoder.GetPosition());
   frc::SmartDashboard::PutBoolean("Pivot Halleffect Left Safetystop", m_halleffectLeftSafetyStop.Get());
   frc::SmartDashboard::PutBoolean("Pivot Halleffect Right Safetystop", m_halleffectRightSafetyStop.Get());
+  frc::SmartDashboard::PutNumber("POT angle", m_potentiometer.Get());
   //frc::SmartDashboard::PutBoolean("Pivot Halleffect Barge", m_halleffectBarge.Get());
   //frc::SmartDashboard::PutBoolean("Pivot Halleffect Base", m_halleffectBase.Get());
   //frc::SmartDashboard::PutBoolean("Pivot Halleffect Coral", m_halleffectCoral.Get());
@@ -113,11 +116,11 @@ frc2::FunctionalCommand Pivot::SetAngle(double angle, Robot2025::Pivot& Pivot)
       [this, angle]
       {
         //Checks if at safety stop through either detection from halleffect or potentiometer, then must also be attempting to continue that way to cut command. 
-        if (((m_halleffectLeftSafetyStop.Get() == true) || (m_potentiometer.Get() <= PivotConstants::kLeftSafetyStopAngle)) && (m_pivotMotor.Get() < 0))
+        if ((m_potentiometer.Get() <= PivotConstants::kLeftSafetyStopAngle) && (m_pivotMotor.Get() < 0))
         {
           return true; 
         }
-        else if (((m_halleffectRightSafetyStop.Get() == true) || (m_potentiometer.Get() >= PivotConstants::kRightSafetyStopAngle)) && (m_pivotMotor.Get() > 0))
+        else if ((m_potentiometer.Get() >= PivotConstants::kRightSafetyStopAngle) && (m_pivotMotor.Get() > 0))
         {
           return true; 
         }
@@ -151,18 +154,20 @@ frc2::FunctionalCommand Pivot::SetMotorManually(double speed, Robot2025::Pivot& 
     //execute
     [this,speed] 
     {
-      if (((m_halleffectLeftSafetyStop.Get() == true) || (m_potentiometer.Get() <= PivotConstants::kLeftSafetyStopAngle)) && (speed < 0))
-        {
-          m_pivotMotor.Set(0); //Stops motor
-        }
-        else if (((m_halleffectRightSafetyStop.Get() == true) || (m_potentiometer.Get() >= PivotConstants::kRightSafetyStopAngle)) && (speed > 0))
-        {
-          m_pivotMotor.Set(0); //Stops motor
-        }
-        else
-        {
-          m_pivotMotor.Set(speed);
-        }
+      // if (((m_halleffectLeftSafetyStop.Get() == true) || (m_potentiometer.Get() <= PivotConstants::kLeftSafetyStopAngle)) && (speed < 0))
+      //   {
+      //     m_pivotMotor.Set(0); //Stops motor
+      //   }
+      //   else if (((m_halleffectRightSafetyStop.Get() == true) || (m_potentiometer.Get() >= PivotConstants::kRightSafetyStopAngle)) && (speed > 0))
+      //   {
+      //     m_pivotMotor.Set(0); //Stops motor
+      //   }
+      //   else
+      //   {
+      //     m_pivotMotor.Set(speed);
+      //   }
+
+        m_pivotMotor.Set(speed);
     },
     //end
     [this]

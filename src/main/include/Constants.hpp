@@ -199,8 +199,8 @@ namespace PivotConstants
     inline constexpr double kSpeed = 0.2;
     //placeholder values possibly? Please check. 
 
-    inline constexpr double kLeftSafetyStopAngle = -270;
-    inline constexpr double kRightSafetyStopAngle = 270; 
+    inline constexpr double kLeftSafetyStopAngle = 1680;
+    inline constexpr double kRightSafetyStopAngle = 1420; 
     inline constexpr double kCoralAngle = 120; 
     inline constexpr double kCoralLoadAngle = 120;
     inline constexpr double kBargeAngle = 95; 

@@ -57,7 +57,7 @@ Load(double speed, Robot2025::Intake& intake)
                 //end
                 [this] (bool interrupted)
                 {
-                        m_loadMotor1.Set(0);
+                        m_loadMotor1.Set(0); //0 for now, change later after team agreement so we dont burn out motors
                 },
                 //isfinished
                 [this]
