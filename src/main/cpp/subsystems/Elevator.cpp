@@ -4,8 +4,7 @@ namespace Robot2025
 {
  Elevator::Elevator()
  {
-   ElevatorConfig();
-  m_ElevatorMotor1.SetInverted(true);
+  m_ElevatorMotor1.Configure(ElevatorConfig(), rev::spark::SparkBase::ResetMode::kResetSafeParameters, rev::spark::SparkBase::PersistMode::kPersistParameters);
  }
 
  Elevator::~Elevator()
@@ -139,12 +138,12 @@ int Elevator::GetEncoder()
 };
 
 
-rev::spark::SparkBaseConfig ElevatorConfig() 
+rev::spark::SparkBaseConfig& Elevator::ElevatorConfig() 
 {
 
 
   //pids setup
- rev::spark::SparkBaseConfig config{};
+ static rev::spark::SparkBaseConfig config{};
    config.closedLoop
    .P(ElevatorConstants::ElevatorPID::kP)
    .I(ElevatorConstants::ElevatorPID::kI)
@@ -161,13 +160,13 @@ rev::spark::SparkBaseConfig ElevatorConfig()
 
     //Encoder config
 
-   config.encoder.VelocityConversionFactor();
-
-
+   config.encoder.VelocityConversionFactor(64); //default is 64, just explicitly stating it
    config.SetIdleMode(rev::spark::SparkBaseConfig::IdleMode::kBrake);
-   config.SmartCurrentLimit();
+   config.SmartCurrentLimit(50);
+   config.Inverted(true); //might not work hhehehe
+   
 
-
+return config;
      
 
 

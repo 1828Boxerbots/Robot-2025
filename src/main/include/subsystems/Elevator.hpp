@@ -68,9 +68,10 @@ rev::spark::SparkMax m_ElevatorMotor1{ElevatorConstants::kElevatorMotorPort1, re
 
 //Encoder
 rev::spark::SparkRelativeEncoder m_ElevatorEncoder = m_ElevatorMotor1.GetEncoder();
+
  
 
-static rev::spark::SparkBaseConfig ElevatorConfig();
+static rev::spark::SparkBaseConfig& ElevatorConfig();
 
 
 
