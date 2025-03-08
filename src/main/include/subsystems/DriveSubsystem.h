@@ -1,3 +1,4 @@
+
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -13,11 +14,8 @@
 #include <frc/kinematics/SwerveDriveOdometry.h>
 #include <frc2/command/SubsystemBase.h>
 
-#include "Constants.hpp"
-#include "SwerveModule.hpp"
-
-namespace Robot2025
-{
+#include "Constants.h"
+#include "MAXSwerveModule.h"
 
 class DriveSubsystem : public frc2::SubsystemBase {
  public:
@@ -119,5 +117,3 @@ class DriveSubsystem : public frc2::SubsystemBase {
   // 4 defines the number of modules
   frc::SwerveDriveOdometry<4> m_odometry;
 };
-
-}
